@@ -16,66 +16,66 @@ namespace Carrinho.Core.Test
         }
 
         [Fact]
-        public void GetDiscount_0_Should_Return_Rate_0_And_Value_0()
+        public void GetDesconto_0_Deve_Retornar_Taxa_0_And_Valor_0()
         {
             var rule = descontoManager.GetDesconto(0);
-            Assert.Equal(0, rule.Rate);
+            Assert.Equal(0, rule.Taxa);
             Assert.Equal(0, rule.DescontoCalculado);
         }
 
         [Fact]
-        public void GetDiscount_499_99_Should_Return_Rate_0_And_Value_0()
+        public void GetDesconto_499_99_Deve_Retornar_Taxa_0_And_Valor_0()
         {
             var rule = descontoManager.GetDesconto(499.99M);
-            Assert.Equal(0, rule.Rate);
+            Assert.Equal(0, rule.Taxa);
             Assert.Equal(0, rule.DescontoCalculado);
         }
 
         [Fact]
-        public void GetDiscount_500M_Should_Return_Rate_5_And_Value_25()
+        public void GetDesconto_500M_Deve_Retornar_Taxa_5_And_Valor_25()
         {
             var rule = descontoManager.GetDesconto(500M);
-            Assert.Equal(.05M, rule.Rate);
+            Assert.Equal(.05M, rule.Taxa);
             Assert.Equal(25, rule.DescontoCalculado);
         }
 
         [Fact]
-        public void GetDiscount_599_99M_Should_Return_Rate_5_And_Value_25()
+        public void GetDesconto_599_99M_Deve_Retornar_Taxa_5_And_Valor_25()
         {
             var rule = descontoManager.GetDesconto(599.99M);
-            Assert.Equal(.05M, rule.Rate);
+            Assert.Equal(.05M, rule.Taxa);
             Assert.Equal(30M, rule.DescontoCalculado);
         }
 
         [Fact]
-        public void GetDiscount_600M_Should_Return_Rate_10_And_Value_60()
+        public void GetDesconto_600M_Deve_Retornar_Taxa_10_And_Valor_60()
         {
             var rule = descontoManager.GetDesconto(600M);
-            Assert.Equal(.10M, rule.Rate);
+            Assert.Equal(.10M, rule.Taxa);
             Assert.Equal(60M, rule.DescontoCalculado);
         }
 
         [Fact]
-        public void GetDiscount_699_99M_Should_Return_Rate_10_And_Value_70M()
+        public void GetDesconto_699_99M_Deve_Retornar_Taxa_10_And_Valor_70M()
         {
             var rule = descontoManager.GetDesconto(699.99M);
-            Assert.Equal(.10M, rule.Rate);
+            Assert.Equal(.10M, rule.Taxa);
             Assert.Equal(70M, rule.DescontoCalculado);
         }
 
         [Fact]
-        public void GetDiscount_700M_Should_Return_Rate_15_And_Value_105()
+        public void GetDesconto_700M_Deve_Retornar_Taxa_15_And_Valor_105()
         {
             var rule = descontoManager.GetDesconto(700M);
-            Assert.Equal(.15M, rule.Rate);
+            Assert.Equal(.15M, rule.Taxa);
             Assert.Equal(105M, rule.DescontoCalculado);
         }
 
         [Fact]
-        public void GetDiscount_10000M_Should_Return_Rate_15_And_Value_1500()
+        public void GetDesconto_10000M_Deve_Retornar_Taxa_15_And_Valor_1500()
         {
             var rule = descontoManager.GetDesconto(10000M);
-            Assert.Equal(.15M, rule.Rate);
+            Assert.Equal(.15M, rule.Taxa);
             Assert.Equal(1500M, rule.DescontoCalculado);
         }
     }

@@ -125,7 +125,7 @@ class CartView extends React.Component {
             canFinishOrder: true,
             items: items,
             Subtotal: this.props.model.Subtotal,
-            RegraDesconto: this.props.model.RegraDesconto,
+            TaxaDesconto: this.props.model.TaxaDesconto,
             ValorDesconto: this.props.model.ValorDesconto,
             Total: this.props.model.Total
         };
@@ -134,7 +134,7 @@ class CartView extends React.Component {
     handleCartChange(cart, itemCarrinho) {
         var newState = Object.assign({}, this.state, {
             Subtotal: cart.Subtotal,
-            RegraDesconto: cart.RegraDesconto,
+            TaxaDesconto: cart.TaxaDesconto,
             ValorDesconto: cart.ValorDesconto,
             Total: cart.Total
         });
@@ -173,11 +173,11 @@ class CartView extends React.Component {
                                         </span>
                                     </Column>
                                 </Row>
-                                { this.state.regraDesconto
+                                { this.state.taxaDesconto
                                 ?
                                     <Row className="vertical-align">
                                         <Column md={8} className="justify-right">
-                                            Desconto (<span>{this.state.regraDesconto}</span>%):
+                                            Desconto (<span>{this.state.taxaDesconto}</span>%):
                                         </Column>
                                     <Column md={4} className="green justify-right">
                                         <span>
