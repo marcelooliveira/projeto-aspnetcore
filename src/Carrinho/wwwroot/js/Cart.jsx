@@ -107,7 +107,6 @@ class CartView extends React.Component {
         var item;
         for (var i = 0; i < (this.props.model.cartItems || []).length; i++) {
             item = this.props.model.cartItems[i];
-            //items.push(item);
 
             items.push({
                 id: item.id,
@@ -149,8 +148,8 @@ class CartView extends React.Component {
     render() {
         const header = (<Row className="vertical-align">
                                     <Column md={6} className="justify-left">item(s)</Column>
-                                    <Column md={2} className="justify-center">unit price</Column>
-                                    <Column md={2} className="justify-center">quantity</Column>
+                                    <Column md={2} className="justify-center">preço unitário</Column>
+                                    <Column md={2} className="justify-center">quantidade</Column>
                                     <Column md={2} className="justify-right">subtotal</Column>
         </Row>);
 
@@ -207,17 +206,17 @@ class CartView extends React.Component {
                         this.state.items.length == 0 ? null :
                         <div>
                         {/* TITLE */}
-                        <h3>Your shopping cart ({ this.state.items.length}<Pluralize value={this.state.items.length} singular="item" plural="items" />)</h3>
+                        <h3>Meu carrinho ({ this.state.items.length}<Pluralize value={this.state.items.length} singular="item" plural="items" />)</h3>
                         {/* NAVIGATION BUTTONS */}
                         <Row>
                             <Column md={3}>
                                 <a href={this.props.urlNewProduct}>
-                                    <button type="button" className="btn btn-success">Add new product</button>
+                                    <button type="button" className="btn btn-success">Adicionar novo</button>
                                 </a>
                             </Column>
                             <Column md={3} className="pull-right">
                                 <a href={this.props.urlCheckoutSuccess}>
-                                    <button type="button" className="btn btn-success pull-right">Proceed to checkout</button>
+                                    <button type="button" className="btn btn-success pull-right">Finalizar pedido</button>
                                 </a>
                             </Column>
                         </Row>
@@ -233,12 +232,12 @@ class CartView extends React.Component {
                         <Row>
                             <Column md={3}>
                                 <a href={this.props.urlNewProduct}>
-                                    <button type="button" className="btn btn-success">Add new product</button>
+                                    <button type="button" className="btn btn-success">Adicionar novo</button>
                                 </a>
                             </Column>
                             <Column md={3} className="pull-right">
                                 <a href={this.props.urlCheckoutSuccess}>
-                                    <button type="button" className="btn btn-success pull-right">Proceed to checkout</button>
+                                    <button type="button" className="btn btn-success pull-right">Finalizar pedido</button>
                                 </a>
                             </Column>
                         </Row>

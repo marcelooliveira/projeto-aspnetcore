@@ -192,14 +192,14 @@ textarea {
 
 .footer-social-links .title {
     height: 20px;
-    width: 200px;
+    width: 250px;
     display: inline-block;
     color: transparent;
     padding: 0 0 20px 0;
 }
 
-.codeproject-footer-logo {
-    background: url('../images/codeproject.png');
+.casadocodigo-footer-logo {
+    background: url('../images/casadocodigo.png');
 }
 
 .footer-social-links .wm-icon {
