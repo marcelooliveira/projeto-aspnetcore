@@ -9,8 +9,8 @@ namespace Carrinho.Core.DTOs
         }
 
         public decimal Subtotal { get; set; }
-        public decimal DiscountRate { get; set; }
-        public decimal DiscountValue { get; set; }
+        public decimal RegraDesconto { get; set; }
+        public decimal ValorDesconto { get; set; }
         public decimal Total { get; set; }
 
         public List<ItemCarrinhoDTO> ItemsCarrinho { get; set; }

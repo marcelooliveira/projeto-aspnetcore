@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Carrinho.Core
 {
-    public class DiscountManager
+    public class DescontoManager
     {
         public List<RegraDescontoDTO> Descontos { get; private set; }
 
-        static DiscountManager instance;
-        public static DiscountManager Instance
+        static DescontoManager instance;
+        public static DescontoManager Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new DiscountManager();
+                    instance = new DescontoManager();
                 return instance;
             }
         }
 
-        public DiscountManager()
+        public DescontoManager()
         {
             Descontos = new List<RegraDescontoDTO>();
             Descontos.Add(new RegraDescontoDTO(0, 499.99M, 0));

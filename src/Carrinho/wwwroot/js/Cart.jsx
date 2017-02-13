@@ -125,8 +125,8 @@ class CartView extends React.Component {
             canFinishOrder: true,
             items: items,
             Subtotal: this.props.model.Subtotal,
-            DiscountRate: this.props.model.DiscountRate,
-            DiscountValue: this.props.model.DiscountValue,
+            RegraDesconto: this.props.model.RegraDesconto,
+            ValorDesconto: this.props.model.ValorDesconto,
             Total: this.props.model.Total
         };
     }
@@ -134,8 +134,8 @@ class CartView extends React.Component {
     handleCartChange(cart, itemCarrinho) {
         var newState = Object.assign({}, this.state, {
             Subtotal: cart.Subtotal,
-            DiscountRate: cart.DiscountRate,
-            DiscountValue: cart.DiscountValue,
+            RegraDesconto: cart.RegraDesconto,
+            ValorDesconto: cart.ValorDesconto,
             Total: cart.Total
         });
         if (itemCarrinho.Quantity == 0) {
@@ -173,15 +173,15 @@ class CartView extends React.Component {
                                         </span>
                                     </Column>
                                 </Row>
-                                { this.state.discountRate
+                                { this.state.regraDesconto
                                 ?
                                     <Row className="vertical-align">
                                         <Column md={8} className="justify-right">
-                                            Discount (<span>{this.state.discountRate}</span>%):
+                                            Desconto (<span>{this.state.regraDesconto}</span>%):
                                         </Column>
                                     <Column md={4} className="green justify-right">
                                         <span>
-                                            <Dollars val={this.state.discountValue} />
+                                            <Dollars val={this.state.valorDesconto} />
                                         </span>
                                     </Column>
                                     </Row>

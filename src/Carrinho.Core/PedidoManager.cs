@@ -29,9 +29,9 @@ namespace Carrinho.Core
         {
             var itemsCarrinho = GetItemsCarrinho();
             var subtotal = itemsCarrinho.Sum(i => i.Subtotal);
-            var regraDesconto = DiscountManager.Instance.GetDesconto(subtotal);
-            var discountValue = regraDesconto.CalculatedDiscount;
-            var total = subtotal - discountValue;
+            var regraDesconto = DescontoManager.Instance.GetDesconto(subtotal);
+            var valorDesconto = regraDesconto.DescontoCalculado;
+            var total = subtotal - valorDesconto;
 
             return new ResumoPedidoDTO
             {
@@ -51,15 +51,15 @@ namespace Carrinho.Core
         public CarrinhoDTO GetCarrinho(List<ItemCarrinhoDTO> itemsCarrinho)
         {
             var subtotal = itemsCarrinho.Sum(i => i.Subtotal);
-            var regraDesconto = DiscountManager.Instance.GetDesconto(subtotal);
-            var discountValue = regraDesconto.CalculatedDiscount;
-            var total = subtotal - discountValue;
+            var regraDesconto = DescontoManager.Instance.GetDesconto(subtotal);
+            var valorDesconto = regraDesconto.DescontoCalculado;
+            var total = subtotal - valorDesconto;
 
             return new CarrinhoDTO
             {
                 Subtotal = subtotal,
-                DiscountRate = regraDesconto.Rate * 100M,
-                DiscountValue = discountValue,
+                RegraDesconto = regraDesconto.Rate * 100M,
+                ValorDesconto = valorDesconto,
                 Total = total,
                 ItemsCarrinho = itemsCarrinho
             };
