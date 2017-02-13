@@ -8,7 +8,7 @@ namespace Carrinho.Core.DTOs
 {
     public class NovoProdutoDTO
     {
-        public string Description { get; set; }
-        public decimal UnitPrice { get; set; }
+        public string Descricao { get; set; }
+        public decimal PrecoUnitario { get; set; }
     }
 }

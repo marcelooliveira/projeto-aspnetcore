@@ -35,8 +35,8 @@ namespace Carrinho.Core
 
             return new ResumoPedidoDTO
             {
-                OrderNumber = "123456789",
-                DeliveryUpToNWorkingDays = 4,
+                NumeroPedido = "123456789",
+                EntregueAteNDias = 4,
                 Total = total,
                 ClienteInfo = GetDummyClienteInfo(),
                 ItemsCarrinho = itemsCarrinho
@@ -69,8 +69,8 @@ namespace Carrinho.Core
         {
             //try
             //{
-                if (newOrEditItem.Quantity < 0)
-                    newOrEditItem.Quantity = 0;
+                if (newOrEditItem.Quantidade < 0)
+                    newOrEditItem.Quantidade = 0;
 
                 using (var db = new Context(this._dbOptions))
                 {
@@ -80,27 +80,27 @@ namespace Carrinho.Core
 
                         var itemCarrinho =
                             (from ci in db.ItemCarrinho
-                             join p in db.Produto on ci.ProductId equals p.Id
+                             join p in db.Produto on ci.ProdutoId equals p.Id
                              where p.SKU == newOrEditItem.SKU
                              select ci)
                             .SingleOrDefault();
 
                         if (itemCarrinho != null)
                         {
-                            if (newOrEditItem.Quantity == 0)
+                            if (newOrEditItem.Quantidade == 0)
                                 db.ItemCarrinho.Remove(itemCarrinho);
                             else
                             {
-                                itemCarrinho.Quantity = newOrEditItem.Quantity;
-                                itemCarrinho.Product = product;
+                                itemCarrinho.Quantidade = newOrEditItem.Quantidade;
+                                itemCarrinho.Produto = product;
                             }
                         }
                         else
                         {
                             db.ItemCarrinho.Add(new ItemCarrinho
                             {
-                                Product = product,
-                                Quantity = newOrEditItem.Quantity
+                                Produto = product,
+                                Quantidade = newOrEditItem.Quantidade
                             });
                         }
 
@@ -121,8 +121,8 @@ namespace Carrinho.Core
                         Id = i.Id,
                         SKU = i.SKU,
                         ImagemPequena = i.ImagemPequena,
-                        Description = i.Description,
-                        Price = i.Price
+                        Descricao = i.Descricao,
+                        Preco = i.Preco
                     }).ToList();
             }
         }
@@ -133,7 +133,7 @@ namespace Carrinho.Core
             {
                 return
                     (from ci in db.ItemCarrinho
-                     from p in db.Produto.Where(p => p.Id == ci.ProductId)
+                     from p in db.Produto.Where(p => p.Id == ci.ProdutoId)
                      select new { ci, p })
                     .Select(i =>
                     new ItemCarrinhoDTO
@@ -141,9 +141,9 @@ namespace Carrinho.Core
                         Id = i.ci.Id,
                         SKU = i.p.SKU,
                         ImagemPequena = i.p.ImagemPequena,
-                        Descricao = i.p.Description,
-                        Price = i.p.Price,
-                        Quantity = i.ci.Quantity
+                        Descricao = i.p.Descricao,
+                        Preco = i.p.Preco,
+                        Quantidade = i.ci.Quantidade
                     }).ToList();
             }
         }
@@ -178,7 +178,7 @@ namespace Carrinho.Core
             //    "Square Sticker|299",
             //};
 
-            var products = new string[]
+            var produtos = new string[]
             {
                 "Sleep not found|5990",
                 "May the code be with you|5990",
@@ -192,10 +192,10 @@ namespace Carrinho.Core
             };
 
             var index = 1;
-            foreach (var p in products)
+            foreach (var p in produtos)
             {
-                var description = p.Split('|')[0];
-                var price = decimal.Parse(p.Split('|')[1]) / 100M;
+                var descricao = p.Split('|')[0];
+                var preco = decimal.Parse(p.Split('|')[1]) / 100M;
 
                 var product =
                 db.Produto.Add(new Produto
@@ -203,15 +203,15 @@ namespace Carrinho.Core
                     SKU = Guid.NewGuid().ToString(),
                     ImagemPequena = string.Format("images/products/small_{0}.jpg", index),
                     ImagemGrande = string.Format("images/products/large_{0}.jpg", index),
-                    Description = description,
-                    Price = price
+                    Descricao = descricao,
+                    Preco = preco
                 }).Entity;
                 
                 var itemCarrinho =
                 db.ItemCarrinho.Add(new ItemCarrinho
                 {
-                    Product = product,
-                    Quantity = 1
+                    Produto = product,
+                    Quantidade = 1
                 }).Entity;
 
                 index++;

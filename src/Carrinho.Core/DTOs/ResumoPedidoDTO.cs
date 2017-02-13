@@ -4,16 +4,16 @@ namespace Carrinho.Core.DTOs
 {
     public class ResumoPedidoDTO
     {
-        public string OrderNumber { get; set; }
+        public string NumeroPedido { get; set; }
         public decimal Total { get; set; }
-        public int DeliveryUpToNWorkingDays { get; set; }
+        public int EntregueAteNDias { get; set; }
 
-        public string DeliveryUpTo
+        public string EntregueAte
         {
             get
             {
-                return string.Format("{0} {1}", DeliveryUpToNWorkingDays, 
-                    DeliveryUpToNWorkingDays == 1 ? " dia útil" : " dias úteis");
+                return string.Format("{0} {1}", EntregueAteNDias, 
+                    EntregueAteNDias == 1 ? " dia útil" : " dias úteis");
             }
         }
 

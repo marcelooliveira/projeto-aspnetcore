@@ -13,12 +13,12 @@ namespace Carrinho.Core.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [ForeignKey("Product")]
-        public int ProductId { get; set; }
+        [ForeignKey("Produto")]
+        public int ProdutoId { get; set; }
 
         [Required]
-        public virtual Produto Product { get; set; }
+        public virtual Produto Produto { get; set; }
 
-        public int Quantity { get; set; }
+        public int Quantidade { get; set; }
     }
 }

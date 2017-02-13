@@ -38,7 +38,7 @@ namespace Carrinho.Controllers
             _checkoutManager.SaveCarrinho(new Core.DTOs.ItemCarrinhoDTO
             {
                 SKU = SKU,
-                Quantity = 1
+                Quantidade = 1
             });
             return RedirectToAction("Cart", "Home");
         }

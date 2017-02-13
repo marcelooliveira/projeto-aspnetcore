@@ -6,15 +6,15 @@
         public string SKU { get; set; }
         public string ImagemPequena { get; set; }
         public string Descricao { get; set; }
-        public string SoldAndDeliveredBy { get; set; }
-        public decimal Price { get; set; }
-        public decimal? OldPrice { get; set; }
-        public int Quantity { get; set; }
+        public string VendidoEEntreguePor { get; set; }
+        public decimal Preco { get; set; }
+        public decimal? PrecoAntigo { get; set; }
+        public int Quantidade { get; set; }
         public decimal Subtotal
         {
             get
             {
-                return Quantity * Price;
+                return Quantidade * Preco;
             }
         }
     }

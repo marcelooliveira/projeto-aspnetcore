@@ -14,7 +14,7 @@
                 </h3>
                 <h4 className="text-center">
                     <span>Nº do pedido:</span>
-                    <span className="green">{this.props.model.orderNumber}</span>
+                    <span className="green">{this.props.model.numeroPedido}</span>
                 </h4>
                 <br />
                 <h3>
@@ -26,7 +26,7 @@
                         <Column md={6}>
                             <h4>
                                 <span>Nº do pedido:</span>
-                                <span className="green">{this.props.model.orderNumber}</span>
+                                <span className="green">{this.props.model.numeroPedido}</span>
                             </h4>
                             <p>
                                 Você receberá um e-mail de confirmação com os detalhes do seu pedido. Por favor verifique suas configurações anti-spam do seu provedor de e-mail.
@@ -84,7 +84,7 @@
                                 </div>
                             </Column>
                             <Column md={6} className="pull-right">
-                                <p className="float-right">{item.quantity}</p>
+                                <p className="float-right">{item.quantidade}</p>
                             </Column>
                         </Row>
                             )

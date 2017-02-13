@@ -12,9 +12,9 @@ namespace Carrinho.Core.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string SKU { get; set; }
-        public string Description { get; set; }
+        public string Descricao { get; set; }
         public string ImagemPequena { get; set; }
         public string ImagemGrande { get; set; }
-        public decimal Price { get; set; }
+        public decimal Preco { get; set; }
     }
 }

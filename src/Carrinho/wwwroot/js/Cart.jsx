@@ -2,29 +2,29 @@
     getInitialState: function () {
         var item = this.props.model;
         return {
-            SKU: item.sKU,
+            SKU: item.sku,
             ImagemPequena: item.imagemPequena,
             ImagemGrande: item.imagemGrande,
             Descricao: item.descricao,
-            SoldAndDeliveredBy: item.soldAndDeliveredBy,
-            Price: item.price,
-            Quantity: item.quantity,
+            VendidoEEntreguePor: item.vendidoEEntreguePor,
+            Preco: item.preco,
+            Quantity: item.quantidade,
             Subtotal: item.subtotal
         };
     },
     updateState: function (change) {
         this.setState(Object.assign({}, this.state, change))
     },
-    handleIncrement: function () {
-        this.postQuantity(this.state.quantity + 1);
+    handleIncremento: function () {
+        this.postQuantidade(this.state.quantidade + 1);
     },
-    handleDecrement: function () {
-        this.postQuantity(this.state.quantity - 1);
+    handleDecremento: function () {
+        this.postQuantidade(this.state.quantidade - 1);
     },
     removeItem: function () {
-        this.postQuantity(0);
+        this.postQuantidade(0);
     },
-    postQuantity: function (quantity, callback) {
+    postQuantidade: function (quantidade, callback) {
         $('.overlay').show();
 
         $.ajax({
@@ -32,8 +32,8 @@
             type: 'post',
             data: {
                 SKU: this.props.model.SKU,
-                Quantity: quantity,
-                Price: this.props.model.Price
+                Quantidade: quantidade,
+                Preco: this.props.model.Preco
             },
             headers: {
                 'RequestVerificationToken': this.props.TokenHeaderValue
@@ -42,8 +42,8 @@
         }).done(function (data) {
             for (var item of data.ItemsCarrinho) {
                 if (item.SKU == this.props.model.SKU) {
-                    this.updateState({ Quantity: item.Quantity, Subtotal: item.Subtotal });
-                    this.props.handleCartChange(data, item);
+                    this.updateState({ Quantidade: item.Quantidade, Subtotal: item.Subtotal });
+                    this.props.handleCarrinhoChange(data, item);
                     return;
                 }
             }
@@ -52,12 +52,12 @@
             $('.overlay').hide();
         });;
     },
-    handleQuantityChanged: function (event) {
+    handleQuantidadeChanged: function (event) {
         var newQty = 1;
         var val = event.target.value;
         if (val && !isNaN(val))
             newQty = parseInt(val);
-        this.postQuantity(newQty);
+        this.postQuantidade(newQty);
     },
     render: function () {
         return (
@@ -77,14 +77,14 @@
                     </Row>
                 </Column>
                 <Column md={2} className="green justify-center">
-                    <Dollars val={this.state.Price } />
+                    <Dollars val={this.state.Preco } />
                 </Column>
                 <Column md={2} className="justify-center">
                     <div className="text-center">
                         <ButtonGroup>
-                            <input type="button" className="btn btn-default" value="-" onClick={this.handleDecrement} />
-                            <input type="text" className="btn" value={this.state.Quantity} onChange={this.handleQuantityChanged } />
-                            <input type="button" className="btn btn-default" value="+" onClick={this.handleIncrement} />
+                            <input type="button" className="btn btn-default" value="-" onClick={this.handleDecremento} />
+                            <input type="text" className="btn" value={this.state.Quantidade} onChange={this.handleQuantidadeChanged } />
+                            <input type="button" className="btn btn-default" value="+" onClick={this.handleIncremento} />
                         </ButtonGroup>
                         <a onClick={this.removeItem} className="remove pointer">Remove</a>
                     </div>
@@ -114,9 +114,9 @@ class CartView extends React.Component {
                 imagemPequena: item.imagemPequena,
                 imagemGrande: item.imagemGrande,
                 descricao: item.descricao,
-                soldAndDeliveredBy: item.soldAndDeliveredBy,
-                price: item.price,
-                quantity: item.quantity,
+                vendidoEEntreguePor: item.vendidoEEntreguePor,
+                preco: item.preco,
+                quantity: item.quantidade,
                 subtotal: item.subtotal
             });
         }
@@ -131,7 +131,7 @@ class CartView extends React.Component {
         };
     }
 
-    handleCartChange(cart, itemCarrinho) {
+    handleCarrinhoChange(cart, itemCarrinho) {
         var newState = Object.assign({}, this.state, {
             Subtotal: cart.Subtotal,
             TaxaDesconto: cart.TaxaDesconto,
@@ -155,7 +155,7 @@ class CartView extends React.Component {
 
         const body = (this.state.items.map(item => {
             return <ItemCarrinho key={item.SKU} model={item}
-                             handleCartChange={this.handleCartChange.bind(this)}
+                             handleCarrinhoChange={this.handleCarrinhoChange.bind(this)}
                              TokenHeaderValue={this.props.TokenHeaderValue} />;
         }
         ));
