@@ -14,7 +14,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Carrinho", "src\Carrinho\Ca
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Carrinho.Core", "src\Carrinho.Core\Carrinho.Core.xproj", "{F8A99CE1-F7C9-4DF0-8836-AC10F4C232CC}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Carrinho.Core.Test", "Carrinho.Core.Test\Carrinho.Core.Test.xproj", "{5DEB7B81-7D9F-4D4C-93DC-6778BB96A3CB}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Carrinho.Core.Test", "src\Carrinho.Core.Test\Carrinho.Core.Test.xproj", "{5DEB7B81-7D9F-4D4C-93DC-6778BB96A3CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
