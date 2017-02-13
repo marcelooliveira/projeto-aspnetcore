@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Carrinho.Core.Entities
 {
-    [Table("CartItem")]
-    public class CartItem
+    [Table("ItemCarrinho")]
+    public class ItemCarrinho
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace Carrinho.Core.Entities
         public int ProductId { get; set; }
 
         [Required]
-        public virtual Product Product { get; set; }
+        public virtual Produto Product { get; set; }
 
         public int Quantity { get; set; }
     }

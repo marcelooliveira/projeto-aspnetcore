@@ -1,6 +1,6 @@
 ﻿namespace Carrinho.Core.DTOs
 {
-    public class CartItemDTO
+    public class ItemCarrinhoDTO
     {
         public int Id { get; set; }
         public string SKU { get; set; }

@@ -47,14 +47,14 @@ namespace Carrinho
             //services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
             //services.AddDbContext<Context>(options =>
             //     options.UseSqlServer(Configuration.GetConnectionString("Carrinho")));
-            services.AddTransient<ICheckoutManager, CheckoutManager>();
+            services.AddTransient<IPedidoManager, PedidoManager>();
 
             var options = new DbContextOptionsBuilder<Context>();
             options.UseSqlServer(Configuration.GetConnectionString("Carrinho"));
             var dbOptions = options.Options;
             services.AddSingleton<DbContextOptions<Context>>(dbOptions);
 
-            new CheckoutManager(dbOptions).InitializeDB();
+            new PedidoManager(dbOptions).InicializaDB();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

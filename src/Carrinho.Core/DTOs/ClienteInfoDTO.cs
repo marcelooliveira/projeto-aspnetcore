@@ -1,6 +1,6 @@
 ﻿namespace Carrinho.Core.DTOs
 {
-    public class CustomerInfoDTO
+    public class ClienteInfoDTO
     {
         public string CustomerName { get; set; }
         public string PhoneNumber { get; set; }

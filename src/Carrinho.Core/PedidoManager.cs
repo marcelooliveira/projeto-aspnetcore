@@ -10,62 +10,62 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Carrinho.Core
 {
-    public class CheckoutManager : ICheckoutManager
+    public class PedidoManager : IPedidoManager
     {
-        private string serverFilePath;
+        private readonly string serverFilePath;
         private readonly DbContextOptions<Context> _dbOptions;
 
-        public CheckoutManager(DbContextOptions<Context> dbOptions)
+        public PedidoManager(DbContextOptions<Context> dbOptions)
         {
             this._dbOptions = dbOptions;
         }
 
-        public CheckoutManager(string serverFilePath)
+        public PedidoManager(string serverFilePath)
         {
             this.serverFilePath = serverFilePath;
         }
 
-        public CheckoutSummaryDTO GetCheckoutSummary()
+        public ResumoPedidoDTO GetResumoPedido()
         {
-            var cartItems = GetCartItems();
-            var subtotal = cartItems.Sum(i => i.Subtotal);
-            var discountRule = DiscountManager.Instance.GetDiscount(subtotal);
-            var discountValue = discountRule.CalculatedDiscount;
+            var itemsCarrinho = GetItemsCarrinho();
+            var subtotal = itemsCarrinho.Sum(i => i.Subtotal);
+            var regraDesconto = DiscountManager.Instance.GetDesconto(subtotal);
+            var discountValue = regraDesconto.CalculatedDiscount;
             var total = subtotal - discountValue;
 
-            return new CheckoutSummaryDTO
+            return new ResumoPedidoDTO
             {
                 OrderNumber = "123456789",
                 DeliveryUpToNWorkingDays = 4,
                 Total = total,
-                CustomerInfo = GetDummyCustomerInfo(),
-                CartItems = cartItems
+                ClienteInfo = GetDummyClienteInfo(),
+                ItemsCarrinho = itemsCarrinho
             };
         }
 
-        public CartDTO GetCart()
+        public CarrinhoDTO GetCarrinho()
         {
-            return GetCart(GetCartItems());
+            return GetCarrinho(GetItemsCarrinho());
         }
 
-        public CartDTO GetCart(List<CartItemDTO> cartItems)
+        public CarrinhoDTO GetCarrinho(List<ItemCarrinhoDTO> itemsCarrinho)
         {
-            var subtotal = cartItems.Sum(i => i.Subtotal);
-            var discountRule = DiscountManager.Instance.GetDiscount(subtotal);
-            var discountValue = discountRule.CalculatedDiscount;
+            var subtotal = itemsCarrinho.Sum(i => i.Subtotal);
+            var regraDesconto = DiscountManager.Instance.GetDesconto(subtotal);
+            var discountValue = regraDesconto.CalculatedDiscount;
             var total = subtotal - discountValue;
 
-            return new CartDTO
+            return new CarrinhoDTO
             {
                 Subtotal = subtotal,
-                DiscountRate = discountRule.Rate * 100M,
+                DiscountRate = regraDesconto.Rate * 100M,
                 DiscountValue = discountValue,
                 Total = total,
-                CartItems = cartItems
+                ItemsCarrinho = itemsCarrinho
             };
         }
 
-        public void SaveCart(CartItemDTO newOrEditItem)
+        public void SaveCarrinho(ItemCarrinhoDTO newOrEditItem)
         {
             //try
             //{
@@ -76,28 +76,28 @@ namespace Carrinho.Core
                 {
                     using (var transaction = db.Database.BeginTransaction())
                     {
-                        var product = db.Product.Where(p => p.SKU == newOrEditItem.SKU).Single();
+                        var product = db.Produto.Where(p => p.SKU == newOrEditItem.SKU).Single();
 
-                        var cartItem =
-                            (from ci in db.CartItem
-                             join p in db.Product on ci.ProductId equals p.Id
+                        var itemCarrinho =
+                            (from ci in db.ItemCarrinho
+                             join p in db.Produto on ci.ProductId equals p.Id
                              where p.SKU == newOrEditItem.SKU
                              select ci)
                             .SingleOrDefault();
 
-                        if (cartItem != null)
+                        if (itemCarrinho != null)
                         {
                             if (newOrEditItem.Quantity == 0)
-                                db.CartItem.Remove(cartItem);
+                                db.ItemCarrinho.Remove(itemCarrinho);
                             else
                             {
-                                cartItem.Quantity = newOrEditItem.Quantity;
-                                cartItem.Product = product;
+                                itemCarrinho.Quantity = newOrEditItem.Quantity;
+                                itemCarrinho.Product = product;
                             }
                         }
                         else
                         {
-                            db.CartItem.Add(new CartItem
+                            db.ItemCarrinho.Add(new ItemCarrinho
                             {
                                 Product = product,
                                 Quantity = newOrEditItem.Quantity
@@ -123,13 +123,13 @@ namespace Carrinho.Core
             //}
         }
 
-        public List<ProductDTO> GetProducts()
+        public List<ProdutoDTO> GetProdutos()
         {
             using (var db = new Context(this._dbOptions))
             {
-                return db.Product
+                return db.Produto
                     .Select(i =>
-                    new ProductDTO
+                    new ProdutoDTO
                     {
                         Id = i.Id,
                         SKU = i.SKU,
@@ -140,16 +140,16 @@ namespace Carrinho.Core
             }
         }
 
-        private List<CartItemDTO> GetCartItems()
+        private List<ItemCarrinhoDTO> GetItemsCarrinho()
         {
             using (var db = new Context(this._dbOptions))
             {
                 return
-                    (from ci in db.CartItem
-                     from p in db.Product.Where(p => p.Id == ci.ProductId)
+                    (from ci in db.ItemCarrinho
+                     from p in db.Produto.Where(p => p.Id == ci.ProductId)
                      select new { ci, p })
                     .Select(i =>
-                    new CartItemDTO
+                    new ItemCarrinhoDTO
                     {
                         Id = i.ci.Id,
                         SKU = i.p.SKU,
@@ -161,9 +161,9 @@ namespace Carrinho.Core
             }
         }
 
-        private CustomerInfoDTO GetDummyCustomerInfo()
+        private ClienteInfoDTO GetDummyClienteInfo()
         {
-            return new CustomerInfoDTO
+            return new ClienteInfoDTO
             {
                 CustomerName = "John Doe",
                 PhoneNumber = "(11) 555-12345",
@@ -172,7 +172,7 @@ namespace Carrinho.Core
             };
         }
 
-        public Context InitializeDB()
+        public Context InicializaDB()
         {
             var db = new Context(this._dbOptions);
 
@@ -211,7 +211,7 @@ namespace Carrinho.Core
                 var price = decimal.Parse(p.Split('|')[1]) / 100M;
 
                 var product =
-                db.Product.Add(new Product
+                db.Produto.Add(new Produto
                 {
                     SKU = Guid.NewGuid().ToString(),
                     SmallImagePath = string.Format("images/products/small_{0}.jpg", index),
@@ -220,8 +220,8 @@ namespace Carrinho.Core
                     Price = price
                 }).Entity;
                 
-                var cartItem =
-                db.CartItem.Add(new CartItem
+                var itemCarrinho =
+                db.ItemCarrinho.Add(new ItemCarrinho
                 {
                     Product = product,
                     Quantity = 1

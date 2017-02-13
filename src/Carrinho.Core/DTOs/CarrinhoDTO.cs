@@ -2,9 +2,9 @@
 
 namespace Carrinho.Core.DTOs
 {
-    public class CartDTO
+    public class CarrinhoDTO
     {
-        public CartDTO()
+        public CarrinhoDTO()
         {
         }
 
@@ -13,6 +13,6 @@ namespace Carrinho.Core.DTOs
         public decimal DiscountValue { get; set; }
         public decimal Total { get; set; }
 
-        public List<CartItemDTO> CartItems { get; set; }
+        public List<ItemCarrinhoDTO> ItemsCarrinho { get; set; }
     }
 }

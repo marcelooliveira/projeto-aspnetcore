@@ -9,7 +9,7 @@ namespace Carrinho.Core
 {
     public class DiscountManager
     {
-        public List<DiscountRuleDTO> Discounts { get; private set; }
+        public List<RegraDescontoDTO> Descontos { get; private set; }
 
         static DiscountManager instance;
         public static DiscountManager Instance
@@ -24,16 +24,16 @@ namespace Carrinho.Core
 
         public DiscountManager()
         {
-            Discounts = new List<DiscountRuleDTO>();
-            Discounts.Add(new DiscountRuleDTO(0, 499.99M, 0));
-            Discounts.Add(new DiscountRuleDTO(500M, 599.99M, .05M));
-            Discounts.Add(new DiscountRuleDTO(600M, 699.99M, .10M));
-            Discounts.Add(new DiscountRuleDTO(700M, decimal.MaxValue, .15M));
+            Descontos = new List<RegraDescontoDTO>();
+            Descontos.Add(new RegraDescontoDTO(0, 499.99M, 0));
+            Descontos.Add(new RegraDescontoDTO(500M, 599.99M, .05M));
+            Descontos.Add(new RegraDescontoDTO(600M, 699.99M, .10M));
+            Descontos.Add(new RegraDescontoDTO(700M, decimal.MaxValue, .15M));
         }
 
-        public DiscountRuleDTO GetDiscount(decimal subtotal)
+        public RegraDescontoDTO GetDesconto(decimal subtotal)
         {
-            return Discounts.Where(d => d.CheckRange(subtotal)).FirstOrDefault();
+            return Descontos.Where(d => d.CheckRange(subtotal)).FirstOrDefault();
         }
     }
 }

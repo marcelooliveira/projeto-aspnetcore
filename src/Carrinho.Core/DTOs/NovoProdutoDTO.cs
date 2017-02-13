@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Carrinho.Core.DTOs
 {
-    public class NewProductDTO
+    public class NovoProdutoDTO
     {
         public string Description { get; set; }
         public decimal UnitPrice { get; set; }

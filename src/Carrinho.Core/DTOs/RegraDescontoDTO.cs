@@ -2,14 +2,14 @@
 
 namespace Carrinho.Core.DTOs
 {
-    public class DiscountRuleDTO
+    public class RegraDescontoDTO
     {
         public decimal MinValue { get; set; }
         public decimal MaxValue { get; set; }
         public decimal Rate { get; set; }
         public decimal CalculatedDiscount { get; set; }
 
-        public DiscountRuleDTO(decimal minValue, decimal maxValue, decimal rate)
+        public RegraDescontoDTO(decimal minValue, decimal maxValue, decimal rate)
         {
             this.MinValue = minValue;
             this.MaxValue = maxValue;

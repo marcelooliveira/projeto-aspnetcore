@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Carrinho.Core.DTOs
 {
-    public class ProductDTO
+    public class ProdutoDTO
     {
         public int Id { get; set; }
         public string SKU { get; set; }

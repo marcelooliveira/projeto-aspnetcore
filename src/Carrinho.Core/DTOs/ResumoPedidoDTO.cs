@@ -2,10 +2,9 @@
 
 namespace Carrinho.Core.DTOs
 {
-    public class CheckoutSummaryDTO
+    public class ResumoPedidoDTO
     {
         public string OrderNumber { get; set; }
-        //[DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Total { get; set; }
         public int DeliveryUpToNWorkingDays { get; set; }
 
@@ -18,7 +17,7 @@ namespace Carrinho.Core.DTOs
             }
         }
 
-        public CustomerInfoDTO CustomerInfo { get; set; }
-        public List<CartItemDTO> CartItems { get; set; }
+        public ClienteInfoDTO ClienteInfo { get; set; }
+        public List<ItemCarrinhoDTO> ItemsCarrinho { get; set; }
     }
 }

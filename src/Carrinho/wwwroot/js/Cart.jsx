@@ -1,4 +1,4 @@
-﻿var CartItem = React.createClass({
+﻿var ItemCarrinho = React.createClass({
     getInitialState: function () {
         var item = this.props.model;
         return {
@@ -40,7 +40,7 @@
             },
             dataType: 'json'
         }).done(function (data) {
-            for (var item of data.CartItems) {
+            for (var item of data.ItemsCarrinho) {
                 if (item.SKU == this.props.model.SKU) {
                     this.updateState({ Quantity: item.Quantity, Subtotal: item.Subtotal });
                     this.props.handleCartChange(data, item);
@@ -105,8 +105,8 @@ class CartView extends React.Component {
         var items = [];
 
         var item;
-        for (var i = 0; i < (this.props.model.cartItems || []).length; i++) {
-            item = this.props.model.cartItems[i];
+        for (var i = 0; i < (this.props.model.itemsCarrinho || []).length; i++) {
+            item = this.props.model.itemsCarrinho[i];
 
             items.push({
                 id: item.id,
@@ -131,16 +131,16 @@ class CartView extends React.Component {
         };
     }
 
-    handleCartChange(cart, cartItem) {
+    handleCartChange(cart, itemCarrinho) {
         var newState = Object.assign({}, this.state, {
             Subtotal: cart.Subtotal,
             DiscountRate: cart.DiscountRate,
             DiscountValue: cart.DiscountValue,
             Total: cart.Total
         });
-        if (cartItem.Quantity == 0) {
+        if (itemCarrinho.Quantity == 0) {
             newState.items.splice(newState.items.findIndex(i =>
-                i.SKU == cartItem.SKU), 1);
+                i.SKU == itemCarrinho.SKU), 1);
         }
         this.setState(newState);
     }
@@ -154,7 +154,7 @@ class CartView extends React.Component {
         </Row>);
 
         const body = (this.state.items.map(item => {
-            return <CartItem key={item.SKU} model={item}
+            return <ItemCarrinho key={item.SKU} model={item}
                              handleCartChange={this.handleCartChange.bind(this)}
                              TokenHeaderValue={this.props.TokenHeaderValue} />;
         }

@@ -11,8 +11,8 @@ namespace Carrinho.Core
 {
     public class Context : DbContext
     {
-        public DbSet<CartItem> CartItem { get; set; }
-        public DbSet<Product> Product { get; set; }
+        public DbSet<ItemCarrinho> ItemCarrinho { get; set; }
+        public DbSet<Produto> Produto { get; set; }
 
         public Context(DbContextOptions<Context> options) : base(options) { }
     }

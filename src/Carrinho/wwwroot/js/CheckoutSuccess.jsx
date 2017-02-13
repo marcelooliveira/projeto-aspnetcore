@@ -43,17 +43,17 @@
                     <Row className="gray row-eq-height border-top border-bottom">
                         <Column md={3}>
                             <h4><span className="fa fa-user leading-icon"></span>Seus dados</h4>
-                            <p className="offset30">{this.props.model.customerInfo.customerName}</p>
-                            <p className="offset30">{this.props.model.customerInfo.phoneNumber}</p>
+                            <p className="offset30">{this.props.model.clienteInfo.customerName}</p>
+                            <p className="offset30">{this.props.model.clienteInfo.phoneNumber}</p>
                         </Column>
                         <Column md={3} className="border-right">
                             <br />
                             <br />
-                            <p>{this.props.model.customerInfo.Email}</p>
+                            <p>{this.props.model.clienteInfo.Email}</p>
                         </Column>
                         <Column md={6}>
                             <h4><span className="fa fa-home leading-icon"></span>Endereço de entrega</h4>
-                            <p className="offset30">{this.props.model.customerInfo.DeliveryAddress}</p>
+                            <p className="offset30">{this.props.model.clienteInfo.DeliveryAddress}</p>
                         </Column>
                     </Row>
                     <Row className="gray">
@@ -75,7 +75,7 @@
                             <p><b className="float-right">Quantidade</b></p>
                         </Column>
                     </Row>
-                    { this.props.model.cartItems.map(item =>
+                    { this.props.model.itemsCarrinho.map(item =>
                         <Row className="gray">
                             <Column md={6}>
                                 <div className="offset30 truncate">
