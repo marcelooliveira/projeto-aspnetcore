@@ -43,8 +43,8 @@
                     <Row className="gray row-eq-height border-top border-bottom">
                         <Column md={3}>
                             <h4><span className="fa fa-user leading-icon"></span>Seus dados</h4>
-                            <p className="offset30">{this.props.model.clienteInfo.customerName}</p>
-                            <p className="offset30">{this.props.model.clienteInfo.phoneNumber}</p>
+                            <p className="offset30">{this.props.model.clienteInfo.nome}</p>
+                            <p className="offset30">{this.props.model.clienteInfo.fone}</p>
                         </Column>
                         <Column md={3} className="border-right">
                             <br />
@@ -53,7 +53,7 @@
                         </Column>
                         <Column md={6}>
                             <h4><span className="fa fa-home leading-icon"></span>Endereço de entrega</h4>
-                            <p className="offset30">{this.props.model.clienteInfo.DeliveryAddress}</p>
+                            <p className="offset30">{this.props.model.clienteInfo.enderecoEntrega}</p>
                         </Column>
                     </Row>
                     <Row className="gray">
@@ -80,7 +80,7 @@
                             <Column md={6}>
                                 <div className="offset30 truncate">
                                     <span>•</span>
-                                    <span>{item.description}</span>
+                                    <span>{item.descricao}</span>
                                 </div>
                             </Column>
                             <Column md={6} className="pull-right">

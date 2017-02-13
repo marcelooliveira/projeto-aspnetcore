@@ -10,8 +10,8 @@ namespace Carrinho.Core.DTOs
         public int Id { get; set; }
         public string SKU { get; set; }
         public string Description { get; set; }
-        public string SmallImagePath { get; set; }
-        public string LargeImagePath { get; set; }
+        public string ImagemPequena { get; set; }
+        public string ImagemGrande { get; set; }
         public decimal Price { get; set; }
     }
 }

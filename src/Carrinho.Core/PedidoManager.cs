@@ -108,19 +108,6 @@ namespace Carrinho.Core
                         transaction.Commit();
                     }
                 }
-            //}
-            //catch (DbEntityValidationException dbEx)
-            //{
-            //    foreach (var validationErrors in dbEx.EntityValidationErrors)
-            //    {
-            //        foreach (var validationError in validationErrors.ValidationErrors)
-            //        {
-            //            Trace.TraceInformation("Property: {0} Error: {1}",
-            //                                    validationError.PropertyName,
-            //                                    validationError.ErrorMessage);
-            //        }
-            //    }
-            //}
         }
 
         public List<ProdutoDTO> GetProdutos()
@@ -133,7 +120,7 @@ namespace Carrinho.Core
                     {
                         Id = i.Id,
                         SKU = i.SKU,
-                        SmallImagePath = i.SmallImagePath,
+                        ImagemPequena = i.ImagemPequena,
                         Description = i.Description,
                         Price = i.Price
                     }).ToList();
@@ -153,8 +140,8 @@ namespace Carrinho.Core
                     {
                         Id = i.ci.Id,
                         SKU = i.p.SKU,
-                        SmallImagePath = i.p.SmallImagePath,
-                        Description = i.p.Description,
+                        ImagemPequena = i.p.ImagemPequena,
+                        Descricao = i.p.Description,
                         Price = i.p.Price,
                         Quantity = i.ci.Quantity
                     }).ToList();
@@ -165,10 +152,10 @@ namespace Carrinho.Core
         {
             return new ClienteInfoDTO
             {
-                CustomerName = "John Doe",
-                PhoneNumber = "(11) 555-12345",
+                Nome = "John Doe",
+                Fone = "(11) 555-12345",
                 Email = "johndoe@email.com",
-                DeliveryAddress = "503-250 Ferrand Drive - Toronto Ontario, M3C 3G8 Canada"
+                EnderecoEntrega = "503-250 Ferrand Drive - Toronto Ontario, M3C 3G8 Canada"
             };
         }
 
@@ -214,8 +201,8 @@ namespace Carrinho.Core
                 db.Produto.Add(new Produto
                 {
                     SKU = Guid.NewGuid().ToString(),
-                    SmallImagePath = string.Format("images/products/small_{0}.jpg", index),
-                    LargeImagePath = string.Format("images/products/large_{0}.jpg", index),
+                    ImagemPequena = string.Format("images/products/small_{0}.jpg", index),
+                    ImagemGrande = string.Format("images/products/large_{0}.jpg", index),
                     Description = description,
                     Price = price
                 }).Entity;

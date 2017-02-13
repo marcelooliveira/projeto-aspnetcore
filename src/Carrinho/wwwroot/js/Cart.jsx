@@ -3,9 +3,9 @@
         var item = this.props.model;
         return {
             SKU: item.sKU,
-            SmallImagePath: item.smallImagePath,
-            LargeImagePath: item.largeImagePath,
-            Description: item.description,
+            ImagemPequena: item.imagemPequena,
+            ImagemGrande: item.imagemGrande,
+            Descricao: item.descricao,
             SoldAndDeliveredBy: item.soldAndDeliveredBy,
             Price: item.price,
             Quantity: item.quantity,
@@ -65,14 +65,14 @@
                 <Column md={2} className="justify-left">
                     <Row className="fullwidth">
                         <Column md={3}>
-                            <img src={'../' + this.state.SmallImagePath} width="80" height="80" />
+                            <img src={'../' + this.state.ImagemPequena} width="80" height="80" />
                         </Column>
                     </Row>
                 </Column>
                 <Column md={4} className="justify-left">
                     <Row className="fullwidth">
                         <Column md={9}>
-                            <span>{this.state.Description}</span>
+                            <span>{this.state.Descricao}</span>
                         </Column>
                     </Row>
                 </Column>
@@ -111,9 +111,9 @@ class CartView extends React.Component {
             items.push({
                 id: item.id,
                 sku: item.sku,
-                smallImagePath: item.smallImagePath,
-                largeImagePath: item.largeImagePath,
-                description: item.description,
+                imagemPequena: item.imagemPequena,
+                imagemGrande: item.imagemGrande,
+                descricao: item.descricao,
                 soldAndDeliveredBy: item.soldAndDeliveredBy,
                 price: item.price,
                 quantity: item.quantity,
