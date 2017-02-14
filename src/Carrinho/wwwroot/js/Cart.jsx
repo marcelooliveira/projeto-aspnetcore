@@ -133,15 +133,15 @@ class CartView extends React.Component {
         };
     }
 
-    handleCarrinhoChange(cart, itemCarrinho) {
-        var changeItems = this.state.Items.filter(i => !(i.sku == itemCarrinho.sku && itemCarrinho.quantidade == 0));
+    handleCarrinhoChange(novoCarrinho, itemCarrinho) {
+        var novosItems = this.state.Items.filter(i => !(i.sku == itemCarrinho.sku && itemCarrinho.quantidade == 0));
 
         var change = {
-            Items: changeItems,
-            Subtotal: this.state.Subtotal,
-            TaxaDesconto: this.state.TaxaDesconto,
-            ValorDesconto: this.state.ValorDesconto,
-            Total: this.state.Total
+            Items: novosItems,
+            Subtotal: novoCarrinho.subtotal,
+            TaxaDesconto: novoCarrinho.taxaDesconto,
+            ValorDesconto: novoCarrinho.valorDesconto,
+            Total: novoCarrinho.total
         }
 
         this.setState(Object.assign({}, this.state, change));
