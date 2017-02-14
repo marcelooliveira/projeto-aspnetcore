@@ -134,10 +134,8 @@ class CartView extends React.Component {
     }
 
     handleCarrinhoChange(novoCarrinho, itemCarrinho) {
-        var novosItems = this.state.Items.filter(i => !(i.sku == itemCarrinho.sku && itemCarrinho.quantidade == 0));
-
         var change = {
-            Items: novosItems,
+            Items: novoCarrinho.itemsCarrinho,
             Subtotal: novoCarrinho.subtotal,
             TaxaDesconto: novoCarrinho.taxaDesconto,
             ValorDesconto: novoCarrinho.valorDesconto,
