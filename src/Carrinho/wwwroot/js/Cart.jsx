@@ -134,17 +134,17 @@ class CartView extends React.Component {
     }
 
     handleCarrinhoChange(cart, itemCarrinho) {
-        var newState = Object.assign({}, this.state, {
-            Subtotal: cart.subtotal,
-            TaxaDesconto: cart.taxaDesconto,
-            ValorDesconto: cart.valorDesconto,
-            Total: cart.total
-        });
-        if (itemCarrinho.quantidade == 0) {
-            newState.Items.splice(newState.Items.findIndex(i =>
-                i.sku == itemCarrinho.sku), 1);
+        var changeItems = this.state.Items.filter(i => !(i.sku == itemCarrinho.sku && itemCarrinho.quantidade == 0));
+
+        var change = {
+            Items: changeItems,
+            Subtotal: this.state.Subtotal,
+            TaxaDesconto: this.state.TaxaDesconto,
+            ValorDesconto: this.state.ValorDesconto,
+            Total: this.state.Total
         }
-        this.setState(newState);
+
+        this.setState(Object.assign({}, this.state, change));
     }
 
     render() {
@@ -155,11 +155,13 @@ class CartView extends React.Component {
                                     <Column md={2} className="justify-right">subtotal</Column>
         </Row>);
 
-        const body = (this.state.Items.map(item => {
-            return <ItemCarrinho key={item.SKU} model={item}
+        const body = (this.state.Items
+            .filter(item => item.quantidade > 0)
+            .map(item => {
+            return <ItemCarrinho key={item.sku} model={item}
                              handleCarrinhoChange={this.handleCarrinhoChange.bind(this)}
                              TokenHeaderValue={this.props.TokenHeaderValue} />;
-        }
+            }
         ));
 
         const footer = (<Row>

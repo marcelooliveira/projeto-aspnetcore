@@ -163,58 +163,48 @@ namespace Carrinho.Core
         {
             var db = new Context(this._dbOptions);
 
-            db.Database.EnsureCreated();
+            bool bancoNovo = db.Database.EnsureCreated();
 
-            //var products = new string[]
-            //{
-            //    "10 Million Member CodeProject T-Shirt|3399",
-            //    "Women's T-Shirt|3399",
-            //    "CodeProject.com Body Suit|1399",
-            //    "CodeProject Mug Mugs|1099",
-            //    "RootAdmin Mug|1099",
-            //    "Drinking Glass|1099",
-            //    "Stein|1399",
-            //    "Mousepad|1099",
-            //    "Square Sticker|299",
-            //};
-
-            var produtos = new string[]
+            if (bancoNovo)
             {
-                "Sleep not found|5990",
-                "May the code be with you|5990",
-                "Rollback|5990",
-                "REST|6990",
-                "Design Patterns com Java|6990",
-                "Vire o jogo com Spring Framework|6990",
-                "Test-Driven Development|6990",
-                "iOS: Programe para iPhone e iPad|6990",
-                "Desenvolvimento de Jogos para Android|6990"
-            };
-
-            var index = 1;
-            foreach (var p in produtos)
-            {
-                var descricao = p.Split('|')[0];
-                var preco = decimal.Parse(p.Split('|')[1]) / 100M;
-
-                var product =
-                db.Produto.Add(new Produto
+                var produtos = new string[]
                 {
-                    SKU = Guid.NewGuid().ToString(),
-                    ImagemPequena = string.Format("images/products/small_{0}.jpg", index),
-                    ImagemGrande = string.Format("images/products/large_{0}.jpg", index),
-                    Descricao = descricao,
-                    Preco = preco
-                }).Entity;
-                
-                var itemCarrinho =
-                db.ItemCarrinho.Add(new ItemCarrinho
-                {
-                    Produto = product,
-                    Quantidade = 1
-                }).Entity;
+                    "Sleep not found|5990",
+                    "May the code be with you|5990",
+                    "Rollback|5990",
+                    "REST|6990",
+                    "Design Patterns com Java|6990",
+                    "Vire o jogo com Spring Framework|6990",
+                    "Test-Driven Development|6990",
+                    "iOS: Programe para iPhone e iPad|6990",
+                    "Desenvolvimento de Jogos para Android|6990"
+                };
 
-                index++;
+                var index = 1;
+                foreach (var p in produtos)
+                {
+                    var descricao = p.Split('|')[0];
+                    var preco = decimal.Parse(p.Split('|')[1]) / 100M;
+
+                    var product =
+                    db.Produto.Add(new Produto
+                    {
+                        SKU = Guid.NewGuid().ToString(),
+                        ImagemPequena = string.Format("images/products/small_{0}.jpg", index),
+                        ImagemGrande = string.Format("images/products/large_{0}.jpg", index),
+                        Descricao = descricao,
+                        Preco = preco
+                    }).Entity;
+
+                    var itemCarrinho =
+                    db.ItemCarrinho.Add(new ItemCarrinho
+                    {
+                        Produto = product,
+                        Quantidade = 1
+                    }).Entity;
+
+                    index++;
+                }
             }
 
             db.SaveChanges();
