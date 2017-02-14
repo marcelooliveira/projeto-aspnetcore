@@ -4,22 +4,22 @@ module.exports = {
     entry: 
     {
         javascript: [
-            //'./wwwroot/lib/react/react-dom.js',
-            //'./wwwroot/lib/react/react-with-addons.js',
-            //'./wwwroot/js/react-bootstrap.js',
+            './wwwroot/lib/jquery/dist/jquery.min.js',
+            './wwwroot/lib/react/react.min.js',
+            './wwwroot/lib/react/react-dom.min.js',
+            './wwwroot/lib/react/react-with-addons.min.js',
+            './wwwroot/js/react-bootstrap.js',
+            './wwwroot/js/Components.jsx',
             './wwwroot/js/Cart.jsx',
             './wwwroot/js/CheckoutSuccess.jsx',
-            './wwwroot/js/Components.jsx'
-            //'./wwwroot/lib/react/react-dom.js',
-            //'./wwwroot/lib/react/react.js'
-            //'./wwwroot/lib/react/react-with-addons.js'
+            './wwwroot/js/showdown.js'
         ]
     },
     output: {
         path: path.join(__dirname, 'wwwroot/build'),
         filename: 'bundle.js'
     },
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     module: {
         loaders: [
             {

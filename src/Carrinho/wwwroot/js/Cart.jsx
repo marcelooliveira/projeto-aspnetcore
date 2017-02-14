@@ -8,7 +8,7 @@
             Descricao: item.descricao,
             VendidoEEntreguePor: item.vendidoEEntreguePor,
             Preco: item.preco,
-            Quantity: item.quantidade,
+            Quantidade: item.quantidade,
             Subtotal: item.subtotal
         };
     },
@@ -27,22 +27,25 @@
     postQuantidade: function (quantidade, callback) {
         $('.overlay').show();
 
+        var data = {
+            SKU: this.props.model.sku,
+            Quantidade: 1, //quantidade,
+            Preco: this.props.model.preco
+        }
+
         $.ajax({
-            url: '/api/Cart',
-            type: 'post',
-            data: {
-                SKU: this.props.model.SKU,
-                Quantidade: quantidade,
-                Preco: this.props.model.Preco
-            },
-            headers: {
-                'RequestVerificationToken': this.props.TokenHeaderValue
-            },
-            dataType: 'json'
+            type: 'POST',
+            url: '/api/Carrinho',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+            //headers: {
+            //    'RequestVerificationToken': this.props.TokenHeaderValue
+            //},
         }).done(function (data) {
-            for (var item of data.ItemsCarrinho) {
-                if (item.SKU == this.props.model.SKU) {
-                    this.updateState({ Quantidade: item.Quantidade, Subtotal: item.Subtotal });
+            for (var item of data.itemsCarrinho) {
+                if (item.sku == this.props.model.sku) {
+                    this.updateState({ Quantidade: item.quantidade, Subtotal: item.subtotal });
                     this.props.handleCarrinhoChange(data, item);
                     return;
                 }
@@ -86,7 +89,6 @@
                             <input type="text" className="btn" value={this.state.Quantidade} onChange={this.handleQuantidadeChanged } />
                             <input type="button" className="btn btn-default" value="+" onClick={this.handleIncremento} />
                         </ButtonGroup>
-                        <a onClick={this.removeItem} className="remove pointer">Remove</a>
                     </div>
                 </Column>
                 <Column md={2} className="green justify-right">
@@ -116,7 +118,7 @@ class CartView extends React.Component {
                 descricao: item.descricao,
                 vendidoEEntreguePor: item.vendidoEEntreguePor,
                 preco: item.preco,
-                quantity: item.quantidade,
+                quantidade: item.quantidade,
                 subtotal: item.subtotal
             });
         }
@@ -133,14 +135,14 @@ class CartView extends React.Component {
 
     handleCarrinhoChange(cart, itemCarrinho) {
         var newState = Object.assign({}, this.state, {
-            Subtotal: cart.Subtotal,
-            TaxaDesconto: cart.TaxaDesconto,
-            ValorDesconto: cart.ValorDesconto,
-            Total: cart.Total
+            Subtotal: cart.subtotal,
+            TaxaDesconto: cart.taxaDesconto,
+            ValorDesconto: cart.valorDesconto,
+            Total: cart.total
         });
-        if (itemCarrinho.Quantity == 0) {
-            newState.items.splice(newState.items.findIndex(i =>
-                i.SKU == itemCarrinho.SKU), 1);
+        if (itemCarrinho.Quantidade == 0) {
+            newState.items.splice(newState.Items.findIndex(i =>
+                i.sku == itemCarrinho.sku), 1);
         }
         this.setState(newState);
     }

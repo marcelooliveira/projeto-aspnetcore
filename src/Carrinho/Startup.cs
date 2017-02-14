@@ -11,6 +11,8 @@ using Carrinho.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using React.AspNet;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Carrinho
 {
@@ -81,15 +83,18 @@ namespace Carrinho
             app.UseReact(config =>
             {
                 config
-                .AddScript("~/js/showdown.js")
+
+                .AddScript("~/lib/react/react.min.js")
+                .AddScript("~/lib/react/react-dom.min.js")
                 .AddScript("~/js/react-bootstrap.js")
                 .AddScript("~/js/Components.jsx")
                 .AddScript("~/js/Cart.jsx")
-                .AddScript("~/js/CheckoutSuccess.jsx");
-
-                //config
-                //.SetBabelConfig(new React.BabelConfig())
-                //.AddScriptWithoutTransform("~/build/bundle.js");
+                .AddScript("~/js/CheckoutSuccess.jsx")
+                  .SetJsonSerializerSettings(new JsonSerializerSettings
+                  {
+                      StringEscapeHandling = StringEscapeHandling.EscapeHtml,
+                      ContractResolver = new CamelCasePropertyNamesContractResolver()
+                  });
             });
 
             app.UseStaticFiles();

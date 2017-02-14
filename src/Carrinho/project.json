@@ -27,7 +27,8 @@
     "Microsoft.Extensions.DependencyInjection": "1.1.0",
     "Microsoft.EntityFrameworkCore.Tools": "1.1.0-preview4-final",
     "React.Core": "3.0.0",
-    "React.AspNet": "3.0.0"
+    "React.AspNet": "3.0.0",
+    "Modernizr": "2.6.2"
   },
 
   "tools": {
