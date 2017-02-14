@@ -13,12 +13,8 @@ var ButtonGroup = ReactBootstrap.ButtonGroup;
 class Dollars extends React.Component {
     render() {
         var value = this.props.val;
-
-        //var d = value.toFixed(2).replace(/./g, function (c, i, a) {
-        //    return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
-        //});
-        var d = value;
-        return (<span>${d}</span>);
+        var d = value.toFixed(2).replace('.', ',')
+        return (<span>R$ {d}</span>);
     }
 }
 

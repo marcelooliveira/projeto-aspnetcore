@@ -126,10 +126,10 @@ class CartView extends React.Component {
         this.state = {
             CanFinishOrder: true,
             Items: items,
-            Subtotal: this.props.model.Subtotal,
-            TaxaDesconto: this.props.model.TaxaDesconto,
-            ValorDesconto: this.props.model.ValorDesconto,
-            Total: this.props.model.Total
+            Subtotal: this.props.model.subtotal,
+            TaxaDesconto: this.props.model.taxaDesconto,
+            ValorDesconto: this.props.model.valorDesconto,
+            Total: this.props.model.total
         };
     }
 
@@ -181,11 +181,11 @@ class CartView extends React.Component {
                                 ?
                                     <Row className="vertical-align">
                                         <Column md={8} className="justify-right">
-                                            Desconto (<span>{this.state.taxaDesconto}</span>%):
+                                            Desconto (<span>{this.state.TaxaDesconto}</span>%):
                                         </Column>
                                     <Column md={4} className="green justify-right">
                                         <span>
-                                            <Dollars val={this.state.valorDesconto} />
+                                            <Dollars val={this.state.Subtotal} />
                                         </span>
                                     </Column>
                                     </Row>
@@ -196,7 +196,7 @@ class CartView extends React.Component {
                                     <h3>
                                         Total:&nbsp;
                                         <span className="green">
-                                            <Dollars val={this.state.total} />
+                                            <Dollars val={this.state.Total} />
                                         </span>
                                     </h3>
                                     </Column>
