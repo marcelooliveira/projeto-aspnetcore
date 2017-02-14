@@ -16,10 +16,10 @@
         this.setState(Object.assign({}, this.state, change))
     },
     handleIncremento: function () {
-        this.postQuantidade(this.state.quantidade + 1);
+        this.postQuantidade(this.state.Quantidade + 1);
     },
     handleDecremento: function () {
-        this.postQuantidade(this.state.quantidade - 1);
+        this.postQuantidade(this.state.Quantidade - 1);
     },
     removeItem: function () {
         this.postQuantidade(0);
@@ -29,7 +29,7 @@
 
         var data = {
             SKU: this.props.model.sku,
-            Quantidade: 1, //quantidade,
+            Quantidade: quantidade,
             Preco: this.props.model.preco
         }
 
@@ -124,8 +124,8 @@ class CartView extends React.Component {
         }
 
         this.state = {
-            canFinishOrder: true,
-            items: items,
+            CanFinishOrder: true,
+            Items: items,
             Subtotal: this.props.model.Subtotal,
             TaxaDesconto: this.props.model.TaxaDesconto,
             ValorDesconto: this.props.model.ValorDesconto,
@@ -141,7 +141,7 @@ class CartView extends React.Component {
             Total: cart.total
         });
         if (itemCarrinho.Quantidade == 0) {
-            newState.items.splice(newState.Items.findIndex(i =>
+            newState.Items.splice(newState.Items.findIndex(i =>
                 i.sku == itemCarrinho.sku), 1);
         }
         this.setState(newState);
@@ -155,7 +155,7 @@ class CartView extends React.Component {
                                     <Column md={2} className="justify-right">subtotal</Column>
         </Row>);
 
-        const body = (this.state.items.map(item => {
+        const body = (this.state.Items.map(item => {
             return <ItemCarrinho key={item.SKU} model={item}
                              handleCarrinhoChange={this.handleCarrinhoChange.bind(this)}
                              TokenHeaderValue={this.props.TokenHeaderValue} />;
@@ -167,7 +167,7 @@ class CartView extends React.Component {
                             <Column md={5} className="my-children-have-dividers">
                                 <Row className="vertical-align">
                                     <Column md={8} className="justify-right">
-                                        Subtotal ({this.state.items.length}<Pluralize value={this.state.items.length} singular="item" plural="items" />):
+                                        Subtotal ({this.state.Items.length}<Pluralize value={this.state.Items.length} singular="item" plural="items" />):
                                     </Column>
                                     <Column md={4} className="green justify-right">
                                         <span>
@@ -205,10 +205,10 @@ class CartView extends React.Component {
         return (
                 <div className="cart">
                     {
-                        this.state.items.length == 0 ? null :
+                        this.state.Items.length == 0 ? null :
                         <div>
                         {/* TITLE */}
-                        <h3>Meu carrinho ({ this.state.items.length}<Pluralize value={this.state.items.length} singular="item" plural="items" />)</h3>
+                        <h3>Meu carrinho ({ this.state.Items.length}<Pluralize value={this.state.Items.length} singular="item" plural="items" />)</h3>
                         {/* NAVIGATION BUTTONS */}
                         <Row>
                             <Column md={3}>
@@ -247,7 +247,7 @@ class CartView extends React.Component {
                         </div>
                     }
                     {
-                    this.state.items.length > 0
+                    this.state.Items.length > 0
                     ? null
                     :
                         <div>
@@ -263,7 +263,7 @@ class CartView extends React.Component {
                                 <br />
                                 <div>
                                     {
-                                        this.state.canFinishOrder
+                                        this.state.CanFinishOrder
                                         ?
                                         <a href={this.props.urlNewProduct}>
                                             <button type="button" className="btn btn-success">Enter new product</button>
