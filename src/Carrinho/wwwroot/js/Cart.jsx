@@ -140,7 +140,7 @@ class CartView extends React.Component {
             ValorDesconto: cart.valorDesconto,
             Total: cart.total
         });
-        if (itemCarrinho.Quantidade == 0) {
+        if (itemCarrinho.quantidade == 0) {
             newState.Items.splice(newState.Items.findIndex(i =>
                 i.sku == itemCarrinho.sku), 1);
         }
@@ -254,11 +254,11 @@ class CartView extends React.Component {
                             <h1><br /><br />:(</h1>
                             <div>
                                 <h1>
-                                    Oops! Your shopping cart is empty.
+                                    Ops! Seu carrinho de compras está vazio.
                                 </h1>
                                 <br />
                                 <div className="empty-cart-content-message">
-                                    Enter more products and resume shopping.
+                                    Adicione produtos para continuar a comprar.
                                 </div>
                                 <br />
                                 <div>
@@ -266,7 +266,7 @@ class CartView extends React.Component {
                                         this.state.CanFinishOrder
                                         ?
                                         <a href={this.props.urlNewProduct}>
-                                            <button type="button" className="btn btn-success">Enter new product</button>
+                                            <button type="button" className="btn btn-success">Adicione novo produto</button>
                                         </a>
                                         : null
                                     }
