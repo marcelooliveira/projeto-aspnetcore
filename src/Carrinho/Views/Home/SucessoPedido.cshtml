@@ -1,5 +1,4 @@
-﻿@*@using System.Web.Optimization*@
-@using System.Collections.Generic
+﻿@using System.Collections.Generic
 @model Carrinho.Core.DTOs.ResumoPedidoDTO
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,14 +8,99 @@
     ViewBag.Title = "Carrinho";
 }
 
-@Html.React("SucessoPedidoView", new
-{
-    title = "React JS.Net + React-Bootstrap",
-    model = Model
-})
+<div>
+    <br />
+    <div class="row">
+        <span class="fa fa-check-circle"></span>
+    </div>
+    <h3 class="text-center">
+        <span>Seu pedido foi enviado. Obrigado por comprar conosco!</span>
+    </h3>
+    <h4 class="text-center">
+        <span>Nº do pedido:</span>
+        <span class="green">@Model.NumeroPedido</span>
+    </h4>
+    <br />
+    <h3>
+        Dados do pedido
+    </h3>
 
-<environment names="Development,Staging,Production">
-    @*<script src="~/build/bundle.js"></script>*@
-</environment>
+    <div class="panel">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>
+                    <span>Nº do pedido:</span>
+                    <span class="green">@Model.NumeroPedido</span>
+                </h4>
+                <p>
+                    Você receberá um e-mail de confirmação com os detalhes do seu pedido. Por favor verifique suas configurações anti-spam do seu provedor de e-mail.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h4>Forma de pagamento</h4>
+                <div class="boleto">
+                    <p><i class="fa fa-paypal leading-icon" aria-hidden="true"></i> Paypal</p>
+                    <p class="offset30">R$ <span>@Model.Total</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="row gray row-eq-height border-top border-bottom">
+            <div class="col-md-3">
+                <h4><span class="fa fa-user leading-icon"></span>Seus dados</h4>
+                <p class="offset30">@Model.ClienteInfo.Nome</p>
+                <p class="offset30">@Model.ClienteInfo.Fone</p>
+            </div>
+            <div class="col-md-3" class="border-right">
+                <br />
+                <br />
+                <p>@Model.ClienteInfo.Email</p>
+            </div>
+            <div class="col-md-6">
+                <h4><span class="fa fa-home leading-icon"></span>Endereço de entrega</h4>
+                <p class="offset30">@Model.ClienteInfo.EnderecoEntrega</p>
+            </div>
+        </div>
+        <div class="row gray">
+            <div class="col-md-6">
+                <h4><span class="fa fa-gift leading-icon"></span>Entrega</h4>
+            </div>
+            <div class="col-md-6">
+                <br />
+                <p class="float-right">
+                    O tempo de entrega é @Model.EntregueAteNDias dias
+                </p>
+            </div>
+        </div>
+        <div class="row gray">
+            <div class="col-md-6">
+                <p class="offset30"><b>Descrição do produto</b></p>
+            </div>
+            <div class="col-md-6 pull-right">
+                <p><b class="float-right">Quantidade</b></p>
+            </div>
+        </div>
+        @foreach(var item in Model.ItemsCarrinho)
+        { 
+            <div class="row gray">
+                <div class="col-md-6">
+                    <div class="offset30 truncate">
+                        <span>•</span>
+                        <span>@item.Descricao</span>
+                    </div>
+                </div>
+                <div class="col-md-6 pull-right">
+                    <p class="float-right">@item.Quantidade</p>
+                </div>
+            </div>
+        }
+    </div>
 
-@Html.ReactInitJavaScript()
+    <div class="row">
+        <div class="col-md-9"></div>
+        <a href="/">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-success">Voltar para o catálogo de produtos</button>
+            </div>
+        </a>
+    </div>
+</div>
