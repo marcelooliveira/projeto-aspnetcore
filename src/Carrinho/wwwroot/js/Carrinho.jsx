@@ -156,9 +156,9 @@ class CarrinhoView extends React.Component {
         const body = (this.state.Items
             .filter(item => item.quantidade > 0)
             .map(item => {
-            return <ItemCarrinho key={item.sku} model={item}
-                             handleCarrinhoChange={this.handleCarrinhoChange.bind(this)}
-                             TokenHeaderValue={this.props.TokenHeaderValue} />;
+                return <ItemCarrinho key={item.sku} model={item}
+                                              handleCarrinhoChange={this.handleCarrinhoChange.bind(this)}
+                                              TokenHeaderValue={this.props.TokenHeaderValue} />;
             }   
         ));
 
@@ -202,8 +202,9 @@ class CarrinhoView extends React.Component {
                             </Column>
         </Row>);
 
-        return (
-                <div className="cart">
+        return (<div className="row">
+                    <div className="col-md-10 col-md-offset-1">
+                        <div className="cart">
                     {
                         this.state.Items.length == 0 ? null :
                         <div>
@@ -275,6 +276,8 @@ class CarrinhoView extends React.Component {
                         </div>
                     }
                 </div>
+            </div>
+        </div>
       );
     }
 }
