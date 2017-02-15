@@ -1,4 +1,4 @@
-﻿class CheckoutSuccessView extends React.Component {
+﻿class SucessoPedidoView extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -104,6 +104,6 @@
     }
 }
 
-CheckoutSuccessView.propTypes = {
+SucessoPedidoView.propTypes = {
 
 };

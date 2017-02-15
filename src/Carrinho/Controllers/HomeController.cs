@@ -9,38 +9,38 @@ namespace Carrinho.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPedidoManager _checkoutManager;
+        private readonly IPedidoManager _pedidoManager;
 
-        public HomeController(IPedidoManager checkoutManager)
+        public HomeController(IPedidoManager pedidoManager)
         {
-            this._checkoutManager = checkoutManager;
+            this._pedidoManager = pedidoManager;
         }
 
         public ActionResult Index()
         {
-            return View(_checkoutManager.GetProdutos());
+            return View(_pedidoManager.GetProdutos());
         }
 
-        public ActionResult Cart()
+        public ActionResult Carrinho()
         {
-            return View(_checkoutManager.GetCarrinho());
+            return View(_pedidoManager.GetCarrinho());
         }
 
-        public ActionResult CheckoutSuccess()
+        public ActionResult SucessoPedido()
         {
-            return View(_checkoutManager.GetResumoPedido());
+            return View(_pedidoManager.GetResumoPedido());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddToCart(string SKU)
         {
-            _checkoutManager.SaveCarrinho(new Core.DTOs.ItemCarrinhoDTO
+            _pedidoManager.SaveCarrinho(new Core.DTOs.ItemCarrinhoDTO
             {
                 SKU = SKU,
                 Quantidade = 1
             });
-            return RedirectToAction("Cart", "Home");
+            return RedirectToAction("Carrinho", "Home");
         }
     }
 }

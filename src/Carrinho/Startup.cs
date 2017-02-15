@@ -83,18 +83,17 @@ namespace Carrinho
             app.UseReact(config =>
             {
                 config
-
                 .AddScript("~/lib/react/react.min.js")
                 .AddScript("~/lib/react/react-dom.min.js")
                 .AddScript("~/js/react-bootstrap.js")
                 .AddScript("~/js/Components.jsx")
-                .AddScript("~/js/Cart.jsx")
-                .AddScript("~/js/CheckoutSuccess.jsx")
-                  .SetJsonSerializerSettings(new JsonSerializerSettings
-                  {
-                      StringEscapeHandling = StringEscapeHandling.EscapeHtml,
-                      ContractResolver = new CamelCasePropertyNamesContractResolver()
-                  });
+                .AddScript("~/js/Carrinho.jsx")
+                .AddScript("~/js/SucessoPedido.jsx")
+                .SetJsonSerializerSettings(new JsonSerializerSettings
+                {
+                    StringEscapeHandling = StringEscapeHandling.EscapeHtml,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                });
             });
 
             app.UseStaticFiles();

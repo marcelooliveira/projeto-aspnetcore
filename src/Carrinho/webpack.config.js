@@ -10,8 +10,8 @@ module.exports = {
             './wwwroot/lib/react/react-with-addons.min.js',
             './wwwroot/js/react-bootstrap.js',
             './wwwroot/js/Components.jsx',
-            './wwwroot/js/Cart.jsx',
-            './wwwroot/js/CheckoutSuccess.jsx',
+            './wwwroot/js/Carrinho.jsx',
+            './wwwroot/js/SucessoPedido.jsx',
             './wwwroot/js/showdown.js'
         ]
     },

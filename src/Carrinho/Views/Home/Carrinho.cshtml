@@ -9,27 +9,18 @@
     ViewBag.Title = "Carrinho";
 }
 
-@functions{
-//public string TokenHeaderValue()
-//{
-//    string cookieToken, formToken;
-//    AntiForgery.GetTokens(null, out cookieToken, out formToken);
-//    return cookieToken + ":" + formToken;
-//}
-}
-
-@Html.React("CartView", new
+@Html.React("CarrinhoView", new
 {
     title = "React JS.Net + React-Bootstrap",
     model = Model,
     TokenHeaderValue = "", //TokenHeaderValue(),
     urlNewProduct = @Url.Action("Index", "Home" ),
-    urlCheckoutSuccess = @Url.Action("CheckoutSuccess", "Home")
+    urlSucessoPedido = @Url.Action("SucessoPedido", "Home")
 })
 
 <script src="~/lib/react/react.min.js"></script>
 <script src="~/lib/react/react-dom.min.js"></script>
 <script src="~/js/react-bootstrap.js"></script>
 <script src="@Url.Content("~/js/Components.jsx")"></script>
-<script src="@Url.Content("~/js/Cart.jsx")"></script>
+<script src="@Url.Content("~/js/Carrinho.jsx")"></script>
 @Html.ReactInitJavaScript()

@@ -99,7 +99,7 @@
     }
 })
 
-class CartView extends React.Component {
+class CarrinhoView extends React.Component {
 
     constructor(props) {
         super(props);
@@ -159,7 +159,7 @@ class CartView extends React.Component {
             return <ItemCarrinho key={item.sku} model={item}
                              handleCarrinhoChange={this.handleCarrinhoChange.bind(this)}
                              TokenHeaderValue={this.props.TokenHeaderValue} />;
-            }
+            }   
         ));
 
         const footer = (<Row>
@@ -175,7 +175,7 @@ class CartView extends React.Component {
                                         </span>
                                     </Column>
                                 </Row>
-                                { this.state.taxaDesconto
+                                { this.state.TaxaDesconto
                                 ?
                                     <Row className="vertical-align">
                                         <Column md={8} className="justify-right">
@@ -183,7 +183,7 @@ class CartView extends React.Component {
                                         </Column>
                                     <Column md={4} className="green justify-right">
                                         <span>
-                                            <Dollars val={this.state.Subtotal} />
+                                            <Dollars val={this.state.ValorDesconto} />
                                         </span>
                                     </Column>
                                     </Row>
@@ -217,7 +217,7 @@ class CartView extends React.Component {
                                 </a>
                             </Column>
                             <Column md={3} className="pull-right">
-                                <a href={this.props.urlCheckoutSuccess}>
+                                <a href={this.props.urlSucessoPedido}>
                                     <button type="button" className="btn btn-success pull-right">Finalizar pedido</button>
                                 </a>
                             </Column>
@@ -238,7 +238,7 @@ class CartView extends React.Component {
                                 </a>
                             </Column>
                             <Column md={3} className="pull-right">
-                                <a href={this.props.urlCheckoutSuccess}>
+                                <a href={this.props.urlSucessoPedido}>
                                     <button type="button" className="btn btn-success pull-right">Finalizar pedido</button>
                                 </a>
                             </Column>
