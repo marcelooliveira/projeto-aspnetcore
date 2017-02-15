@@ -26,6 +26,11 @@ namespace Carrinho.Controllers
             return View(_pedidoManager.GetCarrinho());
         }
 
+        public ActionResult Entrega()
+        {
+            return View();
+        }
+
         public ActionResult SucessoPedido()
         {
             return View(_pedidoManager.GetResumoPedido());
