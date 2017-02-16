@@ -1,5 +1,4 @@
-﻿@*@using System.Web.Optimization*@
-@using System.Collections.Generic
+﻿@using System.Collections.Generic
 @model Carrinho.Core.DTOs.CarrinhoDTO
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,18 +8,211 @@
     ViewBag.Title = "Carrinho";
 }
 
-@Html.React("CarrinhoView", new
-{
-    title = "React JS.Net + React-Bootstrap",
-    model = Model,
-    TokenHeaderValue = "", //TokenHeaderValue(),
-    urlNewProduct = @Url.Action("Index", "Home" ),
-    urlSucessoPedido = @Url.Action("SucessoPedido", "Home")
-})
-
-<script src="~/lib/react/react.min.js"></script>
-<script src="~/lib/react/react-dom.min.js"></script>
-<script src="~/js/react-bootstrap.js"></script>
-<script src="@Url.Content("~/js/Components.jsx")"></script>
-<script src="@Url.Content("~/js/Carrinho.jsx")"></script>
-@Html.ReactInitJavaScript()
+<div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="cart">
+                @if (Model.ItemsCarrinho.Count != 0)
+                {
+                    <div>
+                        <h3>Meu carrinho (@Model.ItemsCarrinho.Count<Pluralize value={@Model.ItemsCarrinho.Count} singular="item" plural="items" />)</h3>
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <a href=@Url.Action("Index", "Home" )>
+                                    <button type="button" class="btn btn-success">Adicionar novo</button>
+                                </a>
+                            </div>
+                            <div class="col col-md-3 pull-right">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row vertical-align">
+                                    <div class="col col-md-6 justify-center">
+                                        item(s)
+                                    </div>
+                                    <div class="col col-md-2 justify-center">
+                                        preço unitário
+                                    </div>
+                                    <div class="col col-md-2 justify-center">
+                                        quantidade
+                                    </div>
+                                    <div class="col col-md-2 justify-right">
+                                        subtotal
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                @foreach (var item in Model.ItemsCarrinho.Where(i => i.Quantidade > 0))
+                                {
+                                    <div class="row vertical-align">
+                                        <div class="col col-md-2 justify-left">
+                                            <div class="row fullwidth">
+                                                <div class="col col-md-3">
+                                                    <img src="../@item.ImagemPequena" width="80" height="80" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-md-4 justify-left">
+                                            <div class="row fullwidth">
+                                                <div class="col col-md-9">
+                                                    <span>@item.Descricao</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-md-2 green justify-center">
+                                            <span>R$ @item.Preco</span>
+                                        </div>
+                                        <div class="col col-md-2 justify-center">
+                                            <div class="text-center">
+                                                <div class="btn-group">
+                                                    <input type="button" class="btn btn-default" value="-" onClick="" />
+                                                    <input type="text" class="btn" value=@item.Quantidade onChange="" />
+                                                    <input type="button" class="btn btn-default" value="+" onClick="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-md-2 green justify-right">
+                                            <span>R$ @item.Subtotal</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col col-md-7"></div>
+                                    <div class="col col-md-5 my-children-have-dividers">
+                                        <div class="row vertical-align">
+                                            <div class="col col-md-8 justify-right">
+                                                Subtotal (@Model.ItemsCarrinho.Count &nbsp; 
+                                                @if (Model.ItemsCarrinho.Count > 1)
+                                                {
+                                                    <span>items</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>item</span>
+                                                }):
+                                            </div>
+                                            <div class="col col-md-4 green justify-right">
+                                                <span>
+                                                    <span>R$ @Model.Subtotal</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @if (Model.TaxaDesconto > 0)
+                                        { 
+                                        <div class="row vertical-align">
+                                            <div class="col col-md-8 justify-right">
+                                                Desconto (<span>@Model.TaxaDesconto</span>%):
+                                            </div>
+                                            <div class="col col-md-4 green justify-right">
+                                                <span>
+                                                    <span>R$ @Model.ValorDesconto</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        }
+                                        <div class="row vertical-align">
+                                            <div class="col col-md-12 justify-right">
+                                                <h3>
+                                                    Total:&nbsp;
+                                                    <span class="green">
+                                                        <span>R$ @Model.Total</span>
+                                                    </span>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <a href={this.props.urlNewProduct}>
+                                    <button type="button" class="btn btn-success">Adicionar novo</button>
+                                </a>
+                            </div>
+                            <div class="col col-md-3 pull-right">
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <h1><br /><br />:(</h1>
+                        <div>
+                            <h1>
+                                Ops! Seu carrinho de compras está vazio.
+                            </h1>
+                            <br />
+                            <div class="empty-cart-content-message">
+                                Adicione produtos para continuar a comprar.
+                            </div>
+                            <br />
+                            <div>
+                                <a href=@Url.Action("Index", "Home" )>
+                                    <button type="button" class="btn btn-success">Adicione novo produto</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form class="form-horizontal" role="form">
+                <fieldset>
+                    <h3>
+                        Endereço de Entrega
+                    </h3>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="textinput">Endereço</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="textinput">Número/Compl.</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="textinput">Cidade</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="textinput">Estado</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" />
+                        </div>
+                        <label class="col-sm-3 control-label" for="textinput">CEP</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="row">
+                <div class="col col-md-3">
+                </div>
+                <div class="col col-md-3 pull-right">
+                    <a href={this.props.urlSucessoPedido}>
+                        <button type="button" class="btn btn-success pull-right">Finalizar pedido</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
