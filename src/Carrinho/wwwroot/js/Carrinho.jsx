@@ -64,23 +64,23 @@
     },
     render: function () {
         return (
-            <Row className="vertical-align">
-                <Column md={2} className="justify-left">
-                    <Row className="fullwidth">
-                        <Column md={3}>
+            <div className="row vertical-align">
+                <div className="col col-md-2 justify-left">
+                    <div className="row fullwidth">
+                        <div className="col col-md-3">
                             <img src={'../' + this.state.ImagemPequena} width="80" height="80" />
-                        </Column>
-                    </Row>
-                </Column>
+                        </div>
+                    </div>
+                </div>
                 <Column md={4} className="justify-left">
-                    <Row className="fullwidth">
+                    <div className="row fullwidth">
                         <Column md={9}>
                             <span>{this.state.Descricao}</span>
                         </Column>
-                    </Row>
+                    </div>
                 </Column>
                 <Column md={2} className="green justify-center">
-                    <Dollars val={this.state.Preco } />
+                    <Dollars val={this.state.Preco} />
                 </Column>
                 <Column md={2} className="justify-center">
                     <div className="text-center">
@@ -94,7 +94,7 @@
                 <Column md={2} className="green justify-right">
                     <Dollars val={this.state.Subtotal} />
                 </Column>
-            </Row>
+            </div>
         );
     }
 })
@@ -146,12 +146,21 @@ class CarrinhoView extends React.Component {
     }
 
     render() {
-        const header = (<Row className="vertical-align">
-                                    <Column md={6} className="justify-left">item(s)</Column>
-                                    <Column md={2} className="justify-center">preço unitário</Column>
-                                    <Column md={2} className="justify-center">quantidade</Column>
-                                    <Column md={2} className="justify-right">subtotal</Column>
-        </Row>);
+        const header = (
+            <div className="row vertical-align">
+                <div md={6} className="col col-md-6 justify-center">
+                    item(s)
+                </div>
+                <div md={2} className="col col-md-2 justify-center">
+                    preço unitário
+                </div>
+                <div md={2} className="col col-md-2 justify-center">
+                    quantidade
+                </div>
+                <div md={2} className="col col-md-2 justify-right">
+                    subtotal
+                </div>
+                </div>);
 
         const body = (this.state.Items
             .filter(item => item.quantidade > 0)
@@ -162,10 +171,10 @@ class CarrinhoView extends React.Component {
             }   
         ));
 
-        const footer = (<Row>
-                            <Column md={7}></Column>
-                            <Column md={5} className="my-children-have-dividers">
-                                <Row className="vertical-align">
+        const footer = (<div className="row">
+                            <div className="col col-md-7"></div>
+                            <div className="col col-md-5 my-children-have-dividers">
+                                <div className="row vertical-align">
                                     <Column md={8} className="justify-right">
                                         Subtotal ({this.state.Items.length}<Pluralize value={this.state.Items.length} singular="item" plural="items" />):
                                     </Column>
@@ -174,10 +183,10 @@ class CarrinhoView extends React.Component {
                                             <Dollars val={this.state.Subtotal} />
                                         </span>
                                     </Column>
-                                </Row>
+                                </div>
                                 { this.state.TaxaDesconto
                                 ?
-                                    <Row className="vertical-align">
+                                    <div className="row vertical-align">
                                         <Column md={8} className="justify-right">
                                             Desconto (<span>{this.state.TaxaDesconto}</span>%):
                                         </Column>
@@ -186,10 +195,10 @@ class CarrinhoView extends React.Component {
                                             <Dollars val={this.state.ValorDesconto} />
                                         </span>
                                     </Column>
-                                    </Row>
+                                    </div>
                                     : null
                                 }
-                                <Row className="vertical-align">
+                                <div className="row vertical-align">
                                     <Column md={12} className="justify-right">
                                     <h3>
                                         Total:&nbsp;
@@ -198,86 +207,137 @@ class CarrinhoView extends React.Component {
                                         </span>
                                     </h3>
                                     </Column>
-                                </Row>
-                            </Column>
-        </Row>);
-
-        return (<div className="row">
-                    <div className="col-md-10 col-md-offset-1">
-                        <div className="cart">
-                    {
-                        this.state.Items.length == 0 ? null :
-                        <div>
-                        {/* TITLE */}
-                        <h3>Meu carrinho ({ this.state.Items.length}<Pluralize value={this.state.Items.length} singular="item" plural="items" />)</h3>
-                        {/* NAVIGATION BUTTONS */}
-                        <Row>
-                            <Column md={3}>
-                                <a href={this.props.urlNewProduct}>
-                                    <button type="button" className="btn btn-success">Adicionar novo</button>
-                                </a>
-                            </Column>
-                            <Column md={3} className="pull-right">
-                                <a href={this.props.urlSucessoPedido}>
-                                    <button type="button" className="btn btn-success pull-right">Finalizar pedido</button>
-                                </a>
-                            </Column>
-                        </Row>
-                        {/* NAVIGATION BUTTONS */}
-                        <br />
-                        {/* CART PANEL */}
-                        <Panel header={header} footer={footer}>
-                            {body}
-                        </Panel>
-                        {/* CART PANEL */}
-
-                        {/* NAVIGATION BUTTONS */}
-                        <Row>
-                            <Column md={3}>
-                                <a href={this.props.urlNewProduct}>
-                                    <button type="button" className="btn btn-success">Adicionar novo</button>
-                                </a>
-                            </Column>
-                            <Column md={3} className="pull-right">
-                                <a href={this.props.urlSucessoPedido}>
-                                    <button type="button" className="btn btn-success pull-right">Finalizar pedido</button>
-                                </a>
-                            </Column>
-                        </Row>
-                        {/* NAVIGATION BUTTONS */}
-                        </div>
-                    }
-                    {
-                    this.state.Items.length > 0
-                    ? null
-                    :
-                        <div>
-                            <h1><br /><br />:(</h1>
-                            <div>
-                                <h1>
-                                    Ops! Seu carrinho de compras está vazio.
-                                </h1>
-                                <br />
-                                <div className="empty-cart-content-message">
-                                    Adicione produtos para continuar a comprar.
-                                </div>
-                                <br />
-                                <div>
-                                    {
-                                        this.state.CanFinishOrder
-                                        ?
-                                        <a href={this.props.urlNewProduct}>
-                                            <button type="button" className="btn btn-success">Adicione novo produto</button>
-                                        </a>
-                                        : null
-                                    }
                                 </div>
                             </div>
+                        </div>);
+
+        return (<div>
+                    <div className="row">
+                        <div className="col-md-10 col-md-offset-1">
+                            <div className="cart">
+                        {
+                            this.state.Items.length == 0 ? null :
+                            <div>
+                            {/* TITLE */}
+                            <h3>Meu carrinho ({ this.state.Items.length}<Pluralize value={this.state.Items.length} singular="item" plural="items" />)</h3>
+                            {/* NAVIGATION BUTTONS */}
+                            <div className="row">
+                                <Column md={3}>
+                                    <a href={this.props.urlNewProduct}>
+                                        <button type="button" className="btn btn-success">Adicionar novo</button>
+                                    </a>
+                                </Column>
+                                <Column md={3} className="pull-right">
+                                </Column>
+                            </div>
+                            {/* NAVIGATION BUTTONS */}
+                            <br />
+                            {/* CART PANEL */}
+                            <Panel header={header} footer={footer}>
+                                {body}
+                            </Panel>
+                            {/* CART PANEL */}
+
+                            {/* NAVIGATION BUTTONS */}
+                            <div className="row">
+                                <Column md={3}>
+                                    <a href={this.props.urlNewProduct}>
+                                        <button type="button" className="btn btn-success">Adicionar novo</button>
+                                    </a>
+                                </Column>
+                                <Column md={3} className="pull-right">
+                                </Column>
+                            </div>
+                            {/* NAVIGATION BUTTONS */}
                         </div>
-                    }
+                        }
+                        {
+                        this.state.Items.length > 0
+                        ? null
+                        :
+                            <div>
+                                <h1><br /><br />:(</h1>
+                                <div>
+                                    <h1>
+                                        Ops! Seu carrinho de compras está vazio.
+                                    </h1>
+                                    <br />
+                                    <div className="empty-cart-content-message">
+                                        Adicione produtos para continuar a comprar.
+                                    </div>
+                                    <br />
+                                    <div>
+                                        {
+                                            this.state.CanFinishOrder
+                                            ?
+                                            <a href={this.props.urlNewProduct}>
+                                                <button type="button" className="btn btn-success">Adicione novo produto</button>
+                                            </a>
+                                            : null
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6 col-md-offset-3">
+                            <form className="form-horizontal" role="form">
+                                <fieldset>
+                                    <h3>
+                                        Endereço de Entrega
+                                    </h3>
+                                    <div className="form-group">
+                                        <label className="col-sm-3 control-label" for="textinput">Endereço</label>
+                                        <div className="col-sm-9">
+                                            <input type="text" className="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col-sm-3 control-label" for="textinput">Número/Compl.</label>
+                                        <div className="col-sm-9">
+                                            <input type="text" className="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col-sm-3 control-label" for="textinput">Cidade</label>
+                                        <div className="col-sm-9">
+                                            <input type="text" className="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label className="col-sm-3 control-label" for="textinput">Estado</label>
+                                        <div className="col-sm-3">
+                                            <input type="text" className="form-control"/>
+                                        </div>
+                                        <label className="col-sm-3 control-label" for="textinput">CEP</label>
+                                        <div className="col-sm-3">
+                                            <input type="text" className="form-control"/>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-10 col-md-offset-1">{/* NAVIGATION BUTTONS */}
+                            <div className="row">
+                                <Column md={3}>
+                                </Column>
+                                <Column md={3} className="pull-right">
+                                    <a href={this.props.urlSucessoPedido}>
+                                        <button type="button" className="btn btn-success pull-right">Finalizar pedido</button>
+                                    </a>
+                                </Column>
+                            </div>{/* NAVIGATION BUTTONS */}
+                        </div>
+                    </div>
+
+
+
                 </div>
-            </div>
-        </div>
-      );
-    }
+              );
+            }
 }
