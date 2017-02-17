@@ -62,64 +62,64 @@
                                             </div>
                                         </div>
                                         <div class="col col-md-2 green justify-center">
-                                            <span>R$ @item.Preco</span>
+                                            R$&nbsp;<span class="preco">@item.Preco</span>
                                         </div>
                                         <div class="col col-md-2 justify-center">
                                             <div class="text-center">
                                                 <div class="btn-group">
                                                     <input type="button" class="btn btn-default" value="-" onClick="carrinho.handleDecremento(this)" />
-                                                    <input type="text" class="btn qtde" value=@item.Quantidade onChange="" />
+                                                    <input type="text" class="btn qtde" value=@item.Quantidade onChange="carrinho.handleQuantidadeChanged(this)" />
                                                     <input type="button" class="btn btn-default" value="+" onClick="carrinho.handleIncremento(this)" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col col-md-2 green justify-right">
-                                            <span>R$ @item.Subtotal</span>
+                                            R$&nbsp;<span class="subtotal">@item.Subtotal</span>
                                         </div>
                                     </div>
                                 }
                             </div>
-                            <div class="panel-footer">
+                            <div class="panel-footer resumo">
                                 <div class="row">
                                     <div class="col col-md-7"></div>
                                     <div class="col col-md-5 my-children-have-dividers">
                                         <div class="row vertical-align">
                                             <div class="col col-md-8 justify-right">
-                                                Subtotal (@Model.ItemsCarrinho.Count &nbsp; 
+                                                Subtotal (<span class="qtdeItens">@Model.ItemsCarrinho.Count</span> &nbsp;
                                                 @if (Model.ItemsCarrinho.Count > 1)
                                                 {
-                                                    <span>items</span>
+                                                <span>items</span>
                                                 }
                                                 else
                                                 {
-                                                    <span>item</span>
+                                                <span>item</span>
                                                 }):
                                             </div>
                                             <div class="col col-md-4 green justify-right">
                                                 <span>
-                                                    <span>R$ @Model.Subtotal</span>
+                                                    R$&nbsp;<span class="subtotal">@Model.Subtotal</span>
                                                 </span>
                                             </div>
                                         </div>
                                         @if (Model.TaxaDesconto > 0)
-                                        { 
-                                        <div class="row vertical-align">
-                                            <div class="col col-md-8 justify-right">
-                                                Desconto (<span>@Model.TaxaDesconto</span>%):
+                                        {
+                                            <div class="row vertical-align linhaDesconto">
+                                                <div class="col col-md-8 justify-right">
+                                                    Desconto (<span class="taxaDesconto">@Model.TaxaDesconto</span>%):
+                                                </div>
+                                                <div class="col col-md-4 green justify-right">
+                                                    <span>
+                                                        R$&nbsp;<span class="valorDesconto">@Model.ValorDesconto</span>
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="col col-md-4 green justify-right">
-                                                <span>
-                                                    <span>R$ @Model.ValorDesconto</span>
-                                                </span>
-                                            </div>
-                                        </div>
                                         }
                                         <div class="row vertical-align">
                                             <div class="col col-md-12 justify-right">
                                                 <h3>
                                                     Total:&nbsp;
                                                     <span class="green">
-                                                        <span>R$ @Model.Total</span>
+                                                        R$&nbsp;<span class="total">@Model.Total</span>
                                                     </span>
                                                 </h3>
                                             </div>
@@ -130,7 +130,7 @@
                         </div>
                         <div class="row">
                             <div class="col col-md-3">
-                                <a href={this.props.urlNewProduct}>
+                                <a href=@Url.Action("Index", "Home" )>
                                     <button type="button" class="btn btn-success">Adicionar novo</button>
                                 </a>
                             </div>
@@ -208,7 +208,7 @@
                 <div class="col col-md-3">
                 </div>
                 <div class="col col-md-3 pull-right">
-                    <a href={this.props.urlSucessoPedido}>
+                    <a href=@Url.Action("SucessoPedido", "Home" )>
                         <button type="button" class="btn btn-success pull-right">Finalizar pedido</button>
                     </a>
                 </div>
@@ -221,39 +221,94 @@
 {
     <script type="text/javascript">
         class Carrinho {
-            constructor (model) {
-                this.model = model;            
+            constructor(model) {
+                this.model = model;
             }
 
+            //Obtém o item do pedido a partir do elemento HTML
             getItemFromElement(el) {
                 var itemId = $(el).parents('.itemPedido').attr('itemid');
                 return this.getItem(itemId);
             }
 
+            //Obtém o item do pedido a partir do id
             getItem(itemId) {
                 return this.model.itemsCarrinho
                             .filter(i => i.id == itemId)[0];
             }
 
+            //Obtém o elemento do item HTML a partir do itemId
             getItemPedidoEl(itemId) {
                 return $('.itemPedido[itemid=' + itemId + ']');
             }
 
+            //Obtém o elemento da quantidade do item HTML a partir do itemId
             getItemPedidoQtdeEl(itemId) {
                 return this.getItemPedidoEl(itemId).find('input.qtde');
             }
 
+            //Obtém o elemento do preço do item HTML a partir do itemId
+            getItemPedidoPrecoEl(itemId) {
+                return this.getItemPedidoEl(itemId).find('.preco');
+            }
+
+            //Obtém o elemento do subtotal do item HTML a partir do itemId
+            getItemPedidoSubtotalEl(itemId) {
+                return this.getItemPedidoEl(itemId).find('.subtotal');
+            }
+
+            getResumoEl() {
+                return $('.resumo');
+            }
+
+            getResumoQtdeItensEl() {
+                return $('.resumo').find('.qtdeItens');
+            }
+
+            getResumoSubtotalEl() {
+                return $('.resumo').find('.subtotal');
+            }
+
+            getResumoLinhaDescontoEl() {
+                return $('.resumo').find('.linhaDesconto');
+            }
+
+            getResumoTaxaDescontoEl() {
+                return $('.resumo').find('.taxaDesconto');
+            }
+
+            getResumoValorDescontoEl() {
+                return $('.resumo').find('.valorDesconto');
+            }
+
+            getResumoTotalEl() {
+                return $('.resumo').find('.total');
+            }
+
+            //Roda quando o usuário decrementa a quantidade do item
             handleDecremento(el) {
                 var item = this.getItemFromElement(el);
                 this.postQuantidade(item, item.quantidade - 1);
             }
 
+            //Roda quando o usuário incrementa a quantidade do item
             handleIncremento(el) {
                 var item = this.getItemFromElement(el);
                 this.postQuantidade(item, item.quantidade + 1);
             }
 
-            postQuantidade (item, novaQtde, callback) {
+            //Roda quando o usuário altera quantidade do item
+            handleQuantidadeChanged(el) {
+                var novaQtde = 1;
+                var val = $(el).val();
+                if (val && !isNaN(val))
+                    novaQtde = parseInt(val);
+                var item = this.getItemFromElement(el);
+                this.postQuantidade(item, novaQtde);
+            }
+
+            //Faz requisição AJAX para alterar quantidade
+            postQuantidade(item, novaQtde, callback) {
                 $('.overlay').show();
 
                 var data = {
@@ -278,22 +333,45 @@
                 });
             }
 
-            handleCarrinhoChange (novoCarrinho, itemCarrinho) {
-                var change = {
-                    Items: novoCarrinho.itemsCarrinho,
-                    Subtotal: novoCarrinho.subtotal,
-                    TaxaDesconto: novoCarrinho.taxaDesconto,
-                    ValorDesconto: novoCarrinho.valorDesconto,
-                    Total: novoCarrinho.total
-                }
-
+            //Executa quando há alteração no carrinho
+            handleCarrinhoChange(novoCarrinho, itemCarrinho) {
                 this.model = novoCarrinho;
+                this.atualizaItem(novoCarrinho, itemCarrinho);
+                this.atualizaResumo(novoCarrinho);
+            }
+
+            atualizaItem(novoCarrinho, itemCarrinho) {
                 var item = this.getItem(itemCarrinho.id)
                 var itemPedidoQtdeEl = this.getItemPedidoQtdeEl(itemCarrinho.id);
                 $(itemPedidoQtdeEl).val(item.quantidade);
                 if (item.quantidade == 0) {
                     this.getItemPedidoEl(itemCarrinho.id).remove();
                 }
+                var subtotalEl = this.getItemPedidoSubtotalEl(itemCarrinho.id);
+                $(subtotalEl).html(item.subtotal.duasCasas());
+            }
+
+            atualizaResumo(novoCarrinho) {
+                var qtdeItensEl = this.getResumoQtdeItensEl();
+                $(qtdeItensEl).html(novoCarrinho
+                    .itemsCarrinho
+                    .filter(i => i.quantidade > 0)
+                    .length);
+                var subtotalEl = this.getResumoSubtotalEl();
+                $(subtotalEl).html(novoCarrinho.subtotal.duasCasas());
+                var linhaDescontoEl = this.getResumoLinhaDescontoEl();
+                if (novoCarrinho.valorDesconto > 0) {
+                    $(linhaDescontoEl).show();
+                }
+                else {
+                    $(linhaDescontoEl).hide();
+                }
+                var taxaDescontoEl = this.getResumoTaxaDescontoEl();
+                $(taxaDescontoEl).html(novoCarrinho.taxaDesconto.duasCasas());
+                var valorDescontoEl = this.getResumoValorDescontoEl();
+                $(valorDescontoEl).html(novoCarrinho.valorDesconto.duasCasas());
+                var totalEl = this.getResumoTotalEl();
+                $(totalEl).html(novoCarrinho.total.duasCasas());
             }
         }
 
@@ -301,5 +379,9 @@
         (function ($) {
             carrinho = new Carrinho(@Html.Raw(Json.Serialize(Model)));
         }(jQuery));
+
+        Number.prototype.duasCasas = function () {
+            return this.toFixed(2).replace('.', ',');
+        }
     </script>
 }
