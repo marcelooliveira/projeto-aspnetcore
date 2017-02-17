@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Carrinho.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using React.AspNet;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -40,7 +39,6 @@ namespace Carrinho
 
             services.AddAntiforgery(op => op.HeaderName = "X-XSRF-TOKEN");
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddReact();
             services.AddMvc();
             //services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
             //services.AddDbContext<Context>(options =>
@@ -74,23 +72,6 @@ namespace Carrinho
             }
 
             app.UseApplicationInsightsExceptionTelemetry();
-
-            // Initialise ReactJS.NET. Must be before static files.
-            app.UseReact(config =>
-            {
-                config
-                .AddScript("~/lib/react/react.min.js")
-                .AddScript("~/lib/react/react-dom.min.js")
-                .AddScript("~/js/react-bootstrap.js")
-                .AddScript("~/js/Components.jsx")
-                .AddScript("~/js/Carrinho.jsx")
-                .AddScript("~/js/SucessoPedido.jsx")
-                .SetJsonSerializerSettings(new JsonSerializerSettings
-                {
-                    StringEscapeHandling = StringEscapeHandling.EscapeHtml,
-                    ContractResolver = new CamelCasePropertyNamesContractResolver()
-                });
-            });
 
             app.UseStaticFiles();
 

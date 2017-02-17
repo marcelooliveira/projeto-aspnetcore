@@ -8,8 +8,6 @@
     "Microsoft.Extensions.DependencyInjection": "1.1.0",
     "Microsoft.IdentityModel.Protocols": "2.0.0",
     "NETStandard.Library": "1.6.0",
-    "React.AspNet": "3.0.0",
-    "React.Core": "3.0.0",
     "System.Data.SqlClient": "4.1.0",
     "System.Diagnostics.TraceSource": "4.0.0"
   },
