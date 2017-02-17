@@ -235,6 +235,14 @@
                             .filter(i => i.id == itemId)[0];
             }
 
+            getItemPedidoEl(itemId) {
+                return $('.itemPedido[itemid=' + itemId + ']');
+            }
+
+            getItemPedidoQtdeEl(itemId) {
+                return this.getItemPedidoEl(itemId).find('input.qtde');
+            }
+
             handleDecremento(el) {
                 var item = this.getItemFromElement(el);
                 this.postQuantidade(item, item.quantidade - 1);
@@ -280,10 +288,12 @@
                 }
 
                 this.model = novoCarrinho;
-                var item = this.getItem(itemCarrinho.id);
-                $('.itemPedido[itemid=' + itemCarrinho.id + '] input.qtde').val(item.quantidade);
-
-                //this.setState(Object.assign({}, this.state, change));
+                var item = this.getItem(itemCarrinho.id)
+                var itemPedidoQtdeEl = this.getItemPedidoQtdeEl(itemCarrinho.id);
+                $(itemPedidoQtdeEl).val(item.quantidade);
+                if (item.quantidade == 0) {
+                    this.getItemPedidoEl(itemCarrinho.id).remove();
+                }
             }
         }
 
