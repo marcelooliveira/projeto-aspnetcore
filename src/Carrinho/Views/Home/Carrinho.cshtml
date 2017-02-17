@@ -46,7 +46,7 @@
                             <div class="panel-body">
                                 @foreach (var item in Model.ItemsCarrinho.Where(i => i.Quantidade > 0))
                                 {
-                                    <div class="row vertical-align">
+                                    <div class="row vertical-align itemPedido" itemid=@item.Id>
                                         <div class="col col-md-2 justify-left">
                                             <div class="row fullwidth">
                                                 <div class="col col-md-3">
@@ -67,9 +67,9 @@
                                         <div class="col col-md-2 justify-center">
                                             <div class="text-center">
                                                 <div class="btn-group">
-                                                    <input type="button" class="btn btn-default" value="-" onClick="" />
-                                                    <input type="text" class="btn" value=@item.Quantidade onChange="" />
-                                                    <input type="button" class="btn btn-default" value="+" onClick="" />
+                                                    <input type="button" class="btn btn-default" value="-" onClick="carrinho.handleDecremento(this)" />
+                                                    <input type="text" class="btn qtde" value=@item.Quantidade onChange="" />
+                                                    <input type="button" class="btn btn-default" value="+" onClick="carrinho.handleIncremento(this)" />
                                                 </div>
                                             </div>
                                         </div>
@@ -216,3 +216,80 @@
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        class Carrinho {
+            constructor (model) {
+                this.model = model;            
+            }
+
+            getItemFromElement(el) {
+                var itemId = $(el).parents('.itemPedido').attr('itemid');
+                return this.getItem(itemId);
+            }
+
+            getItem(itemId) {
+                return this.model.itemsCarrinho
+                            .filter(i => i.id == itemId)[0];
+            }
+
+            handleDecremento(el) {
+                var item = this.getItemFromElement(el);
+                this.postQuantidade(item, item.quantidade - 1);
+            }
+
+            handleIncremento(el) {
+                var item = this.getItemFromElement(el);
+                this.postQuantidade(item, item.quantidade + 1);
+            }
+
+            postQuantidade (item, novaQtde, callback) {
+                $('.overlay').show();
+
+                var data = {
+                    SKU: item.sku,
+                    Quantidade: novaQtde,
+                    Preco: item.preco
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/Carrinho',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(data)
+                }).done(function (novoCarrinho) {
+                    //this.updateState({ Quantidade: item.quantidade, Subtotal: item.subtotal });
+                    this.handleCarrinhoChange(novoCarrinho, item);
+                    return;
+                }.bind(this))
+                .always(function () {
+                    $('.overlay').hide();
+                });
+            }
+
+            handleCarrinhoChange (novoCarrinho, itemCarrinho) {
+                var change = {
+                    Items: novoCarrinho.itemsCarrinho,
+                    Subtotal: novoCarrinho.subtotal,
+                    TaxaDesconto: novoCarrinho.taxaDesconto,
+                    ValorDesconto: novoCarrinho.valorDesconto,
+                    Total: novoCarrinho.total
+                }
+
+                this.model = novoCarrinho;
+                var item = this.getItem(itemCarrinho.id);
+                $('.itemPedido[itemid=' + itemCarrinho.id + '] input.qtde').val(item.quantidade);
+
+                //this.setState(Object.assign({}, this.state, change));
+            }
+        }
+
+        var carrinho;
+        (function ($) {
+            carrinho = new Carrinho(@Html.Raw(Json.Serialize(Model)));
+        }(jQuery));
+    </script>
+}

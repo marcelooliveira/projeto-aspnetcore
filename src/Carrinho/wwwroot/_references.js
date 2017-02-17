@@ -1,6 +1,8 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../build/bundle.js" />
-/// <reference path="../webpack - copy.config.babel.js" />
+/// <reference path="../webpack.config.babel.js" />
+/// <reference path="../webpack.config.js" />
+/// <reference path="build/bundle.js" />
 /// <reference path="js/react-bootstrap.js" />
 /// <reference path="js/showdown.js" />
 /// <reference path="js/site.js" />
