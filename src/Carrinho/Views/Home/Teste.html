@@ -1,0 +1,373 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - by Marcelo Ricardo de Oliveira</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!--<link href="../../wwwroot/css/site.css" rel="stylesheet" />-->
+    <link href="../../wwwroot/fonts/font-awesome.css" rel="stylesheet" />
+</head>
+<body class="body">
+    <div class="overlay">
+        <div class="loader">Loading...</div>
+    </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" id="container-header">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo"></div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-content">
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="container">
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h3>
+                            Catálogo
+                        </h3>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- Controls -->
+                        <div class="controls pull-right hidden-xs">
+                            <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example"
+                               data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-success" href="#carousel-example"
+                                                        data-slide="next"></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="row">
+                                <form action="/Home/AddToCart" method="post">
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+                                            <div class="photo">
+                                                <img src="../../wwwroot/images/products/large_1.jpg" class="img-responsive" alt="a"/>
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-6">
+                                                        <h5 class="truncate">
+                                                            Sleep not found
+                                                        </h5>
+                                                        <h5 class="price-line">
+                                                            R$ <span class="price-text-color">59,90</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <button type="submit" class="btn btn-link" name="SKU" value="588a8d83-09eb-4faf-afee-eb50182cb773">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <button type="button" class="btn btn-link" name="SKU" value="588a8d83-09eb-4faf-afee-eb50182cb773">
+                                                            <i class="fa fa-list"></i><a href="" class="hidden-sm"></a>
+                                                            Detalhes
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+                                            <div class="photo">
+                                                <img src="../../wwwroot/images/products/large_2.jpg" class="img-responsive" alt="a"/>
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-6">
+                                                        <h5 class="truncate">
+                                                            May the code be with you
+                                                        </h5>
+                                                        <h5 class="price-line">
+                                                            R$ <span class="price-text-color">59,90</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <button type="submit" class="btn btn-link" name="SKU" value="f0b1335b-2509-46f4-b550-586d48eec331">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <button type="button" class="btn btn-link" name="SKU" value="f0b1335b-2509-46f4-b550-586d48eec331">
+                                                            <i class="fa fa-list"></i><a href="" class="hidden-sm"></a>
+                                                            Detalhes
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+                                            <div class="photo">
+                                                <img src="../../wwwroot/images/products/large_3.jpg" class="img-responsive" alt="a"/>
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-6">
+                                                        <h5 class="truncate">
+                                                            Rollback
+                                                        </h5>
+                                                        <h5 class="price-line">
+                                                            R$ <span class="price-text-color">59,90</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <button type="submit" class="btn btn-link" name="SKU" value="dd92637e-cb82-4a06-a518-12f008730cba">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <button type="button" class="btn btn-link" name="SKU" value="dd92637e-cb82-4a06-a518-12f008730cba">
+                                                            <i class="fa fa-list"></i><a href="" class="hidden-sm"></a>
+                                                            Detalhes
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+                                            <div class="photo">
+                                                <img src="../../wwwroot/images/products/large_4.jpg" class="img-responsive" alt="a"/>
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-6">
+                                                        <h5 class="truncate">
+                                                            REST
+                                                        </h5>
+                                                        <h5 class="price-line">
+                                                            R$ <span class="price-text-color">69,90</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <button type="submit" class="btn btn-link" name="SKU" value="f4616ae5-a50c-41c7-84ff-bdb12b578fcc">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <button type="button" class="btn btn-link" name="SKU" value="f4616ae5-a50c-41c7-84ff-bdb12b578fcc">
+                                                            <i class="fa fa-list"></i><a href="" class="hidden-sm"></a>
+                                                            Detalhes
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8DxLvs2-LWxPtglPokWDcdqKQwhaHkwWCcmSZuaK-s9_IyQv86rikSzdBNh5HWaaWXPLafiBmEaZ0zRcgGIGOSPMlfoSlarSz3VFJf0aelwFruH375hzxJKKigXNY6hoh-tCYwBxoc2meqnPXRk5MLU" />
+                                </form>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <form action="/Home/AddToCart" method="post">
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+                                            <div class="photo">
+                                                <img src="../../wwwroot/images/products/large_5.jpg" class="img-responsive" alt="a"/>
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-6">
+                                                        <h5 class="truncate">
+                                                            Design Patterns com Java
+                                                        </h5>
+                                                        <h5 class="price-line">
+                                                            R$ <span class="price-text-color">69,90</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <button type="submit" class="btn btn-link" name="SKU" value="7710edfa-dd66-4517-8b39-c8011631e143">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <button type="button" class="btn btn-link" name="SKU" value="7710edfa-dd66-4517-8b39-c8011631e143">
+                                                            <i class="fa fa-list"></i><a href="" class="hidden-sm"></a>
+                                                            Detalhes
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+                                            <div class="photo">
+                                                <img src="../../wwwroot/images/products/large_6.jpg" class="img-responsive" alt="a"/>
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-6">
+                                                        <h5 class="truncate">
+                                                            Vire o jogo com Spring Framework
+                                                        </h5>
+                                                        <h5 class="price-line">
+                                                            R$ <span class="price-text-color">69,90</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <button type="submit" class="btn btn-link" name="SKU" value="f7dacb90-af86-478d-bdfd-15687f61579f">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <button type="button" class="btn btn-link" name="SKU" value="f7dacb90-af86-478d-bdfd-15687f61579f">
+                                                            <i class="fa fa-list"></i><a href="" class="hidden-sm"></a>
+                                                            Detalhes
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+                                            <div class="photo">
+                                                <img src="../../wwwroot/images/products/large_7.jpg" class="img-responsive" alt="a"/>
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-6">
+                                                        <h5 class="truncate">
+                                                            Test-Driven Development
+                                                        </h5>
+                                                        <h5 class="price-line">
+                                                            R$ <span class="price-text-color">69,90</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <button type="submit" class="btn btn-link" name="SKU" value="c046711f-34e0-4118-a2ea-cca78e0d3e4e">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <button type="button" class="btn btn-link" name="SKU" value="c046711f-34e0-4118-a2ea-cca78e0d3e4e">
+                                                            <i class="fa fa-list"></i><a href="" class="hidden-sm"></a>
+                                                            Detalhes
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-item">
+                                            <div class="photo">
+                                                <img src="../../wwwroot/images/products/large_8.jpg" class="img-responsive" alt="a"/>
+                                            </div>
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="price col-md-6">
+                                                        <h5 class="truncate">
+                                                            iOS: Programe para iPhone e iPad
+                                                        </h5>
+                                                        <h5 class="price-line">
+                                                            R$ <span class="price-text-color">69,90</span>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="separator clear-left">
+                                                    <p class="btn-add">
+                                                        <button type="submit" class="btn btn-link" name="SKU" value="5486b500-77e4-43bb-909a-56d8e756eeb8">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </p>
+                                                    <p class="btn-details">
+                                                        <button type="button" class="btn btn-link" name="SKU" value="5486b500-77e4-43bb-909a-56d8e756eeb8">
+                                                            <i class="fa fa-list"></i><a href="" class="hidden-sm"></a>
+                                                            Detalhes
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8DxLvs2-LWxPtglPokWDcdqKQwhaHkwWCcmSZuaK-s9_IyQv86rikSzdBNh5HWaaWXPLafiBmEaZ0zRcgGIGOSPMlfoSlarSz3VFJf0aelwFruH375hzxJKKigXNY6hoh-tCYwBxoc2meqnPXRk5MLU" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loading" class="loading" style="display: none;">Loading&#8230;</div>
+
+    <script src="../../wwwroot/lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../wwwroot/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    <!-- Visual Studio Browser Link -->
+    <script type="application/json" id="__browserLink_initializationData">
+        {"requestId":"73b4b7992e19441abd28070ca1d5bb30","requestMappingFromServer":false}
+    </script>
+    <script type="text/javascript" src="http://localhost:50682/182269bb74c240a7a84bc7e682435d6d/browserLink" async="async"></script>
+    <!-- End Browser Link -->
+
+</body>
+</html>
