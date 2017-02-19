@@ -29,6 +29,11 @@ textarea {
     width: 100%;
 }
 
+.carousel-inner .item img[src$=".jpg"]
+{
+    width: 230px;
+}
+
 .carousel-control {
     width: auto;
 }
