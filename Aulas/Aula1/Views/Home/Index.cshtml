@@ -10,17 +10,21 @@
         <li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
+        @{var produtos = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }; }
+        @for (var pagina = 0; pagina < (produtos.Length - 1) / 4; pagina++)
+        {
+        <div class="item @(pagina == 0 ? "active" : "")">
             <div class="row">
-                @for (var i = 1; i <= 4; i++)
+                @for (var i = 0; i < 4; i++)
                 {
+                    var produtoId = produtos[i + pagina * 4];
                 <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <img src="~/images/Produtos/large_@(i).jpg" />
+                            <img src="~/images/Produtos/large_@(produtoId).jpg" />
                         </div>
                         <div class="panel-footer">
-                            <div>Produto @(i)</div>
+                            <div>Produto @(produtoId)</div>
                             <div>R$ 59,90</div>
                         </div>
                     </div>
@@ -28,50 +32,7 @@
                 }
             </div>
         </div>
-        <div class="item">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
+        }
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
