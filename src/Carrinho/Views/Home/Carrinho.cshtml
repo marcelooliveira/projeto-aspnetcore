@@ -219,5 +219,8 @@
 
 @section Scripts
 {   
+    <script type="text/javascript">
+        var modelo = (@Html.Raw(Json.Serialize(Model)));
+    </script>
     <script src="~/js/carrinho.js"></script>
 }

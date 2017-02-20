@@ -155,7 +155,7 @@
 
 var carrinho;
 (function ($) {
-    carrinho = new Carrinho(@Html.Raw(Json.Serialize(Model)));
+    carrinho = new Carrinho(modelo);
 }(jQuery));
 
 Number.prototype.duasCasas = function () {
