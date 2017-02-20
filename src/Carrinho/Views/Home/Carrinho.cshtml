@@ -46,7 +46,7 @@
                             <div class="panel-body">
                                 @foreach (var item in Model.ItemsCarrinho.Where(i => i.Quantidade > 0))
                                 {
-                                    <div class="row vertical-align itemPedido" itemid=@item.Id>
+                                    <div class="row vertical-align item-pedido" item-id=@item.Id>
                                         <div class="col col-md-2 justify-left">
                                             <div class="row fullwidth">
                                                 <div class="col col-md-3">
@@ -85,7 +85,7 @@
                                     <div class="col col-md-5 my-children-have-dividers">
                                         <div class="row vertical-align">
                                             <div class="col col-md-8 justify-right">
-                                                Subtotal (<span class="qtdeItens">@Model.ItemsCarrinho.Count</span> &nbsp;
+                                                Subtotal (<span class="qtde-itens">@Model.ItemsCarrinho.Count</span> &nbsp;
                                                 @if (Model.ItemsCarrinho.Count > 1)
                                                 {
                                                 <span>items</span>
@@ -103,13 +103,13 @@
                                         </div>
                                         @if (Model.TaxaDesconto > 0)
                                         {
-                                            <div class="row vertical-align linhaDesconto">
+                                            <div class="row vertical-align linha-desconto">
                                                 <div class="col col-md-8 justify-right">
-                                                    Desconto (<span class="taxaDesconto">@Model.TaxaDesconto</span>%):
+                                                    Desconto (<span class="taxa-desconto">@Model.TaxaDesconto</span>%):
                                                 </div>
                                                 <div class="col col-md-4 green justify-right">
                                                     <span>
-                                                        R$&nbsp;<span class="valorDesconto">@Model.ValorDesconto</span>
+                                                        R$&nbsp;<span class="valor-desconto">@Model.ValorDesconto</span>
                                                     </span>
                                                 </div>
                                             </div>

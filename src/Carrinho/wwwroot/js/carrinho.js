@@ -5,7 +5,7 @@
 
     //Obtém o item do pedido a partir do elemento HTML
     getItemFromElement(el) {
-        var itemId = $(el).parents('.itemPedido').attr('itemid');
+        var itemId = $(el).parents('.item-pedido').attr('item-id');
         return this.getItem(itemId);
     }
 
@@ -17,7 +17,7 @@
 
     //Obtém o elemento do item HTML a partir do itemId
     getItemPedidoEl(itemId) {
-        return $('.itemPedido[itemid=' + itemId + ']');
+        return $('.item-pedido[item-id=' + itemId + ']');
     }
 
     //Obtém o elemento da quantidade do item HTML a partir do itemId
@@ -40,7 +40,7 @@
     }
 
     getResumoQtdeItensEl() {
-        return $('.resumo').find('.qtdeItens');
+        return $('.resumo').find('.qtde-itens');
     }
 
     getResumoSubtotalEl() {
@@ -48,15 +48,15 @@
     }
 
     getResumoLinhaDescontoEl() {
-        return $('.resumo').find('.linhaDesconto');
+        return $('.resumo').find('.linha-desconto');
     }
 
     getResumoTaxaDescontoEl() {
-        return $('.resumo').find('.taxaDesconto');
+        return $('.resumo').find('.taxa-desconto');
     }
 
     getResumoValorDescontoEl() {
-        return $('.resumo').find('.valorDesconto');
+        return $('.resumo').find('.valor-desconto');
     }
 
     getResumoTotalEl() {
