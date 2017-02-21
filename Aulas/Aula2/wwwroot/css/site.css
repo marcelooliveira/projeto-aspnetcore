@@ -42,3 +42,14 @@ textarea {
     display: none
   }
 }
+
+.navbar-inverse {
+    background-color: #F8965D;
+    border-color: #FFF;
+}
+
+.navbar-brand {
+    background: url('../images/logo.png') no-repeat;
+    width: 215px;
+    height: 55px;
+}
