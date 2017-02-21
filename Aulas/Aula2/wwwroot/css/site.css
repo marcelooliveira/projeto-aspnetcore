@@ -53,3 +53,7 @@ textarea {
     width: 215px;
     height: 55px;
 }
+
+.carousel-control {
+    width: 0;
+}
