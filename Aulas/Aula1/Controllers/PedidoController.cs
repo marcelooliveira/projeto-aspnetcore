@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Aula1.Controllers
+namespace WebApplication.Controllers
 {
     public class PedidoController : Controller
     {
