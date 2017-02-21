@@ -81,6 +81,8 @@ namespace Carrinho
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //app.UseMvcWithDefaultRoute();
         }
     }
 }
