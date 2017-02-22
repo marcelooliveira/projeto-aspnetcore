@@ -1,61 +1,44 @@
 ﻿<br />
 <br />
 <br />
-
 <h3>Catálogo</h3>
-
-<div id="my-carouselbs" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#my-carousel" data-slide-to="1"></li>
-        <li data-target="#my-carousel" data-slide-to="2"></li>
-    </ol>
-
-
+<div id="my-carousel" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="row">
-                @{ var ids = new[] { 1, 2, 3, 4 };}
-                @for (int i = 0; i < ids.Length; i++)
+        @{
+            var ids = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            decimal numPaginas = Math.Ceiling((decimal)(ids.Length / 4));
+        }
+        @for (int pagina = 0; pagina < numPaginas; pagina++)
+        {
+            var produtosPagina = ids.Skip(pagina * 4).Take(4).ToList();
+            <div class="item @(pagina == 0 ? "active" : "")">
+                <div class="row">
+                    @for (int col = 0; col < produtosPagina.Count(); col++)
                 {
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img src="~/images/produtos/large_@(ids[i]).jpg" class="img-responsive" />
-                        </div>
-                        <div class="panel-footer">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    Produto @ids[i]
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img src="~/images/produtos/large_@(produtosPagina[col]).jpg" class="img-responsive" />
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            Produto @(produtosPagina[col])
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-4 pull-right">
+                                            <h3>R$ 59,90</h3>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    R$ 59,90
-                                </div>
-                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
-                }
             </div>
-        </div>
-        @*<div class="item">
-            <img alt="Second slide" src="http://placehold.it/1200x675&text=Second+slide">
-            <div class="carousel-caption">
-                <h3>Caption heading 2</h3>
-                <p>Morbi eget libero quis metus consectetur semper.</p>
-            </div>
-        </div>
-        <div class="item">
-            <img alt="Third slide" src="http://placehold.it/1200x675&text=Third+slide">
-            <div class="carousel-caption">
-                <h3>Caption heading 3</h3>
-                <p>Suspendisse ullamcorper massa eget eleifend iaculis.</p>
-            </div>
-        </div>*@
+        }
     </div>
 
     <!-- Controls -->
