@@ -38,8 +38,7 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-update1",
       "type": "build"
-    }
-  },
+    }  },
 
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": {
