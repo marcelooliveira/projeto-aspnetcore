@@ -20,10 +20,8 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Carrinho()
         {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
