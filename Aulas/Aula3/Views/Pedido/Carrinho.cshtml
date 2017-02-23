@@ -1,0 +1,50 @@
+﻿<br />
+<br />
+<br />
+<h3>Meu Carrinho</h3>
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-6">item(s)</div>
+                <div class="col-md-2 text-center">preço unitário</div>
+                <div class="col-md-2 text-center">quantidade</div>
+                <div class="col-md-2 text-right">subtotal</div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">produto 1</div>
+                <div class="col-md-2 text-center">R$ 59,90</div>
+                <div class="col-md-2 text-center">1</div>
+                <div class="col-md-2 text-right">R$ 59,90</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">produto 2</div>
+                <div class="col-md-2 text-center">R$ 59,90</div>
+                <div class="col-md-2 text-center">2</div>
+                <div class="col-md-2 text-right">R$ 119,80</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">produto 3</div>
+                <div class="col-md-2 text-center">R$ 59,90</div>
+                <div class="col-md-2 text-center">2</div>
+                <div class="col-md-2 text-right">R$ 119,80</div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-2">Total (3 itens)</div>
+                <div class="col-md-2 text-right">R$ 299,50</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <a asp-action="Resumo" 
+           asp-controller="Pedido" 
+           class="btn btn-success pull-right">
+            Finalizar Pedido
+        </a>
+    </div>
+</div>
