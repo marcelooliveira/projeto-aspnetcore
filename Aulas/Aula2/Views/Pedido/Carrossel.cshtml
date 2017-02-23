@@ -15,26 +15,28 @@
             <div class="item @(pagina == 0 ? "active" : "")">
                 <div class="row">
                     @for (int col = 0; col < produtosPagina.Count(); col++)
-                {
-                        <div class="col-md-3">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <img src="~/images/produtos/large_@(produtosPagina[col]).jpg" class="img-responsive" />
-                                </div>
-                                <div class="panel-footer">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            Produto @(produtosPagina[col])
-                                        </div>
+                    {
+                        <a asp-action="Carrinho">
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <img src="~/images/produtos/large_@(produtosPagina[col]).jpg" class="img-responsive" />
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-10 col-md-offset-4 pull-right">
-                                            <h3>R$ 59,90</h3>
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                Produto @(produtosPagina[col])
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-10 col-md-offset-4 pull-right">
+                                                <h3>R$ 59,90</h3>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     }
                 </div>
             </div>
