@@ -1,4 +1,5 @@
-﻿<br />
+﻿@model List<Aula3.Models.Produto>
+<br />
 <br />
 <br />
 <h3>Catálogo</h3>
@@ -11,26 +12,25 @@
         }
         @for (int pagina = 0; pagina < numPaginas; pagina++)
         {
-            var produtosPagina = ids.Skip(pagina * 4).Take(4).ToList();
             <div class="item @(pagina == 0 ? "active" : "")">
                 <div class="row">
-                    @for (int col = 0; col < produtosPagina.Count(); col++)
+                    @foreach(var item in Model)
                     {
                         <a asp-action="Carrinho">
                             <div class="col-md-3">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <img src="~/images/produtos/large_@(produtosPagina[col]).jpg" class="img-responsive" />
+                                        <img src="~/images/produtos/large_@(item.Id).jpg" class="img-responsive" />
                                     </div>
                                     <div class="panel-footer">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                Produto @(produtosPagina[col])
+                                                @(item.Descricao)
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-10 col-md-offset-4 pull-right">
-                                                <h3>R$ 59,90</h3>
+                                                <h3>R$ @item.Preco</h3>
                                             </div>
                                         </div>
                                     </div>

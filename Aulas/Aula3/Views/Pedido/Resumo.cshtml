@@ -1,4 +1,5 @@
-﻿<br />
+﻿@model List<Aula3.Models.ItemPedido>
+<br />
 <br />
 <br />
 <div class="row">
@@ -38,44 +39,18 @@
                         <h4>Quantidade</h4>
                     </div>
                 </div>
+                @foreach(var item in Model)
+                { 
                 <div class="row">
                     <div class="col-md-6">
-                        Produto 1
+                        @item.Produto.Descricao
                     </div>
-                    <div class="col-md-6 text-right" ">
-                        1
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        Produto 2
-                    </div>
-                    <div class="col-md-6 text-right" ">
-                        1
+                    <div class="col-md-6 text-right">
+                        @item.Quantidade
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        Produto 3
-                    </div>
-                    <div class="col-md-6 text-right" ">
-                        1
-                    </div>
-                </div>
+                }
             </div>
         </div>
-    </div></div>
-@*Nº do pedido: 1234567
-
-Seus dados
-João da Silva joao@alura.com.br
-(11)555-12345
-
-Endereço de Entrega
-Rua Vergueiro, 123 - Vila Mariana - São Paulo - SP
-
-Entrega Quantidade Subtotal
-Produto 1  1 R$ 59,90
-Produto 2 2 R$ 119,80 
-Produto 3 3 R$ 119,80
-Total: 299,50*@
+    </div>
+</div>
