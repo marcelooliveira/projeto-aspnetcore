@@ -16,11 +16,16 @@ namespace Aula.Models
 
         }
 
-        public Produto(int id, 
-                        string descricao,
-                        decimal preco)
+        public Produto(int id,
+                string descricao,
+                decimal preco) : this(descricao, preco)
         {
             this.Id = id;
+        }
+
+        public Produto(string descricao,
+                        decimal preco)
+        {
             this.Descricao = descricao;
             this.Preco = preco;
         }

@@ -5,23 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aula4
+namespace Aula
 {
     public class Contexto : DbContext
     {
-        public DbSet<ItemPedido> ItemCarrinho { get; set; }
-        public DbSet<Produto> Produto { get; set; }
+        public DbSet<ItemPedido> ItensPedido { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
 
         public Contexto()
         {
         }
 
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
-        {
-            builder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=CasaDoCodigo;Trusted_Connection=True;");
-        }
     }
 }

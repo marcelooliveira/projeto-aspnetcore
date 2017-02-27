@@ -17,12 +17,11 @@ namespace Aula.Models
 
         }
 
-        public ItemPedido(int id, Produto produto, int quantidade, decimal precoUnitario)
+        public ItemPedido(Produto produto, int quantidade)
         {
-            this.Id = id;
             this.Produto = produto;
             this.Quantidade = quantidade;
-            this.PrecoUnitario = precoUnitario;
+            this.PrecoUnitario = produto.Preco;
         }
     }
 }

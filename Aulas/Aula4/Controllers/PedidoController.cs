@@ -20,10 +20,10 @@ namespace WebApplication.Controllers
         {
             itensPedido = new List<ItemPedido>()
             {
-                new ItemPedido(1, produtos[0], 1, produtos[0].Preco),
-                new ItemPedido(1, produtos[1], 2, produtos[1].Preco),
-                new ItemPedido(1, produtos[2], 3, produtos[2].Preco),
-                new ItemPedido(1, produtos[3], 2, produtos[3].Preco)
+                new ItemPedido(produtos[0], 1),
+                new ItemPedido(produtos[1], 2),
+                new ItemPedido(produtos[2], 3),
+                new ItemPedido(produtos[3], 2)
             };
         }
 
