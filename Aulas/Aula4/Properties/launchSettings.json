@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:56374/",
+      "applicationUrl": "http://localhost:50325/",
       "sslPort": 0
     }
   },
@@ -15,13 +15,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    // Use CTRL+F5 or Debug -> Start Without Debugging to use this launch profil2e. Launches the app using 'dotnet watch',
-    // which allows you to edit code and refresh the browser to see your changes while the app is running.
-    "dotnet watch": {
-      "executablePath": "C:\\Program Files\\dotnet\\dotnet.exe",
-      "commandLineArgs": "watch run --server.urls http://*:5000",
+    "Aula4": {
+      "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/",
+      "launchUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
