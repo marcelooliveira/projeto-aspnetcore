@@ -9,18 +9,20 @@ namespace Aula
 {
     public class DataService : IDataService
     {
-        private readonly DbContextOptions<Contexto> _dbOptions;
-
-        public DataService(DbContextOptions<Contexto> dbOptions)
+        private readonly Contexto _contexto;
+        public DataService(Contexto contexto)
         {
-            this._dbOptions = dbOptions;
+            this._contexto = contexto;
+        }
+
+        public List<Produto> GetProdutos()
+        {
+            return this._contexto.Produtos.ToList();
         }
 
         public Contexto InicializaDB()
         {
-            var db = new Contexto(this._dbOptions);
-
-            bool bancoNovo = db.Database.EnsureCreated();
+            bool bancoNovo = this._contexto.Database.EnsureCreated();
             if (bancoNovo)
             {
                 var produtos = new string[]
@@ -42,15 +44,15 @@ namespace Aula
                     var descricao = p.Split('|')[0];
                     var preco = decimal.Parse(p.Split('|')[1]) / 100M;
 
-                    var produto = db.Produtos.Add(new Produto(descricao, preco)).Entity;
-                    var itemCarrinho = db.ItensPedido.Add(new ItemPedido(produto, 1)).Entity;
+                    var produto = this._contexto.Produtos.Add(new Produto(descricao, preco)).Entity;
+                    var itemCarrinho = this._contexto.ItensPedido.Add(new ItemPedido(produto, 1)).Entity;
 
                     index++;
                 }
             }
 
-            db.SaveChanges();
-            return db;
-        }
+            this._contexto.SaveChanges();
+            return this._contexto;
+        }       
     }
 }

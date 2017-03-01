@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Aula
 {
@@ -29,14 +30,23 @@ namespace Aula
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+
+            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+            
+            services.AddEntityFramework()
+                .AddDbContext<Contexto>(dbOptions =>
+                    {
+                        dbOptions.UseSqlServer(Configuration.GetConnectionString("Default"));
+                    });
+            services.AddTransient<IDataService, DataService>();
             services.AddMvc();
 
-            var options = new DbContextOptionsBuilder<Contexto>();
-            options.UseSqlServer(Configuration.GetConnectionString("Default"));
-            var dbOptions = options.Options;
-            services.AddSingleton<DbContextOptions<Contexto>>(dbOptions);
+            //var options = new DbContextOptionsBuilder<Contexto>();
+            //options.UseSqlServer(Configuration.GetConnectionString("Default"));
+            //var dbOptions = options.Options;
+            //services.AddSingleton<DbContextOptions<Contexto>>(dbOptions);
 
-            new DataService(dbOptions).InicializaDB();
+            //new DataService(dbOptions).InicializaDB();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
