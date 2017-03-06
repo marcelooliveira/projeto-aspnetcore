@@ -18,15 +18,16 @@
             </div>
         </div>
         <div class="panel-body">
+        @foreach (var item in Model.ItensCarrinho)
+        {
             <div class="row">
-                @foreach(var item in Model.ItensCarrinho)
-                {
-                    <div class="col-md-6">@item.Produto.Descricao</div>
-                    <div class="col-md-2 text-center">R$ @item.PrecoUnitario</div>
-                    <div class="col-md-2 text-center">@item.Quantidade</div>
-                    <div class="col-md-2 text-right">R$ @(item.Quantidade * item.PrecoUnitario)</div>
-                }
+                <div class="col-md-3"><img src="~/images/produtos/small_@(item.Produto.Id).jpg" /></div>
+                <div class="col-md-3">@item.Produto.Descricao</div>
+                <div class="col-md-2 text-center">R$ @item.PrecoUnitario</div>
+                <div class="col-md-2 text-center">@item.Quantidade</div>
+                <div class="col-md-2 text-right">R$ @(item.Quantidade * item.PrecoUnitario)</div>
             </div>
+        }
         </div>
         <div class="panel-footer">
             <div class="row">
