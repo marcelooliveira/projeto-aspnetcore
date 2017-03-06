@@ -57,3 +57,8 @@ textarea {
 .carousel-control {
     width: 0;
 }
+
+.vcenter {
+    display: flex;
+    align-items: center;
+}
