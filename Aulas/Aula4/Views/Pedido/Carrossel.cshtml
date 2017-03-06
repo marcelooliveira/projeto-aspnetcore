@@ -11,30 +11,31 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         @{
-            var ids = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            decimal numPaginas = Math.Ceiling((decimal)(ids.Length / 4));
+            decimal numPaginas = Math.Ceiling((decimal)(Model.Count() / 4.0));
         }
+
         @for (int pagina = 0; pagina < numPaginas; pagina++)
         {
+            var produtos = Model.Skip(pagina * 4).Take(4);
             <div class="item @(pagina == 0 ? "active" : "")">
                 <div class="row">
-                    @foreach(var item in Model)
+                    @foreach(var produto in produtos)
                     {
                         <a asp-action="Carrinho">
                             <div class="col-md-3">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <img src="~/images/produtos/large_@(item.Id).jpg" class="img-responsive" />
+                                        <img src="~/images/produtos/large_@(produto.Id).jpg" class="img-responsive" />
                                     </div>
                                     <div class="panel-footer">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                @(item.Descricao)
+                                                @(produto.Descricao)
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-10 col-md-offset-4 pull-right">
-                                                <h3>R$ @item.Preco</h3>
+                                                <h3>R$ @produto.Preco</h3>
                                             </div>
                                         </div>
                                     </div>
