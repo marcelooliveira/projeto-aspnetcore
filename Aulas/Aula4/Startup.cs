@@ -40,13 +40,6 @@ namespace Aula
                     });
             services.AddTransient<IDataService, DataService>();
             services.AddMvc();
-
-            //var options = new DbContextOptionsBuilder<Contexto>();
-            //options.UseSqlServer(Configuration.GetConnectionString("Default"));
-            //var dbOptions = options.Options;
-            //services.AddSingleton<DbContextOptions<Contexto>>(dbOptions);
-
-            //new DataService(dbOptions).InicializaDB();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
