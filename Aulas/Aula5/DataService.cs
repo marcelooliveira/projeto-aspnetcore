@@ -25,6 +25,19 @@ namespace Aula
             return this._contexto.ItensPedido.Include("Produto").ToList();
         }
 
+        public void UpdateItemPedido(ItemPedido itemPedido)
+        {
+            ItemPedido itemParaAtualizar = this._contexto.ItensPedido
+                .Where(i => i.Id == itemPedido.Id).SingleOrDefault();
+
+            if (itemParaAtualizar != null)
+            {
+                itemParaAtualizar.AtualizarQuantidade(itemPedido.Quantidade);
+            }
+
+            this._contexto.SaveChanges();
+        }
+
         public Contexto InicializaDB()
         {
             bool bancoNovo = this._contexto.Database.EnsureCreated();
@@ -58,6 +71,6 @@ namespace Aula
 
             this._contexto.SaveChanges();
             return this._contexto;
-        }       
+        }
     }
 }

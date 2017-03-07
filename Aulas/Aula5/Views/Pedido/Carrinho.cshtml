@@ -37,7 +37,7 @@
                                value="@item.Quantidade" min="1" max="10">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default btn-number" data-type="plus" 
-                                    data-field="quant[1]" onclick="handleIncremento(this)">
+                                    data-field="quant[1]" onclick="carrinho.handleIncremento(this)">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </span>
@@ -67,23 +67,5 @@
 
 @section Scripts
 {
-    <script type="text/javascript">
-        function handleIncremento(el) {
-            var itemId = $(el).parents('.item-pedido').attr('item-id');
-            var novaQtde = $(el).parents('.item-pedido').find('input').val();
-
-            var data = {
-                Id: itemId,
-                Quantidade: novaQtde
-            };
-
-            $.ajax({
-                type: 'POST',
-                url: '/api/Carrinho',
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify(data)
-            });
-        }
-    </script>
+    <script src="~/js/carrinho.js"></script>
 }

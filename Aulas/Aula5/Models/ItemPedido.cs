@@ -29,5 +29,10 @@ namespace Aula.Models
             this.Quantidade = quantidade;
             this.PrecoUnitario = produto.Preco;
         }
+
+        public void AtualizarQuantidade(int quantidade)
+        {
+            this.Quantidade = quantidade;
+        }
     }
 }

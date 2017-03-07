@@ -8,5 +8,6 @@ namespace Aula
         Contexto InicializaDB();
         List<Produto> GetProdutos();
         List<ItemPedido> GetItensPedido();
+        void UpdateItemPedido(ItemPedido itemPedido);
     }
 }

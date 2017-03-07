@@ -12,11 +12,17 @@ namespace Aula.WebApi
     [Route("api/[controller]")]
     public class CarrinhoController : Controller
     {
+        private readonly IDataService _dataService;
+        public CarrinhoController(IDataService dataService)
+        {
+            this._dataService = dataService;
+        }
+
         [HttpPost]
         [ResponseCache(NoStore = true)]
-        public void Post([FromBody]ItemPedido value)
+        public void Post([FromBody]ItemPedido itemPedido)
         {
-
+            this._dataService.UpdateItemPedido(itemPedido);
         }
     }
 }
