@@ -16,21 +16,11 @@ namespace WebApplication.Controllers
             new Produto(4, "produto 4", 129.90m )
         };
 
-        private readonly List<ItemPedido> itensPedido;
-
         private readonly IDataService _dataService;
 
         public PedidoController(IDataService dataService)
         {
             this._dataService = dataService;
-
-            itensPedido = new List<ItemPedido>()
-            {
-                new ItemPedido(produtos[0], 1),
-                new ItemPedido(produtos[1], 2),
-                new ItemPedido(produtos[2], 3),
-                new ItemPedido(produtos[3], 2)
-            };
         }
 
         public IActionResult Carrossel()
@@ -42,12 +32,14 @@ namespace WebApplication.Controllers
         [ResponseCache(NoStore=true)]
         public IActionResult Carrinho()
         {
+            List<ItemPedido> itensPedido = this._dataService.GetCarrinho();
             return View(new CarrinhoViewModel(itensPedido));
         }
 
         [ResponseCache(NoStore = true)]
         public IActionResult Resumo()
         {
+            List<ItemPedido> itensPedido = this._dataService.GetCarrinho();
             return View(itensPedido);
         }
     }
