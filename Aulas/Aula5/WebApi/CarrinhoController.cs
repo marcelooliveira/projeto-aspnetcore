@@ -22,8 +22,16 @@ namespace Aula.WebApi
         [ResponseCache(NoStore = true)]
         public ItemPedido Post([FromBody]ItemPedido itemPedido)
         {
-            this._dataService.UpdateItemPedido(itemPedido);
-            return this._dataService.GetItemPedido(itemPedido.Id);
+            if (itemPedido.Quantidade > 0)
+            {
+                this._dataService.UpdateItemPedido(itemPedido);
+                return this._dataService.GetItemPedido(itemPedido.Id);
+            }
+            else
+            {
+                this._dataService.DeleteItemPedido(itemPedido.Id);
+                return itemPedido;
+            }
         }
     }
 }

@@ -32,8 +32,13 @@ class Carrinho {
             contentType: 'application/json',
             data: JSON.stringify(data)
         }).done(function (novoItem) {
-            this.setItemPedidoSubtotal(el, novoItem);
-            this.setItemPedidoQuantidade(el, novoItem);
+            if (novoItem.quantidade > 0) {
+                this.setItemPedidoSubtotal(el, novoItem);
+                this.setItemPedidoQuantidade(el, novoItem);
+            }
+            else {
+                this.getItemPedidoEl(el).remove();
+            }
         }.bind(this));
     }
 

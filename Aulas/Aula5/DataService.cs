@@ -39,9 +39,20 @@ namespace Aula
             if (itemParaAtualizar != null)
             {
                 itemParaAtualizar.AtualizarQuantidade(itemPedido.Quantidade);
+                this._contexto.SaveChanges();
             }
+        }
 
-            this._contexto.SaveChanges();
+        public void DeleteItemPedido(int itemPedidoId)
+        {
+            ItemPedido itemParaExcluir = this._contexto.ItensPedido
+                .Where(i => i.Id == itemPedidoId).SingleOrDefault();
+
+            if (itemParaExcluir != null)
+            {
+                this._contexto.Remove(itemParaExcluir);
+                this._contexto.SaveChanges();
+            }
         }
 
         public Contexto InicializaDB()
@@ -78,6 +89,5 @@ namespace Aula
             this._contexto.SaveChanges();
             return this._contexto;
         }
-
     }
 }

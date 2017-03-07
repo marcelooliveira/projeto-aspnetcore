@@ -10,5 +10,6 @@ namespace Aula
         List<ItemPedido> GetItensPedido();
         void UpdateItemPedido(ItemPedido itemPedido);
         ItemPedido GetItemPedido(int itemPedidoId);
+        void DeleteItemPedido(int itemPedidoId);
     }
 }
