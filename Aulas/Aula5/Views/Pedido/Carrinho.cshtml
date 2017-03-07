@@ -18,15 +18,38 @@
             </div>
         </div>
         <div class="panel-body">
+        @{ int numeroItem = 1; }
         @foreach (var item in Model.ItensCarrinho)
         {
-            <div class="row">
+            <div class="row vcenter item-pedido" item-id=@numeroItem>
                 <div class="col-md-3"><img src="~/images/produtos/small_@(item.Produto.Id).jpg" /></div>
                 <div class="col-md-3">@item.Produto.Descricao</div>
                 <div class="col-md-2 text-center">R$ @item.PrecoUnitario</div>
-                <div class="col-md-2 text-center">@item.Quantidade</div>
+                <div class="col-md-2 text-center">
+                
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-number" data-type="minus" 
+                                    data-field="quant[1]">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </span>
+                        <input type="text" name="quant[1]" class="form-control input-number text-center" 
+                               value="@item.Quantidade" min="1" max="10">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-number" data-type="plus" 
+                                    data-field="quant[1]" onclick="handleIncremento(this)">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+
+                </div>
                 <div class="col-md-2 text-right">R$ @(item.Quantidade * item.PrecoUnitario)</div>
             </div>
+            {
+                numeroItem++;
+            }
         }
         </div>
         <div class="panel-footer">
@@ -45,3 +68,12 @@
         </a>
     </div>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function handleIncremento(el) {
+            alert($(el).parents('.item-pedido').attr('item-id'));
+        }
+    </script>
+}
