@@ -17,6 +17,14 @@ namespace Aula.Models
         public int Quantidade { get; private set; }
         [DataMember]
         public decimal PrecoUnitario { get; private set; }
+        [DataMember]
+        public decimal Subtotal
+        {
+            get
+            {
+                return Quantidade * PrecoUnitario;
+            }
+        }
 
         public ItemPedido()
         {

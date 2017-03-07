@@ -20,9 +20,10 @@ namespace Aula.WebApi
 
         [HttpPost]
         [ResponseCache(NoStore = true)]
-        public void Post([FromBody]ItemPedido itemPedido)
+        public ItemPedido Post([FromBody]ItemPedido itemPedido)
         {
             this._dataService.UpdateItemPedido(itemPedido);
+            return this._dataService.GetItemPedido(itemPedido.Id);
         }
     }
 }

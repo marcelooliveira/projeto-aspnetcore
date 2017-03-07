@@ -9,5 +9,6 @@ namespace Aula
         List<Produto> GetProdutos();
         List<ItemPedido> GetItensPedido();
         void UpdateItemPedido(ItemPedido itemPedido);
+        ItemPedido GetItemPedido(int itemPedidoId);
     }
 }

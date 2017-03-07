@@ -25,6 +25,12 @@ namespace Aula
             return this._contexto.ItensPedido.Include("Produto").ToList();
         }
 
+        public ItemPedido GetItemPedido(int itemPedidoId)
+        {
+            return this._contexto.ItensPedido
+                .Where(i => i.Id == itemPedidoId).SingleOrDefault();
+        }
+
         public void UpdateItemPedido(ItemPedido itemPedido)
         {
             ItemPedido itemParaAtualizar = this._contexto.ItensPedido
@@ -72,5 +78,6 @@ namespace Aula
             this._contexto.SaveChanges();
             return this._contexto;
         }
+
     }
 }

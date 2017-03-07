@@ -29,7 +29,7 @@
                     <div class="input-group">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default btn-number" data-type="minus" 
-                                    data-field="quant[1]">
+                                    data-field="quant[1]" onclick="carrinho.handleDecremento(this)">
                                 <span class="glyphicon glyphicon-minus"></span>
                             </button>
                         </span>
@@ -44,7 +44,9 @@
                     </div>
 
                 </div>
-                <div class="col-md-2 text-right">R$ @(item.Quantidade * item.PrecoUnitario)</div>
+                <div class="col-md-2 text-right">R$ 
+                    <span class="subtotal">@item.Subtotal</span>
+                </div>
             </div>
         }
         </div>
