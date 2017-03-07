@@ -25,6 +25,8 @@ class Carrinho {
     }
 
     postCarrinho(el, data) {
+        $('#modal-loading').modal('show');
+
         $.ajax({
             type: 'POST',
             url: '/api/Carrinho',
@@ -70,4 +72,12 @@ class Carrinho {
 var carrinho;
 (function ($) {
     carrinho = new Carrinho();
+
+    $(document).ajaxStart(function () {
+        $("#ajax_loader").show();
+    });
+
+    $(document).ajaxStop(function () {
+        $("#ajax_loader").hide();
+    });
 }(jQuery));
