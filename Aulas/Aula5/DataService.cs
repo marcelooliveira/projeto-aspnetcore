@@ -20,6 +20,11 @@ namespace Aula
             return this._contexto.Produtos.ToList();
         }
 
+        public List<ItemPedido> GetItensPedido()
+        {
+            return this._contexto.ItensPedido.Include("Produto").ToList();
+        }
+
         public Contexto InicializaDB()
         {
             bool bancoNovo = this._contexto.Database.EnsureCreated();
