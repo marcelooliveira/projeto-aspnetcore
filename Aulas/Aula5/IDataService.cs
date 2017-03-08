@@ -10,6 +10,7 @@ namespace Aula
         List<Produto> GetProdutos();
         List<ItemPedido> GetItensPedido();
         void UpdateItemPedido(ItemPedido itemPedido);
+        void AddItemPedido(int produtoId);
         ItemPedido GetItemPedido(int itemPedidoId);
         CarrinhoViewModel GetCarrinho();
         void DeleteItemPedido(int itemPedidoId);

@@ -63,6 +63,23 @@ namespace Aula
             }
         }
 
+        public void AddItemPedido(int produtoId)
+        {
+            if (!this._contexto
+                .ItensPedido.Include("Produto")
+                .Any(i => i.Produto.Id == produtoId))
+            {
+                var produto = 
+                    this._contexto
+                    .Produtos
+                    .Where(p => p.Id == produtoId).Single();
+
+                var novoItem = new ItemPedido(produto, 1);
+                this._contexto.ItensPedido.Add(novoItem);
+                this._contexto.SaveChanges();
+            }
+        }
+
         public Contexto InicializaDB()
         {
             bool bancoNovo = this._contexto.Database.EnsureCreated();
@@ -97,5 +114,6 @@ namespace Aula
             this._contexto.SaveChanges();
             return this._contexto;
         }
+
     }
 }

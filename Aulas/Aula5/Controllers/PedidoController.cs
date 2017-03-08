@@ -35,5 +35,12 @@ namespace WebApplication.Controllers
             List<ItemPedido> itensPedido = this._dataService.GetItensPedido();
             return View(itensPedido);
         }
+
+        [HttpPost]
+        public IActionResult AdicionarAoCarrinho(int id)
+        {
+            this._dataService.AddItemPedido(id);
+            return RedirectToAction("Carrinho", "Pedido");
+        }
     }
 }

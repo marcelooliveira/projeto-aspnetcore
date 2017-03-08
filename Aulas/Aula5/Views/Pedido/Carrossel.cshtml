@@ -19,30 +19,36 @@
             var produtos = Model.Skip(pagina * 4).Take(4);
             <div class="item @(pagina == 0 ? "active" : "")">
                 <div class="row">
-                    @foreach(var produto in produtos)
+                    <form asp-controller="Pedido" asp-action="AdicionarAoCarrinho">
+                    @foreach (var produto in produtos)
                     {
-                        <a asp-action="Carrinho">
-                            <div class="col-md-3">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <img src="~/images/produtos/large_@(produto.Id).jpg" class="img-responsive" />
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img src="~/images/produtos/large_@(produto.Id).jpg" class="img-responsive" />
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-md-8 truncate">
+                                            @(produto.Descricao)
+                                        </div>
                                     </div>
-                                    <div class="panel-footer">
-                                        <div class="row">
-                                            <div class="col-md-8 truncate">
-                                                @(produto.Descricao)
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-4 pull-right">
+                                            <h3>R$ @produto.Preco</h3>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-10 col-md-offset-4 pull-right">
-                                                <h3>R$ @produto.Preco</h3>
-                                            </div>
-                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <button type="submit" class="btn btn-link" name="id" value="@produto.Id">
+                                            <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                            Adicionar
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     }
+                    </form>
                 </div>
             </div>
         }
