@@ -65,11 +65,18 @@
         </div>
     </div>
     <div class="row">
-        <a asp-action="Resumo" 
-           asp-controller="Pedido" 
-           class="btn btn-success pull-right">
-            Finalizar Pedido
-        </a>
+        <span class="pull-right">
+            <a asp-action="Carrossel" 
+               asp-controller="Pedido" 
+               class="btn btn-success">
+                Continuar Comprando
+            </a>
+            <a asp-action="Resumo"
+               asp-controller="Pedido"
+               class="btn btn-success">
+                Finalizar Pedido
+            </a>
+        </span>
     </div>
 </div>
 
