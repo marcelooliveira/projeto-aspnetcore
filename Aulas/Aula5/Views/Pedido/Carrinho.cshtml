@@ -33,8 +33,9 @@
                                 <span class="glyphicon glyphicon-minus"></span>
                             </button>
                         </span>
-                        <input type="text" name="quant[1]" class="form-control input-number text-center" 
-                               value="@item.Quantidade" min="1" max="10">
+                        <input type="number" name="quant[1]" class="form-control input-number text-center" 
+                               value="@item.Quantidade"
+                               onblur="carrinho.handleAlterarQuantidade(this)">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default btn-number" data-type="plus" 
                                     data-field="quant[1]" onclick="carrinho.handleIncremento(this)">
@@ -53,8 +54,15 @@
         <div class="panel-footer">
             <div class="row">
                 <div class="col-md-8"></div>
-                <div class="col-md-2">Total (@Model.ItensCarrinho.Count() itens)</div>
-                <div class="col-md-2 text-right">R$ @Model.Total</div>
+                <div class="col-md-2">Total (
+                    <span class="quantidade-itens-pedido">
+                        @Model.ItensCarrinho.Count() 
+                    </span> itens)</div>
+                <div class="col-md-2 text-right">R$ 
+                    <span class="total-carrinho">
+                        @Model.Total
+                    </span>
+                </div>
             </div>
         </div>
     </div>

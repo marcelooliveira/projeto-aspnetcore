@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aula.Models.PedidoViewModels;
 
 namespace Aula
 {
@@ -29,6 +30,13 @@ namespace Aula
         {
             return this._contexto.ItensPedido
                 .Where(i => i.Id == itemPedidoId).SingleOrDefault();
+        }
+
+        public CarrinhoViewModel GetCarrinho()
+        {
+            var itensPedido = 
+                this._contexto.ItensPedido.Include("Produto").ToList();
+            return new CarrinhoViewModel(itensPedido);
         }
 
         public void UpdateItemPedido(ItemPedido itemPedido)

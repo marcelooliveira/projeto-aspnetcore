@@ -20,18 +20,21 @@ namespace Aula.WebApi
 
         [HttpPost]
         [ResponseCache(NoStore = true)]
-        public ItemPedido Post([FromBody]ItemPedido itemPedido)
+        public PostCarrinhoResponse Post([FromBody]ItemPedido itemPedido)
         {
+            ItemPedido itemAlterado = null;
+
             if (itemPedido.Quantidade > 0)
             {
                 this._dataService.UpdateItemPedido(itemPedido);
-                return this._dataService.GetItemPedido(itemPedido.Id);
+                itemAlterado = this._dataService.GetItemPedido(itemPedido.Id);
             }
             else
             {
                 this._dataService.DeleteItemPedido(itemPedido.Id);
-                return itemPedido;
             }
+            var carrinho = this._dataService.GetCarrinho();
+            return new PostCarrinhoResponse(carrinho, itemAlterado);
         }
     }
 }

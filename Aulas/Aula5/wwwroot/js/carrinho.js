@@ -24,6 +24,14 @@ class Carrinho {
         return this.getItemPedidoEl(el).find('input').val(itemPedido.quantidade);
     }
 
+    setCarrinhoQuantidade(el, carrinho) {
+        $('.quantidade-itens-pedido').html(carrinho.itensCarrinho.length);
+    }
+
+    setCarrinhoTotal(el, carrinho) {
+        $('.total-carrinho').html(carrinho.total.duasCasas());
+    }
+
     postCarrinho(el, data) {
         $('#modal-loading').modal('show');
 
@@ -33,14 +41,17 @@ class Carrinho {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify(data)
-        }).done(function (novoItem) {
-            if (novoItem.quantidade > 0) {
-                this.setItemPedidoSubtotal(el, novoItem);
-                this.setItemPedidoQuantidade(el, novoItem);
+        }).done(function (carrinho) {
+            if (carrinho.itemPedido
+                && carrinho.itemPedido.quantidade > 0) {
+                this.setItemPedidoSubtotal(el, carrinho.itemPedido);
+                this.setItemPedidoQuantidade(el, carrinho.itemPedido);
             }
             else {
                 this.getItemPedidoEl(el).remove();
             }
+            this.setCarrinhoQuantidade(el, carrinho.carrinhoViewModel);
+            this.setCarrinhoTotal(el, carrinho.carrinhoViewModel);
         }.bind(this));
     }
 
@@ -66,6 +77,18 @@ class Carrinho {
         };
 
         this.postCarrinho(botao, data);
+    }
+
+    handleAlterarQuantidade(input) {
+        var itemId = this.getItemPedidoId(input);
+        var novaQtde = $(input).val();
+
+        var data = {
+            Id: itemId,
+            Quantidade: parseInt(novaQtde)
+        };
+
+        this.postCarrinho(input, data);
     }
 }
 
