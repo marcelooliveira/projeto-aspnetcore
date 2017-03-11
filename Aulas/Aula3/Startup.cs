@@ -41,18 +41,15 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-
+            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+            services.AddTransient<IDataService, DataService>();
+            services.AddEntityFramework()
+                .AddDbContext<Contexto>(dbOptions =>
+                {
+                    dbOptions.UseSqlServer(Configuration.GetConnectionString("Default"));
+                });
+            services.AddTransient<IDataService, DataService>();
             services.AddMvc();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,6 +81,9 @@ namespace WebApplication
                     name: "default",
                     template: "{controller=Pedido}/{action=Carrossel}/{id?}");
             });
+
+            var dataService = serviceProvider.GetService<IDataService>();
+            dataService.InicializaDB();
         }
     }
 }
