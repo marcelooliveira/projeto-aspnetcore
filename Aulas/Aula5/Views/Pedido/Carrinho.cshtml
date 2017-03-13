@@ -20,7 +20,7 @@
         <div class="panel-body">
         @foreach (var item in Model.ItensCarrinho)
         {
-            <div class="row item-pedido" item-id=@item.Id>
+            <div class="row vcenter item-pedido" item-id=@item.Id>
                 <div class="col-md-3"><img src="~/images/produtos/small_@(item.Produto.Id).jpg" /></div>
                 <div class="col-md-3">@item.Produto.Descricao</div>
                 <div class="col-md-2 text-center">R$ @item.PrecoUnitario</div>
