@@ -24,11 +24,11 @@ namespace WebApplication
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
+            //    builder.AddUserSecrets();
+            //}
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -41,14 +41,14 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
-            services.AddTransient<IDataService, DataService>();
-            services.AddEntityFramework()
-                .AddDbContext<Contexto>(dbOptions =>
-                {
-                    dbOptions.UseSqlServer(Configuration.GetConnectionString("Default"));
-                });
-            services.AddTransient<IDataService, DataService>();
+            //services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+            //services.AddTransient<IDataService, DataService>();
+            //services.AddEntityFramework()
+            //    .AddDbContext<Contexto>(dbOptions =>
+            //    {
+            //        dbOptions.UseSqlServer(Configuration.GetConnectionString("Default"));
+            //    });
+            //services.AddTransient<IDataService, DataService>();
             services.AddMvc();
         }
 
@@ -71,7 +71,7 @@ namespace WebApplication
 
             app.UseStaticFiles();
 
-            app.UseIdentity();
+            //app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
@@ -82,8 +82,8 @@ namespace WebApplication
                     template: "{controller=Pedido}/{action=Carrossel}/{id?}");
             });
 
-            var dataService = serviceProvider.GetService<IDataService>();
-            dataService.InicializaDB();
+            //var dataService = serviceProvider.GetService<IDataService>();
+            //dataService.InicializaDB();
         }
     }
 }
