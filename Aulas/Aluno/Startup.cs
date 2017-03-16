@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Aluno;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Aula
 {
@@ -29,10 +32,16 @@ namespace Aula
         {
             // Add framework services.
             services.AddMvc();
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=CasaDoCodigo;Trusted_Connection=True;";
+            services.AddDbContext<Contexto>(options => options.UseSqlServer(connection));
+            services.AddTransient<IDataService, DataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory,
+            IServiceProvider serviceProvider)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -55,6 +64,9 @@ namespace Aula
                     name: "default",
                     template: "{controller=Pedido}/{action=Carrossel}/{id?}");
             });
+
+            var dataService = serviceProvider.GetService<IDataService>();
+            dataService.InicializaDB();
         }
     }
 }

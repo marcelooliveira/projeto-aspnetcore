@@ -16,12 +16,16 @@ namespace Aluno.Models
 
         }
 
-        public ItemPedido(int id, Produto produto, int quantidade, decimal precoUnitario)
+        public ItemPedido(int id, Produto produto, int quantidade) : this(produto, quantidade)
         {
             this.Id = id;
+            this.PrecoUnitario = produto.Preco;
+        }
+
+        public ItemPedido(Produto produto, int quantidade)
+        {
             this.Produto = produto;
             this.Quantidade = quantidade;
-            this.PrecoUnitario = precoUnitario;
         }
     }
 }

@@ -22,9 +22,9 @@ namespace Aluno.Controllers
         {
             return new CarrinhoViewModel(new List<ItemPedido>
             {
-                new ItemPedido(1, produtos[0], 1, produtos[0].Preco),
-                new ItemPedido(2, produtos[1], 2, produtos[1].Preco),
-                new ItemPedido(3, produtos[2], 3, produtos[2].Preco)
+                new ItemPedido(1, produtos[0], 1),
+                new ItemPedido(2, produtos[1], 2),
+                new ItemPedido(3, produtos[2], 3)
             });
         }
 
