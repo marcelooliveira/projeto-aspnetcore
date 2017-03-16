@@ -6,7 +6,7 @@
             <div class="row">
                 @for (int coluna = 0; coluna < 4; coluna++)
                 {
-                    <a href=@Url.Action("Carrinho", "Pedido")>
+                    <a asp-controller="pedido" asp-action="carrinho">
                         <div class="col-md-3">
                             <div class="panel panel-default">
                                 <div class="panel-body">
