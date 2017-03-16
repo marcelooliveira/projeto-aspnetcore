@@ -51,3 +51,8 @@ textarea {
     background-color: #F8965D;
     border-color: #FFF;
 }
+
+.row-center {
+    display: flex;
+    align-items: center;
+}

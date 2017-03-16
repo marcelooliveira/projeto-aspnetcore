@@ -1,4 +1,5 @@
-﻿<h3>Meu Carrinho</h3>
+﻿@model CarrinhoViewModel
+<h3>Meu Carrinho</h3>
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="row">
@@ -9,32 +10,21 @@
         </div>
     </div>
     <div class="panel-body">
-        <div class="row">
-            <div class="col-md-3"><img src="~/images/produtos/small_1.jpg" /></div>
-            <div class="col-md-3">produto 1</div>
-            <div class="col-md-2 text-center">R$ 10,00</div>
-            <div class="col-md-2 text-center">1</div>
-            <div class="col-md-2 text-right">R$ 10,00</div>
+        @foreach (var item in Model.ItensCarrinho)
+        {
+        <div class="row row-center">
+            <div class="col-md-3"><img src="~/images/produtos/small_@(item.Produto.Id).jpg" /></div>
+            <div class="col-md-3">@item.Produto.Descricao</div>
+            <div class="col-md-2 text-center">R$ @item.PrecoUnitario</div>
+            <div class="col-md-2 text-center">@item.Quantidade</div>
+            <div class="col-md-2 text-right">R$ @(item.PrecoUnitario * item.Quantidade)</div>
         </div>
-        <div class="row">
-            <div class="col-md-3"><img src="~/images/produtos/small_2.jpg" /></div>
-            <div class="col-md-3">produto 2</div>
-            <div class="col-md-2 text-center">R$ 15,00</div>
-            <div class="col-md-2 text-center">2</div>
-            <div class="col-md-2 text-right">R$ 30,00</div>
-        </div>
-        <div class="row">
-            <div class="col-md-3"><img src="~/images/produtos/small_3.jpg" /></div>
-            <div class="col-md-3">produto 3</div>
-            <div class="col-md-2 text-center">R$ 30,00</div>
-            <div class="col-md-2 text-center">3</div>
-            <div class="col-md-2 text-right">R$ 90,00</div>
-        </div>
+        }
     </div>
     <div class="panel-footer">
         <div class="row">
-            <div class="col-md-2 text-center col-md-offset-8">Total (3 itens)</div>
-            <div class="col-md-2 text-right">R$ 130,00</div>
+            <div class="col-md-2 text-center col-md-offset-8">Total (@(Model.ItensCarrinho.Count()) itens)</div>
+            <div class="col-md-2 text-right">R$ @Model.Total</div>
         </div>
     </div>
 </div>
