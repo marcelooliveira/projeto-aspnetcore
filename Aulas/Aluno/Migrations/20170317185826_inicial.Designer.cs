@@ -8,8 +8,8 @@ using Aluno;
 namespace Aluno.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20170316213553_Initial")]
-    partial class Initial
+    [Migration("20170317185826_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -48,10 +48,8 @@ namespace Aluno.Controllers
 
         public IActionResult Resumo()
         {
-            var produtos = GetProdutosDeTeste();
-            CarrinhoViewModel modelo = GetItensDeTeste(produtos);
-
-            return View(modelo);
+            List<ItemPedido> itensPedido = this._dataService.GetCarrinho();
+            return View(new CarrinhoViewModel(itensPedido));
         }
     }
 }
