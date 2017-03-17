@@ -8,5 +8,6 @@ namespace Aluno
         void InicializaDB();
         List<Produto> GetProdutos();
         List<ItemPedido> GetCarrinho();
+        void UpdateItemPedido(ItemPedido itemPedido);
     }
 }

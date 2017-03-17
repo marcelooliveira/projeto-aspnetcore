@@ -57,5 +57,18 @@ namespace Aluno
             }
 
         }
+
+        public void UpdateItemPedido(ItemPedido itemPedido)
+        {
+            ItemPedido itemParaAtualizar = this._contexto.ItensPedido
+                .Where(i => i.Id == itemPedido.Id).SingleOrDefault();
+
+            if (itemParaAtualizar != null)
+            {
+                itemParaAtualizar.AtualizarQuantidade(itemPedido.Quantidade);
+            }
+
+            this._contexto.SaveChanges();
+        }
     }
 }
