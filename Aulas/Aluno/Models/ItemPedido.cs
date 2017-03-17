@@ -26,6 +26,7 @@ namespace Aluno.Models
         {
             this.Produto = produto;
             this.Quantidade = quantidade;
+            this.PrecoUnitario = produto.Preco;
         }
     }
 }

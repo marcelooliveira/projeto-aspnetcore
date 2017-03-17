@@ -7,5 +7,6 @@ namespace Aluno
     {
         void InicializaDB();
         List<Produto> GetProdutos();
+        List<ItemPedido> GetCarrinho();
     }
 }

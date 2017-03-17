@@ -16,6 +16,11 @@ namespace Aluno
             this._contexto = contexto;
         }
 
+        public List<ItemPedido> GetCarrinho()
+        {
+            return this._contexto.ItensPedido.Include("Produto").ToList();
+        }
+
         public List<Produto> GetProdutos()
         {
             return this._contexto.Produtos.ToList();
@@ -45,6 +50,7 @@ namespace Aluno
                     var descricao = p.Split('|')[0];
                     var preco = decimal.Parse(p.Split('|')[1]) / 100M;
                     var produto = this._contexto.Produtos.Add(new Produto(descricao, preco)).Entity;
+                    this._contexto.ItensPedido.Add(new ItemPedido(produto, 1));
                     index++;
                 }
                 this._contexto.SaveChanges();
