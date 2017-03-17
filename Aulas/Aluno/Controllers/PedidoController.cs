@@ -42,13 +42,13 @@ namespace Aluno.Controllers
 
         public IActionResult Carrinho()
         {
-            List<ItemPedido> itensPedido = this._dataService.GetCarrinho();
+            List<ItemPedido> itensPedido = this._dataService.GetCarrinho().ItensCarrinho;
             return View(new CarrinhoViewModel(itensPedido));
         }
 
         public IActionResult Resumo()
         {
-            List<ItemPedido> itensPedido = this._dataService.GetCarrinho();
+            List<ItemPedido> itensPedido = this._dataService.GetCarrinho().ItensCarrinho;
             return View(new CarrinhoViewModel(itensPedido));
         }
     }

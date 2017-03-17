@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aluno.Models.ViewModels;
 
 namespace Aluno
 {
@@ -16,9 +17,22 @@ namespace Aluno
             this._contexto = contexto;
         }
 
-        public List<ItemPedido> GetCarrinho()
+        public void DeleteItemPedido(int itemPedidoId)
         {
-            return this._contexto.ItensPedido.Include("Produto").ToList();
+            ItemPedido itemParaExcluir = this._contexto.ItensPedido
+                .Where(i => i.Id == itemPedidoId).SingleOrDefault();
+
+            if (itemParaExcluir != null)
+            {
+                this._contexto.Remove(itemParaExcluir);
+                this._contexto.SaveChanges();
+            }
+        }
+
+        public ItemPedido GetItemPedido(int itemPedidoId)
+        {
+            return this._contexto.ItensPedido
+                .Where(i => i.Id == itemPedidoId).SingleOrDefault();
         }
 
         public List<Produto> GetProdutos()
@@ -69,6 +83,13 @@ namespace Aluno
             }
 
             this._contexto.SaveChanges();
+        }
+
+        CarrinhoViewModel IDataService.GetCarrinho()
+        {
+            var itensPedido =
+                this._contexto.ItensPedido.Include("Produto").ToList();
+            return new CarrinhoViewModel(itensPedido);
         }
     }
 }

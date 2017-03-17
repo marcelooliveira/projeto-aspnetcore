@@ -1,4 +1,5 @@
 ﻿using Aluno.Models;
+using Aluno.Models.ViewModels;
 using System.Collections.Generic;
 
 namespace Aluno
@@ -7,7 +8,9 @@ namespace Aluno
     {
         void InicializaDB();
         List<Produto> GetProdutos();
-        List<ItemPedido> GetCarrinho();
         void UpdateItemPedido(ItemPedido itemPedido);
+        ItemPedido GetItemPedido(int itemPedido);
+        CarrinhoViewModel GetCarrinho();
+        void DeleteItemPedido(int itemPedidoId);
     }
 }

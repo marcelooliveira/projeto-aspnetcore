@@ -19,12 +19,14 @@
             <div class="col-md-2 text-center">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-default">
+                        <button class="btn btn-default"
+                           onclick="carrinho.handleDecremento(this)">
                             <span class="glyphicon glyphicon-minus"></span>
                         </button>
                     </span>
-                    <input type="text" class="form-control input-number text-center"
-                           value="@item.Quantidade"/>
+                    <input type="number" class="form-control input-number text-center"
+                           value="@item.Quantidade"
+                           onblur="carrinho.handleAlterarQuantidade(this)"/>
                     <span class="input-group-btn">
                         <button class="btn btn-default"
                            onclick="carrinho.handleIncremento(this)">
@@ -33,23 +35,41 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-2 text-right">R$ @(item.PrecoUnitario * item.Quantidade)</div>
+            <div class="col-md-2 text-right">R$ 
+                <span class="subtotal">
+                    @item.Subtotal
+                </span>
+            </div>
         </div>
         }
     </div>
     <div class="panel-footer">
         <div class="row">
-            <div class="col-md-2 text-center col-md-offset-8">Total (@(Model.ItensCarrinho.Count()) itens)</div>
-            <div class="col-md-2 text-right">R$ @Model.Total</div>
+            <div class="col-md-2 text-center col-md-offset-8">Total 
+            <span class="quantidade-itens-pedido">
+                (@(Model.ItensCarrinho.Count()))
+            </span> itens</div>
+            <div class="col-md-2 text-right">R$ 
+                <span class="total-carrinho">
+                    @Model.Total
+                </span>
+            </div>
         </div>
     </div>
 </div>
 <div class="row">
-    <a asp-controller="pedido"
-       asp-action="resumo" type="button" 
-       class="btn btn-success pull-right">
-        Finalizar Pedido
-    </a>
+    <span class="pull-right">
+        <a asp-controller="pedido"
+           asp-action="resumo" type="button" 
+           class="btn btn-success pull-right">
+            Finalizar Pedido
+        </a>&nbsp;
+        <a asp-controller="pedido"
+           asp-action="carrossel" type="button"
+           class="btn btn-success pull-right">
+            Continuar Comprando
+        </a>
+    </span>
 </div>
 
 @section Scripts

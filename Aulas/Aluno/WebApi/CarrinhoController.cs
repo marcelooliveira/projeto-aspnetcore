@@ -16,9 +16,20 @@ namespace Aluno.WebApi
             this._dataService = dataService;
         }
 
-        public void Post([FromBody]ItemPedido itemPedido)
+        public PostCarrinhoResponse Post([FromBody]ItemPedido itemPedido)
         {
-            this._dataService.UpdateItemPedido(itemPedido);
+            ItemPedido itemAlterado = null;
+            if (itemPedido.Quantidade > 0)
+            {
+                this._dataService.UpdateItemPedido(itemPedido);
+                itemAlterado = this._dataService.GetItemPedido(itemPedido.Id);
+            }
+            else
+            {
+                this._dataService.DeleteItemPedido(itemPedido.Id);
+            }
+            var carrinho = this._dataService.GetCarrinho();
+            return new PostCarrinhoResponse(carrinho, itemAlterado);
         }
     }
 }
