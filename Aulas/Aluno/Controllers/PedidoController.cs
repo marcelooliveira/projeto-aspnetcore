@@ -7,6 +7,12 @@ namespace Aluno.Controllers
 {
     public class PedidoController : Controller
     {
+        IDataService _dataService;
+        public PedidoController(IDataService dataService)
+        {
+            this._dataService = dataService;
+        }
+
         private static List<Produto> GetProdutosDeTeste()
         {
             return new List<Produto>()
@@ -30,10 +36,9 @@ namespace Aluno.Controllers
 
         public IActionResult Carrossel()
         {
-            List<Produto> modelo = GetProdutosDeTeste();
+            List<Produto> modelo = this._dataService.GetProdutos();
             return View(modelo);
         }
-
 
         public IActionResult Carrinho()
         {
@@ -42,7 +47,6 @@ namespace Aluno.Controllers
 
             return View(modelo);
         }
-
 
         public IActionResult Resumo()
         {

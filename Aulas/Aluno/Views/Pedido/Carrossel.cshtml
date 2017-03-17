@@ -3,25 +3,32 @@
     <h3>Catálogo</h3>
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
+        @{ 
+            int numPaginas = (int)Math.Ceiling(Model.Count() / 4.0);
+            const int TAMANHO_PAGINA = 4;
+        }
+        @for (int pagina = 0; pagina < numPaginas; pagina++)
+        {
+            var produtos = Model.Skip(pagina * TAMANHO_PAGINA).Take(TAMANHO_PAGINA);
+            <div class="item @(pagina == 0 ? "active" : "")">
             <div class="row">
-                @foreach (var item in Model)
+                @foreach (var produto in produtos)
                 {
                     <a asp-controller="pedido" asp-action="carrinho">
                         <div class="col-md-3">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <img src="~/images/produtos/large_@(item.Id).jpg" class="img-responsive" />
+                                    <img src="~/images/produtos/large_@(produto.Id).jpg" class="img-responsive" />
                                 </div>
                                 <div class="panel-footer">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            @item.Descricao
+                                            @produto.Descricao
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-10 col-md-offset-4 pull-right">
-                                            <h3>R$ @item.Preco</h3>
+                                            <h3>R$ @produto.Preco</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -31,6 +38,7 @@
                 }
             </div>
         </div>
+        }
     </div>
 
     <!-- Controls -->

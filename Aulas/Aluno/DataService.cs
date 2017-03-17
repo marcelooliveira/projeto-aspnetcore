@@ -16,6 +16,11 @@ namespace Aluno
             this._contexto = contexto;
         }
 
+        public List<Produto> GetProdutos()
+        {
+            return this._contexto.Produtos.ToList();
+        }
+
         public void InicializaDB()
         {
             this._contexto.Database.EnsureCreated();
