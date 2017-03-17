@@ -12,11 +12,27 @@
     <div class="panel-body">
         @foreach (var item in Model.ItensCarrinho)
         {
-        <div class="row row-center">
+        <div class="row row-center item-pedido" item-id="@item.Id">
             <div class="col-md-3"><img src="~/images/produtos/small_@(item.Produto.Id).jpg" /></div>
             <div class="col-md-3">@item.Produto.Descricao</div>
             <div class="col-md-2 text-center">R$ @item.PrecoUnitario</div>
-            <div class="col-md-2 text-center">@item.Quantidade</div>
+            <div class="col-md-2 text-center">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" class="form-control input-number text-center"
+                           value="@item.Quantidade"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"
+                           onclick="handleIncremento(this)">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
             <div class="col-md-2 text-right">R$ @(item.PrecoUnitario * item.Quantidade)</div>
         </div>
         }
@@ -35,3 +51,28 @@
         Finalizar Pedido
     </a>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function handleIncremento(el) {
+            var itemId = $(el).parents('.item-pedido')
+                .attr('item-id');
+            var novaQtde = $(el).parents('.item-pedido')
+                .find('input').val();
+
+            var data = {
+                Id: itemId,
+                Quantidade: novaQtde
+            }
+
+            $.ajax({
+                dataType: 'json',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                type: 'POST',
+                url: '/api/Carrinho'
+            });
+        }
+    </script>    
+}
