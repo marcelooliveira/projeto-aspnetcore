@@ -51,5 +51,11 @@ namespace Aluno.Controllers
             List<ItemPedido> itensPedido = this._dataService.GetCarrinho().ItensCarrinho;
             return View(new CarrinhoViewModel(itensPedido));
         }
+
+        public IActionResult AdicionarAoCarrinho(int produtoId)
+        {
+            this._dataService.AddItemPedido(produtoId);
+            return RedirectToAction("Carrinho", "Pedido");
+        }
     }
 }
