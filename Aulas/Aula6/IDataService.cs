@@ -13,5 +13,7 @@ namespace Aula
         ItemPedido GetItemPedido(int itemPedido);
         CarrinhoViewModel GetCarrinho();
         void DeleteItemPedido(int itemPedidoId);
+
+        Pedido AddPedido();
     }
 }

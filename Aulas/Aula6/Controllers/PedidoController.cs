@@ -36,6 +36,7 @@ namespace Aula.Controllers
 
         public IActionResult Carrossel()
         {
+            Pedido pedido = this._dataService.AddPedido();
             List<Produto> modelo = this._dataService.GetProdutos();
             return View(modelo);
         }

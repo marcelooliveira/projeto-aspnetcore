@@ -36,6 +36,13 @@ namespace Aula
             }
         }
 
+        public Pedido AddPedido()
+        {
+            Pedido pedido = this._contexto.Pedidos.Add(new Pedido()).Entity;
+            this._contexto.SaveChanges();
+            return pedido;
+        }
+
         public void DeleteItemPedido(int itemPedidoId)
         {
             ItemPedido itemParaExcluir = this._contexto.ItensPedido
