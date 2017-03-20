@@ -1,0 +1,78 @@
+﻿@model CarrinhoViewModel
+<h3>Meu Carrinho</h3>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-6">item</div>
+            <div class="col-md-2 text-center">preço unitário</div>
+            <div class="col-md-2 text-center">quantidade</div>
+            <div class="col-md-2 text-right">subtotal</div>
+        </div>
+    </div>
+    <div class="panel-body">
+        @foreach (var item in Model.ItensCarrinho)
+        {
+        <div class="row row-center item-pedido" item-id="@item.Id">
+            <div class="col-md-3"><img src="~/images/produtos/small_@(item.Produto.Id).jpg" /></div>
+            <div class="col-md-3">@item.Produto.Descricao</div>
+            <div class="col-md-2 text-center">R$ @item.PrecoUnitario</div>
+            <div class="col-md-2 text-center">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"
+                           onclick="carrinho.handleDecremento(this)">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                    </span>
+                    <input type="number" class="form-control input-number text-center"
+                           value="@item.Quantidade"
+                           onblur="carrinho.handleAlterarQuantidade(this)"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"
+                           onclick="carrinho.handleIncremento(this)">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 text-right">R$ 
+                <span class="subtotal">
+                    @item.Subtotal
+                </span>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-2 text-center col-md-offset-8">Total 
+            <span class="quantidade-itens-pedido">
+                (@(Model.ItensCarrinho.Count()))
+            </span> itens</div>
+            <div class="col-md-2 text-right">R$ 
+                <span class="total-carrinho">
+                    @Model.Total
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <span class="pull-right">
+        <a asp-controller="pedido"
+           asp-action="carrossel"
+           class="btn btn-success">
+            Continuar Comprando
+        </a>
+        <a asp-controller="pedido"
+           asp-action="resumo" 
+           class="btn btn-success">
+            Finalizar Pedido
+        </a>
+    </span>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/carrinho.js"></script>
+}

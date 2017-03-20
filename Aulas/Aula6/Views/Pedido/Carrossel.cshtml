@@ -1,0 +1,59 @@
+﻿@model List<Produto>
+<div id="my-carousel" class="carousel slide" data-ride="carousel">
+    <h3>Catálogo</h3>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        @{ 
+            int numPaginas = (int)Math.Ceiling(Model.Count() / 4.0);
+            const int TAMANHO_PAGINA = 4;
+        }
+        @for (int pagina = 0; pagina < numPaginas; pagina++)
+        {
+            var produtos = Model.Skip(pagina * TAMANHO_PAGINA).Take(TAMANHO_PAGINA);
+            <div class="item @(pagina == 0 ? "active" : "")">
+            <div class="row">
+                @foreach (var produto in produtos)
+                {
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <img src="~/images/produtos/large_@(produto.Id).jpg" class="img-responsive" />
+                            </div>
+                            <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        @produto.Descricao
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-4 pull-right">
+                                        <h3>R$ @produto.Preco</h3>
+                                    </div>
+                                </div>
+                                <div class="row text-center">
+                                    <a asp-controller="Pedido" asp-action="AdicionarAoCarrinho"
+                                       asp-route-produtoId="@produto.Id"
+                                       class="btn btn-link">
+                                        <span class="fa fa-shopping-cart"></span>
+                                        Adicionar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#my-carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#my-carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
