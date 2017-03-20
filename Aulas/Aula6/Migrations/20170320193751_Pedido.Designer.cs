@@ -8,9 +8,10 @@ using Aula;
 namespace Aula.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20170320193751_Pedido")]
+    partial class Pedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -21,11 +22,11 @@ namespace Aula.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("PedidoId");
+                    b.Property<int?>("PedidoId");
 
                     b.Property<decimal>("PrecoUnitario");
 
-                    b.Property<int>("ProdutoId");
+                    b.Property<int?>("ProdutoId");
 
                     b.Property<int>("Quantidade");
 
@@ -68,13 +69,11 @@ namespace Aula.Migrations
                 {
                     b.HasOne("Aula.Models.Pedido", "Pedido")
                         .WithMany("Itens")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PedidoId");
 
                     b.HasOne("Aula.Models.Produto", "Produto")
                         .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProdutoId");
                 });
         }
     }

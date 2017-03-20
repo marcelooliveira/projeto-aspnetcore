@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -10,6 +11,10 @@ namespace Aula.Models
     public class ItemPedido : BaseModel
     {
         [IgnoreDataMember]
+        [Required]
+        public Pedido Pedido { get; private set; }
+        [IgnoreDataMember]
+        [Required]
         public Produto Produto { get; private set; }
         [DataMember]
         public int Quantidade { get; private set; }

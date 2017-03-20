@@ -7,6 +7,7 @@ namespace Aula.Models
 {
     public class Pedido : BaseModel
     {
-
+        public List<ItemPedido> Itens { get; private set; }
+        public decimal Total { get; private set; }
     }
 }
