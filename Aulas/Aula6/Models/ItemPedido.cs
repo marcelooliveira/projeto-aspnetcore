@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace Aluno.Models
+namespace Aula.Models
 {
     [DataContract]
     public class ItemPedido : BaseModel

@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Aluno;
+using Aula;
 
-namespace Aluno.Migrations
+namespace Aula.Migrations
 {
     [DbContext(typeof(Contexto))]
     [Migration("20170317185826_inicial")]

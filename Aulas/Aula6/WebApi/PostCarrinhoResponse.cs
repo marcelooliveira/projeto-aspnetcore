@@ -1,11 +1,11 @@
-﻿using Aluno.Models;
-using Aluno.Models.ViewModels;
+﻿using Aula.Models;
+using Aula.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aluno.WebApi
+namespace Aula.WebApi
 {
     public class PostCarrinhoResponse
     {

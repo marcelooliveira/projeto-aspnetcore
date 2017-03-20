@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Aluno.Migrations
+namespace Aula.Migrations
 {
     public partial class inicial : Migration
     {

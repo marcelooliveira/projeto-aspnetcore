@@ -1,8 +1,8 @@
-﻿using Aluno.Models;
-using Aluno.Models.ViewModels;
+﻿using Aula.Models;
+using Aula.Models.ViewModels;
 using System.Collections.Generic;
 
-namespace Aluno
+namespace Aula
 {
     public interface IDataService
     {

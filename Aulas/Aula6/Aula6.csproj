@@ -6,6 +6,8 @@
 
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <RootNamespace>Aula</RootNamespace>
+    <AssemblyName>Aula</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

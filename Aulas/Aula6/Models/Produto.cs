@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aluno.Models
+namespace Aula.Models
 {
     public class Produto : BaseModel
     {

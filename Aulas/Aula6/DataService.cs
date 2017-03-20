@@ -1,12 +1,12 @@
-﻿using Aluno.Models;
+﻿using Aula.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aluno.Models.ViewModels;
+using Aula.Models.ViewModels;
 
-namespace Aluno
+namespace Aula
 {
     public class DataService : IDataService
     {

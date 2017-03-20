@@ -1,9 +1,9 @@
-﻿using Aluno.Models;
-using Aluno.Models.ViewModels;
+﻿using Aula.Models;
+using Aula.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace Aluno.Controllers
+namespace Aula.Controllers
 {
     public class PedidoController : Controller
     {

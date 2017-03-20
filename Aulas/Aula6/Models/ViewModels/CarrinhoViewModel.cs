@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aluno.Models.ViewModels
+namespace Aula.Models.ViewModels
 {
     public class CarrinhoViewModel
     {

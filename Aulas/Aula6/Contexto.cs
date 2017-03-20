@@ -1,8 +1,8 @@
-﻿using Aluno.Models;
+﻿using Aula.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace Aluno
+namespace Aula
 {
     public class Contexto : DbContext
     {

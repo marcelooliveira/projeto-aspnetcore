@@ -1,11 +1,11 @@
-﻿using Aluno.Models;
+﻿using Aula.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Aluno.WebApi
+namespace Aula.WebApi
 {
     [Route("api/[controller]")]
     public class CarrinhoController : Controller
