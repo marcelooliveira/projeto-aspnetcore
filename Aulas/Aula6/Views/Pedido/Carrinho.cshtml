@@ -64,11 +64,15 @@
            class="btn btn-success">
             Continuar Comprando
         </a>
+        @if (Model.ItensCarrinho.Count() > 0)
+        {
         <a asp-controller="pedido"
            asp-action="resumo" 
+           id="btnFinalizar"
            class="btn btn-success">
             Finalizar Pedido
         </a>
+        }
     </span>
 </div>
 

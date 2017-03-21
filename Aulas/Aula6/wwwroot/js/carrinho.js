@@ -75,14 +75,17 @@
         }).done(function (carrinho) {
                 if (carrinho.itemPedido
                 && carrinho.itemPedido.quantidade > 0) {
-                this.setItemPedidoSubtotal(el, carrinho.itemPedido);
-                this.setItemPedidoQuantidade(el, carrinho.itemPedido);
-            }
-            else {
-                this.getItemPedidoEl(el).remove();
-            }
-            this.setCarrinhoQuantidade(el, carrinho.carrinhoViewModel);
-            this.setCarrinhoTotal(el, carrinho.carrinhoViewModel);
+                    this.setItemPedidoSubtotal(el, carrinho.itemPedido);
+                    this.setItemPedidoQuantidade(el, carrinho.itemPedido);
+                }
+                else {
+                    this.getItemPedidoEl(el).remove();
+                    if (carrinho.carrinhoViewModel.itensCarrinho.length == 0) {
+                        $('#btnFinalizar').remove();
+                    }
+                }
+                this.setCarrinhoQuantidade(el, carrinho.carrinhoViewModel);
+                this.setCarrinhoTotal(el, carrinho.carrinhoViewModel);
         }.bind(this));
     }
 }
