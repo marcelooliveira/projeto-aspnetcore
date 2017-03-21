@@ -72,7 +72,7 @@ namespace Aula.Controllers
             }
             else
             {
-                return View("Carrossel");
+                return RedirectToAction("Carrossel");
             }
         }
 
@@ -87,7 +87,7 @@ namespace Aula.Controllers
             }
             else
             {
-                return View("Carrossel");
+                return RedirectToAction("Carrossel");
             }
         }
 
