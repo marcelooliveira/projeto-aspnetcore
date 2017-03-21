@@ -17,18 +17,25 @@ namespace Aula
             this._contexto = contexto;
         }
 
-        public void AddItemPedido(int produtoId)
+        public void AddItemPedido(int pedidoId, int produtoId)
         {
             if (!this._contexto
                 .ItensPedido.Include("Produto")
-                .Any(i => i.Produto.Id == produtoId))
+                .Any(i => 
+                i.Pedido.Id == pedidoId
+                && i.Produto.Id == produtoId))
             {
                 var produto =
                     this._contexto
                     .Produtos
                     .Where(p => p.Id == produtoId).Single();
 
-                var novoItem = new ItemPedido(produto, 1);
+                var pedido =
+                    this._contexto
+                    .Pedidos
+                    .Where(p => p.Id == pedidoId).Single();
+
+                var novoItem = new ItemPedido(pedido, produto, 1);
                 this._contexto
                 .ItensPedido
                 .Add(novoItem);
@@ -90,7 +97,6 @@ namespace Aula
                     var descricao = p.Split('|')[0];
                     var preco = decimal.Parse(p.Split('|')[1]) / 100M;
                     var produto = this._contexto.Produtos.Add(new Produto(descricao, preco)).Entity;
-                    this._contexto.ItensPedido.Add(new ItemPedido(produto, 1));
                     index++;
                 }
                 this._contexto.SaveChanges();

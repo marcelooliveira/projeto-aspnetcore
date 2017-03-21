@@ -1,5 +1,6 @@
 ﻿using Aula.Models;
 using Aula.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -24,26 +25,46 @@ namespace Aula.Controllers
             };
         }
 
-        private static CarrinhoViewModel GetItensDeTeste(List<Produto> produtos)
-        {
-            return new CarrinhoViewModel(new List<ItemPedido>
-            {
-                new ItemPedido(1, produtos[0], 1),
-                new ItemPedido(2, produtos[1], 2),
-                new ItemPedido(3, produtos[2], 3)
-            });
-        }
-
         public IActionResult Carrossel()
         {
-            Pedido pedido = this._dataService.AddPedido();
+            GeraCookie();
             List<Produto> modelo = this._dataService.GetProdutos();
             return View(modelo);
         }
 
+        private void GeraCookie()
+        {
+            int? pedidoId = GetCookiePedidoId();
+            if (!pedidoId.HasValue)
+            {
+                Pedido pedido = this._dataService.AddPedido();
+                pedidoId = pedido.Id;
+            }
+            AddCookiePedidoId(pedidoId);
+        }
+
+        private void AddCookiePedidoId(int? pedidoId)
+        {
+            Response.Cookies.Append("pedidoId", pedidoId.ToString());
+        }
+
+        private int? GetCookiePedidoId()
+        {
+            int? pedidoId = null;
+            if (Request.Cookies.ContainsKey("pedidoId"))
+            {
+                pedidoId = int.Parse(Request.Cookies["pedidoId"]);
+            }
+
+            return pedidoId;
+        }
+
         public IActionResult Carrinho()
         {
-            List<ItemPedido> itensPedido = this._dataService.GetCarrinho().ItensCarrinho;
+            int? pedidoId = GetCookiePedidoId();
+
+            List<ItemPedido> itensPedido = 
+                this._dataService.GetCarrinho().ItensCarrinho;
             return View(new CarrinhoViewModel(itensPedido));
         }
 
@@ -55,8 +76,16 @@ namespace Aula.Controllers
 
         public IActionResult AdicionarAoCarrinho(int produtoId)
         {
-            this._dataService.AddItemPedido(produtoId);
-            return RedirectToAction("Carrinho", "Pedido");
+            int? pedidoId = GetCookiePedidoId();
+            if (pedidoId.HasValue)
+            {
+                this._dataService.AddItemPedido(pedidoId.Value, produtoId);
+                return RedirectToAction("Carrinho", "Pedido");
+            }
+            else
+            {
+                return View("Carrossel");
+            }
         }
     }
 }

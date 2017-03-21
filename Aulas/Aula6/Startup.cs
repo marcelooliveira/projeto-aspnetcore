@@ -36,16 +36,6 @@ namespace Aula
             var connection = @"Server=(localdb)\mssqllocaldb;Database=CasaDoCodigo;Trusted_Connection=True;";
             services.AddDbContext<Contexto>(options => options.UseSqlServer(connection));
             services.AddTransient<IDataService, DataService>();
-
-            // Adds a default in-memory implementation of IDistributedCache.
-            services.AddDistributedMemoryCache();
-
-            services.AddSession(options =>
-            {
-                // Set a short timeout for easy testing.
-                options.CookieName = ".CasaDoCodigo.Session";
-                options.CookieHttpOnly = true;
-            });
         }
     
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,8 +44,6 @@ namespace Aula
             ILoggerFactory loggerFactory,
             IServiceProvider serviceProvider)
         {
-            app.UseSession();
-
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
