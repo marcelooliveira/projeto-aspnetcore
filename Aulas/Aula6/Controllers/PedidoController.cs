@@ -82,7 +82,11 @@ namespace Aula.Controllers
             if (pedidoId.HasValue)
             {
                 List<ItemPedido> itensPedido = 
-                this._dataService.GetCarrinho(pedidoId.Value).ItensCarrinho;
+                    this._dataService.GetCarrinho(pedidoId.Value).ItensCarrinho;
+                if (itensPedido.Count == 0)
+                {
+                    return RedirectToAction("Carrossel");
+                }
                 return View(new CarrinhoViewModel(itensPedido));
             }
             else
