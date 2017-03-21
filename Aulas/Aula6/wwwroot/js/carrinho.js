@@ -45,6 +45,7 @@
 
         var data = {
             Id: itemId,
+            PedidoId: parseInt(Cookies.get("pedidoId")),
             Quantidade: parseInt(novaQtde) - 1
         }
 
@@ -57,6 +58,7 @@
 
         var data = {
             Id: itemId,
+            PedidoId: parseInt(Cookies.get("pedidoId")),
             Quantidade: parseInt(novaQtde)
         }
 

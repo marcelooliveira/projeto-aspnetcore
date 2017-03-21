@@ -65,6 +65,7 @@ namespace Aula
         public ItemPedido GetItemPedido(int itemPedidoId)
         {
             return this._contexto.ItensPedido
+                .Include("Pedido")
                 .Where(i => i.Id == itemPedidoId).SingleOrDefault();
         }
 

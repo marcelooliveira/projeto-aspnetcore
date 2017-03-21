@@ -13,6 +13,8 @@ namespace Aula.Models
         [IgnoreDataMember]
         [Required]
         public Pedido Pedido { get; private set; }
+        [DataMember]
+        public int PedidoId { get; private set; }
         [IgnoreDataMember]
         [Required]
         public Produto Produto { get; private set; }
