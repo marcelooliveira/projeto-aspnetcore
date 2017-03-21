@@ -28,7 +28,7 @@ namespace Aula.WebApi
             {
                 this._dataService.DeleteItemPedido(itemPedido.Id);
             }
-            var carrinho = this._dataService.GetCarrinho();
+            var carrinho = this._dataService.GetCarrinho(itemPedido.Pedido.Id);
             return new PostCarrinhoResponse(carrinho, itemAlterado);
         }
     }

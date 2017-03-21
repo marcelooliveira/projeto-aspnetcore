@@ -117,10 +117,13 @@ namespace Aula
             this._contexto.SaveChanges();
         }
 
-        CarrinhoViewModel IDataService.GetCarrinho()
+        CarrinhoViewModel IDataService.GetCarrinho(int pedidoId)
         {
             var itensPedido =
-                this._contexto.ItensPedido.Include("Produto").ToList();
+                this._contexto
+                .ItensPedido
+                .Where(i => i.Pedido.Id == pedidoId)
+                .Include("Produto").ToList();
             return new CarrinhoViewModel(itensPedido);
         }
     }

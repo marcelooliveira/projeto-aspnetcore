@@ -63,15 +63,32 @@ namespace Aula.Controllers
         {
             int? pedidoId = GetCookiePedidoId();
 
-            List<ItemPedido> itensPedido = 
-                this._dataService.GetCarrinho().ItensCarrinho;
-            return View(new CarrinhoViewModel(itensPedido));
+            if (pedidoId.HasValue)
+            {
+                List<ItemPedido> itensPedido =
+                    this._dataService
+                    .GetCarrinho(pedidoId.Value).ItensCarrinho;
+                return View(new CarrinhoViewModel(itensPedido));
+            }
+            else
+            {
+                return View("Carrossel");
+            }
         }
 
         public IActionResult Resumo()
         {
-            List<ItemPedido> itensPedido = this._dataService.GetCarrinho().ItensCarrinho;
-            return View(new CarrinhoViewModel(itensPedido));
+            int? pedidoId = GetCookiePedidoId();
+            if (pedidoId.HasValue)
+            {
+                List<ItemPedido> itensPedido = 
+                this._dataService.GetCarrinho(pedidoId.Value).ItensCarrinho;
+                return View(new CarrinhoViewModel(itensPedido));
+            }
+            else
+            {
+                return View("Carrossel");
+            }
         }
 
         public IActionResult AdicionarAoCarrinho(int produtoId)
