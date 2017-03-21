@@ -125,7 +125,7 @@ namespace Aula
                 .ItensPedido
                 .Where(i => i.Pedido.Id == pedidoId)
                 .Include("Produto").ToList();
-            return new CarrinhoViewModel(itensPedido);
+            return new CarrinhoViewModel(pedidoId, itensPedido);
         }
     }
 }

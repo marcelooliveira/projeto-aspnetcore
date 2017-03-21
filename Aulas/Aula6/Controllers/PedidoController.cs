@@ -68,7 +68,7 @@ namespace Aula.Controllers
                 List<ItemPedido> itensPedido =
                     this._dataService
                     .GetCarrinho(pedidoId.Value).ItensCarrinho;
-                return View(new CarrinhoViewModel(itensPedido));
+                return View(new CarrinhoViewModel(pedidoId.Value, itensPedido));
             }
             else
             {
@@ -87,7 +87,8 @@ namespace Aula.Controllers
                 {
                     return RedirectToAction("Carrossel");
                 }
-                return View(new CarrinhoViewModel(itensPedido));
+                Response.Cookies.Delete("pedidoId");
+                return View(new CarrinhoViewModel(pedidoId.Value, itensPedido));
             }
             else
             {
