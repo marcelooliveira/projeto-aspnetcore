@@ -1,4 +1,6 @@
-﻿<h3>Cadastro</h3>
+﻿@model Pedido
+
+<h3>Cadastro</h3>
 <div class="panel panel-default">
     <div class="panel-body">
         <form role="form">
@@ -6,46 +8,46 @@
                 <div class="form-group">
                     <label class="control-label" for="nomeCliente">Nome do Cliente</label>
                     <input type="text" class="form-control" id="nomeCliente"
-                           placeholder="Digite o seu nome">
+                           placeholder="Digite o seu nome" value="@Model.Nome">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="email">E-Mail</label>
                     <input type="email" class="form-control" id="email"
-                           placeholder="Digite o e-mail">
+                           placeholder="Digite o e-mail" value="@Model.Email">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="endereco">Endereço</label>
                     <input type="text" class="form-control" id="endereco"
-                           placeholder="Digite o endereço">
+                           placeholder="Digite o endereço" value="@Model.Endereco">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="complemento">Complemento</label>
                     <input type="text" class="form-control" id="complemento"
-                           placeholder="Número, apto, bloco, etc.">
+                           placeholder="Número, apto, bloco, etc." value="@Model.Complemento">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="bairro">Bairro</label>
                     <input type="text" class="form-control" id="bairro"
-                           placeholder="Digite o bairro">
+                           placeholder="Digite o bairro" value="@Model.Bairro">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="municipio">Município</label>
                     <input type="text" class="form-control" id="municipio"
-                           placeholder="Digite o município">
+                           placeholder="Digite o município" value="@Model.Municipio">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="uf">UF</label>
                     <input type="text" class="form-control" id="uf"
-                           placeholder="Digite o uf">
+                           placeholder="Digite o uf" value="@Model.UF">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="cep">CEP</label>
                     <input type="text" class="form-control" id="cep"
-                           placeholder="Digite o cep">
+                           placeholder="Digite o cep" value="@Model.CEP">
                 </div>
             </div>
             <br />

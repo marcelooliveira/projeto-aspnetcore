@@ -78,7 +78,8 @@ namespace Aula.Controllers
 
         public IActionResult Cadastro()
         {
-            return View();
+            Pedido model = new Pedido();
+            return View(model);
         }
 
         public IActionResult Resumo()
