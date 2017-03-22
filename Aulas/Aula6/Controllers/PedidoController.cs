@@ -76,6 +76,11 @@ namespace Aula.Controllers
             }
         }
 
+        public IActionResult Cadastro()
+        {
+            return View();
+        }
+
         public IActionResult Resumo()
         {
             int? pedidoId = GetCookiePedidoId();
