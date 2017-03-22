@@ -82,7 +82,7 @@
                 else {
                     this.getItemPedidoEl(el).remove();
                     if (carrinho.carrinhoViewModel.itensCarrinho.length == 0) {
-                        $('#btnFinalizar').remove();
+                        $('#btnCadastro').remove();
                     }
                 }
                 this.setCarrinhoQuantidade(el, carrinho.carrinhoViewModel);
