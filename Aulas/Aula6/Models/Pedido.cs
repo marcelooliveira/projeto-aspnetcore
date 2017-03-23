@@ -11,18 +11,11 @@ namespace Aula.Models
     {
         public Pedido()
         {
-            Nome =  "Alura da Silva";
-            Email = "alura@gmail.com";
-            Endereco = "rua vergueiro";
-            Complemento = "3185 8º andar sala 200";
-            Bairro = "Vila Mariana";
-            Municipio = "São Paulo";
-            UF = "SP";
-            CEP = "04101-300";
+            Itens = new List<ItemPedido>();
         }
 
         [DataMember]
-        public List<ItemPedido> Itens { get; private set; }
+        public List<ItemPedido> Itens { get; set; }
         [DataMember]
         public decimal Total
         {
@@ -32,20 +25,20 @@ namespace Aula.Models
             }
         }
         [DataMember]
-        public string Nome { get; private set; }
+        public string Nome { get; set; }
         [DataMember]
-        public string Email { get; private set; }
+        public string Email { get; set; }
         [DataMember]
-        public string Endereco { get; private set; }
+        public string Endereco { get; set; }
         [DataMember]
-        public string Complemento { get; private set; }
+        public string Complemento { get; set; }
         [DataMember]
-        public string Bairro { get; private set; }
+        public string Bairro { get; set; }
         [DataMember]
-        public string Municipio { get; private set; }
+        public string Municipio { get; set; }
         [DataMember]
-        public string UF { get; private set; }
+        public string UF { get; set; }
         [DataMember]
-        public string CEP { get; private set; }
+        public string CEP { get; set; }
     }
 }

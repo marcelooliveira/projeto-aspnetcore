@@ -82,7 +82,8 @@ namespace Aula.Controllers
             return View(model);
         }
 
-        public IActionResult Resumo()
+        [HttpPost]
+        public IActionResult Resumo(Pedido cadastro)
         {
             int? pedidoId = GetCookiePedidoId();
             if (pedidoId.HasValue)
