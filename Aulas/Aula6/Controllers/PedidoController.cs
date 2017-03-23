@@ -85,21 +85,28 @@ namespace Aula.Controllers
         [HttpPost]
         public IActionResult Resumo(Pedido cadastro)
         {
-            int? pedidoId = GetCookiePedidoId();
-            if (pedidoId.HasValue)
+            if (!ModelState.IsValid)
             {
-                List<ItemPedido> itensPedido = 
-                    this._dataService.GetCarrinho(pedidoId.Value).ItensCarrinho;
-                if (itensPedido.Count == 0)
-                {
-                    return RedirectToAction("Carrossel");
-                }
-                Response.Cookies.Delete("pedidoId");
-                return View(new CarrinhoViewModel(pedidoId.Value, itensPedido));
+                return View();
             }
             else
             {
-                return RedirectToAction("Carrossel");
+                int? pedidoId = GetCookiePedidoId();
+                if (pedidoId.HasValue)
+                {
+                    List<ItemPedido> itensPedido = 
+                        this._dataService.GetCarrinho(pedidoId.Value).ItensCarrinho;
+                    if (itensPedido.Count == 0)
+                    {
+                        return RedirectToAction("Carrossel");
+                    }
+                    Response.Cookies.Delete("pedidoId");
+                    return View(new CarrinhoViewModel(pedidoId.Value, itensPedido));
+                }
+                else
+                {
+                    return RedirectToAction("Carrossel");
+                }
             }
         }
 

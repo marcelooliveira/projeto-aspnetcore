@@ -3,8 +3,7 @@
 <h3>Cadastro</h3>
 <div class="panel panel-default">
     <div class="panel-body">
-        <form action="/pedido/resumo" method="post">
-            @*<input asp-for="Id" type="hidden" value="@Model.Id" />*@
+        <form asp-action="resumo" method="post">
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" 
@@ -13,6 +12,7 @@
                            placeholder="Digite o seu nome" 
                            asp-for="Nome" 
                            value="@Model.Nome">
+                    <span asp-validation-for="Nome" class="text-danger"/>
                 </div>
                 <div class="form-group">
                     <label class="control-label" 
@@ -21,6 +21,7 @@
                            placeholder="Digite o e-mail" 
                            asp-for="Email"
                            value="@Model.Email">
+                    <span asp-validation-for="Email" class="text-danger" />
                 </div>
             </div>
             <div class="col-md-4">
@@ -31,6 +32,7 @@
                            placeholder="Digite o endereço" 
                            asp-for="Endereco"
                            value="@Model.Endereco">
+                    <span asp-validation-for="Endereco" class="text-danger" />
                 </div>
                 <div class="form-group">
                     <label class="control-label" 
@@ -39,6 +41,7 @@
                            placeholder="Número, apto, bloco, etc." 
                            asp-for="Complemento"
                            value="@Model.Complemento">
+                    <span asp-validation-for="Complemento" class="text-danger" />
                 </div>
                 <div class="form-group">
                     <label class="control-label" 
@@ -47,6 +50,7 @@
                            placeholder="Digite o bairro" 
                            asp-for="Bairro"
                            value="@Model.Bairro">
+                    <span asp-validation-for="Bairro" class="text-danger" />
                 </div>
             </div>
             <div class="col-md-4">
@@ -57,6 +61,7 @@
                            placeholder="Digite o município" 
                            asp-for="Municipio"
                            value="@Model.Municipio">
+                    <span asp-validation-for="Municipio" class="text-danger" />
                 </div>
                 <div class="form-group">
                     <label class="control-label" 
@@ -65,6 +70,7 @@
                            placeholder="Digite o uf" 
                            asp-for="UF"
                            value="@Model.UF">
+                    <span asp-validation-for="UF" class="text-danger" />
                 </div>
                 <div class="form-group">
                     <label class="control-label" 
@@ -73,6 +79,7 @@
                            placeholder="Digite o cep" 
                            asp-for="CEP"
                            value="@Model.CEP">
+                    <span asp-validation-for="CEP" class="text-danger" />
                 </div>
                 <div class="form-group">
                     <button type="submit"
