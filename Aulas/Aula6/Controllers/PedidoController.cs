@@ -78,35 +78,52 @@ namespace Aula.Controllers
 
         public IActionResult Cadastro()
         {
-            Pedido model = new Pedido();
-            return View(model);
+            int? pedidoId = GetCookiePedidoId();
+
+            if (pedidoId.HasValue)
+            {
+                Pedido pedido = 
+                    this._dataService
+                    .GetPedido(pedidoId.Value);
+
+                return View(pedido);
+            }
+            else
+            {
+                return RedirectToAction("Carrossel");
+            }
         }
 
         [HttpPost]
         public IActionResult Resumo(Pedido cadastro)
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            else
+            if (ModelState.IsValid)
             {
                 int? pedidoId = GetCookiePedidoId();
                 if (pedidoId.HasValue)
                 {
-                    List<ItemPedido> itensPedido = 
-                        this._dataService.GetCarrinho(pedidoId.Value).ItensCarrinho;
-                    if (itensPedido.Count == 0)
+                    Pedido pedido = this._dataService
+                        .GetPedido(pedidoId.Value);
+
+                    if (pedido.Itens.Count == 0)
                     {
                         return RedirectToAction("Carrossel");
                     }
                     Response.Cookies.Delete("pedidoId");
-                    return View(new CarrinhoViewModel(pedidoId.Value, itensPedido));
+
+                    Pedido pedidoAlterado = 
+                        this._dataService.UpdatePedido(cadastro);
+
+                    return View(pedidoAlterado);
                 }
                 else
                 {
                     return RedirectToAction("Carrossel");
                 }
+            }
+            else
+            {
+                return RedirectToAction("Cadastro");
             }
         }
 

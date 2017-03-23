@@ -69,6 +69,15 @@ namespace Aula
                 .Where(i => i.Id == itemPedidoId).SingleOrDefault();
         }
 
+        public Pedido GetPedido(int pedidoId)
+        {
+            return this._contexto
+                .Pedidos
+                .Include(p => p.Itens.Select(i => i.Produto))
+                .Where(p => p.Id == pedidoId)
+                .SingleOrDefault();
+        }
+
         public List<Produto> GetProdutos()
         {
             return this._contexto.Produtos.ToList();
@@ -105,6 +114,24 @@ namespace Aula
 
         }
 
+        public Pedido UpdatePedido(Pedido cadastro)
+        {
+            Pedido pedidoParaAtualizar = 
+                this._contexto
+                .Pedidos
+                .Where(i => i.Id == cadastro.Id)
+                .SingleOrDefault();
+
+            if (pedidoParaAtualizar != null)
+            {
+                pedidoParaAtualizar.AtualizarCadastro(cadastro);
+            }
+
+            this._contexto.SaveChanges();
+
+            return pedidoParaAtualizar;
+        }
+
         public void UpdateItemPedido(ItemPedido itemPedido)
         {
             ItemPedido itemParaAtualizar = this._contexto.ItensPedido
@@ -124,7 +151,7 @@ namespace Aula
                 this._contexto
                 .ItensPedido
                 .Where(i => i.Pedido.Id == pedidoId)
-                .Include("Produto").ToList();
+                .Include(i => i.Produto).ToList();
             return new CarrinhoViewModel(pedidoId, itensPedido);
         }
     }

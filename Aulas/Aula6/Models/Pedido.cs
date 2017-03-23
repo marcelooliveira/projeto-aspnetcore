@@ -16,7 +16,7 @@ namespace Aula.Models
         }
 
         [DataMember]
-        public List<ItemPedido> Itens { get; private set; }
+        public virtual List<ItemPedido> Itens { get; set; }
         [DataMember]
         public decimal Total
         {
@@ -71,5 +71,17 @@ namespace Aula.Models
             ErrorMessage = "CEP deve ter 9 caracteres.")]
         [Required(ErrorMessage = "CEP é obrigatório")]
         public string CEP { get; set; }
+
+        public void AtualizarCadastro(Pedido cadastro)
+        {       
+            this.Nome = cadastro.Nome;
+            this.Email = cadastro.Email;
+            this.Endereco = cadastro.Endereco;
+            this.Complemento = cadastro.Complemento;
+            this.Bairro = cadastro.Bairro;
+            this.Municipio = cadastro.Municipio;
+            this.UF = cadastro.UF;
+            this.CEP = cadastro.CEP;
+        }
     }
 }

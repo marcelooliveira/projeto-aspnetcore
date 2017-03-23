@@ -12,8 +12,9 @@ namespace Aula
         void AddItemPedido(int pedidoId, int produtoId);
         ItemPedido GetItemPedido(int itemPedido);
         CarrinhoViewModel GetCarrinho(int pedidoId);
+        Pedido GetPedido(int pedidoId);
         void DeleteItemPedido(int itemPedidoId);
-
         Pedido AddPedido();
+        Pedido UpdatePedido(Pedido cadastro);
     }
 }
