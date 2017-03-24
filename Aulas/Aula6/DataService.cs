@@ -20,7 +20,8 @@ namespace Aula
         public void AddItemPedido(int pedidoId, int produtoId)
         {
             if (!this._contexto
-                .ItensPedido.Include("Produto")
+                .ItensPedido
+                .Include(i => i.Produto)
                 .Any(i => 
                 i.Pedido.Id == pedidoId
                 && i.Produto.Id == produtoId))
@@ -64,16 +65,20 @@ namespace Aula
 
         public ItemPedido GetItemPedido(int itemPedidoId)
         {
-            return this._contexto.ItensPedido
-                .Include("Pedido")
-                .Where(i => i.Id == itemPedidoId).SingleOrDefault();
+            return this
+                ._contexto
+                    .ItensPedido
+                    .Include(i => i.Pedido)
+                    .Where(i => i.Id == itemPedidoId)
+                    .SingleOrDefault();
         }
 
         public Pedido GetPedido(int pedidoId)
         {
             return this._contexto
                 .Pedidos
-                .Include(p => p.Itens.Select(i => i.Produto))
+                .Include(p => p.Itens)
+                    .ThenInclude(item => item.Produto)
                 .Where(p => p.Id == pedidoId)
                 .SingleOrDefault();
         }

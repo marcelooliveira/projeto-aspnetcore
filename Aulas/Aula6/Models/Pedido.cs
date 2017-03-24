@@ -16,7 +16,7 @@ namespace Aula.Models
         }
 
         [DataMember]
-        public virtual List<ItemPedido> Itens { get; set; }
+        public List<ItemPedido> Itens { get; set; }
         [DataMember]
         public decimal Total
         {

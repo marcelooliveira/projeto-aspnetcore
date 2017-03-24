@@ -17,7 +17,7 @@ namespace Aula.Models
         public int PedidoId { get; private set; }
         [IgnoreDataMember]
         [Required]
-        public virtual Produto Produto { get; private set; }
+        public Produto Produto { get; set; }
         [DataMember]
         public int Quantidade { get; private set; }
         [DataMember]
