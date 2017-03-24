@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aulas", "Aulas", "{E95D23B8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aula6", "Aulas\Aula6\Aula6.csproj", "{6C73BE22-72E3-4426-A9DA-E7A101B64FBB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aluno", "Aulas\Aluno\Aluno.csproj", "{52A1BB1E-BC64-4DD7-9999-0CC4D2EA9CB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,11 +26,16 @@ Global
 		{6C73BE22-72E3-4426-A9DA-E7A101B64FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C73BE22-72E3-4426-A9DA-E7A101B64FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C73BE22-72E3-4426-A9DA-E7A101B64FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52A1BB1E-BC64-4DD7-9999-0CC4D2EA9CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52A1BB1E-BC64-4DD7-9999-0CC4D2EA9CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52A1BB1E-BC64-4DD7-9999-0CC4D2EA9CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52A1BB1E-BC64-4DD7-9999-0CC4D2EA9CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6C73BE22-72E3-4426-A9DA-E7A101B64FBB} = {E95D23B8-0090-4021-B56D-014C879E2FFE}
+		{52A1BB1E-BC64-4DD7-9999-0CC4D2EA9CB6} = {E95D23B8-0090-4021-B56D-014C879E2FFE}
 	EndGlobalSection
 EndGlobal

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Aula.Controllers
+namespace Aluno.Controllers
 {
     public class HomeController : Controller
     {

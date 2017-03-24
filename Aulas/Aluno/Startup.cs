@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Aluno;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Aula
+namespace Aluno
 {
     public class Startup
     {
