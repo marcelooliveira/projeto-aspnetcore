@@ -26,9 +26,11 @@ namespace Aluno.WebApi
             }
             else
             {
+                itemAlterado = this._dataService
+                    .GetItemPedido(itemPedido.Id);
                 this._dataService.DeleteItemPedido(itemPedido.Id);
             }
-            var carrinho = this._dataService.GetCarrinho();
+            var carrinho = this._dataService.GetCarrinho(itemAlterado.Pedido.Id);
             return new PostCarrinhoResponse(carrinho, itemAlterado);
         }
     }

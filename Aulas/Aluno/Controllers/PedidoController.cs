@@ -62,14 +62,37 @@ namespace Aluno.Controllers
 
         public IActionResult Carrinho()
         {
-            List<ItemPedido> itensPedido = this._dataService.GetCarrinho().ItensCarrinho;
-            return View(new CarrinhoViewModel(itensPedido));
+            int? pedidoId = GetCookiePedidoId();
+
+            if (pedidoId.HasValue)
+            {
+                List<ItemPedido> itensPedido = 
+                    this._dataService
+                    .GetCarrinho(pedidoId.Value)
+                    .ItensCarrinho;
+                return View(new CarrinhoViewModel(itensPedido));
+            }
+            else
+            {
+                return RedirectToAction("Carrossel");
+            }
         }
 
         public IActionResult Resumo()
         {
-            List<ItemPedido> itensPedido = this._dataService.GetCarrinho().ItensCarrinho;
-            return View(new CarrinhoViewModel(itensPedido));
+            int? pedidoId = GetCookiePedidoId();
+
+            if (pedidoId.HasValue)
+            {
+                List<ItemPedido> itensPedido = 
+                    this._dataService.GetCarrinho(pedidoId.Value)
+                    .ItensCarrinho;
+                return View(new CarrinhoViewModel(itensPedido));
+            }
+            else
+            {
+                return RedirectToAction("Carrossel");
+            }
         }
 
         public IActionResult AdicionarAoCarrinho(int produtoId)
