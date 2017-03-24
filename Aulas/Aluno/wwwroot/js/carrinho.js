@@ -33,6 +33,7 @@
 
         var data = {
             Id: itemId,
+            PedidoId: parseInt(Cookies.get("pedidoId")),
             Quantidade: parseInt(novaQtde) + 1
         }
 
@@ -45,6 +46,7 @@
 
         var data = {
             Id: itemId,
+            PedidoId: parseInt(Cookies.get("pedidoId")),
             Quantidade: parseInt(novaQtde) - 1
         }
 
@@ -57,6 +59,7 @@
 
         var data = {
             Id: itemId,
+            PedidoId: parseInt(Cookies.get("pedidoId")),
             Quantidade: parseInt(novaQtde)
         }
 
@@ -77,7 +80,11 @@
                 this.setItemPedidoQuantidade(el, carrinho.itemPedido);
             }
             else {
-                this.getItemPedidoEl(el).remove();
+                    this.getItemPedidoEl(el).remove();
+                    if (carrinho.carrinhoViewModel
+                        .itensCarrinho.length == 0) {
+                        $('#btnFinalizar').hide();
+                    }
             }
             this.setCarrinhoQuantidade(el, carrinho.carrinhoViewModel);
             this.setCarrinhoTotal(el, carrinho.carrinhoViewModel);

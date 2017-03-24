@@ -3,7 +3,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-6"><h4>Nº do Pedido: 12345678</h4></div>
+            <div class="col-md-6"><h4>Nº do Pedido: @Model.PedidoId</h4></div>
         </div>
         <hr />
         <div class="row">
@@ -31,4 +31,13 @@
         </div>
         }
     </div>
+</div>
+
+<div class="row">
+    <span class="pull-right">
+        <a asp-action="carrossel"
+           class="btn btn-success">
+            Novo Pedido
+        </a>
+    </span>
 </div>

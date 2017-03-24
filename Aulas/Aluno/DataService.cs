@@ -128,7 +128,7 @@ namespace Aluno
                 .Include(i => i.Produto)
                 .Where(i => i.Pedido.Id == pedidoId)
                 .ToList();
-            return new CarrinhoViewModel(itensPedido);
+            return new CarrinhoViewModel(pedidoId, itensPedido);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Aluno.Models.ViewModels
 {
     public class CarrinhoViewModel
     {
+        public int PedidoId { get; private set; }
         public List<ItemPedido> ItensCarrinho { get; private set; }
 
         public decimal Total
@@ -22,8 +23,10 @@ namespace Aluno.Models.ViewModels
 
         }
 
-        public CarrinhoViewModel(List<ItemPedido> itensCarrinho)
+        public CarrinhoViewModel(int pedidoId,
+            List<ItemPedido> itensCarrinho)
         {
+            this.PedidoId = pedidoId;
             this.ItensCarrinho = itensCarrinho;
         }
     }

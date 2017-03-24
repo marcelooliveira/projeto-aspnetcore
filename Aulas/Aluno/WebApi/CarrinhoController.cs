@@ -30,7 +30,7 @@ namespace Aluno.WebApi
                     .GetItemPedido(itemPedido.Id);
                 this._dataService.DeleteItemPedido(itemPedido.Id);
             }
-            var carrinho = this._dataService.GetCarrinho(itemAlterado.Pedido.Id);
+            var carrinho = this._dataService.GetCarrinho(itemPedido.PedidoId);
             return new PostCarrinhoResponse(carrinho, itemAlterado);
         }
     }

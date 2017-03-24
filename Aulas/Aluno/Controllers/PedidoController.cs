@@ -70,7 +70,7 @@ namespace Aluno.Controllers
                     this._dataService
                     .GetCarrinho(pedidoId.Value)
                     .ItensCarrinho;
-                return View(new CarrinhoViewModel(itensPedido));
+                return View(new CarrinhoViewModel(pedidoId.Value, itensPedido));
             }
             else
             {
@@ -87,7 +87,15 @@ namespace Aluno.Controllers
                 List<ItemPedido> itensPedido = 
                     this._dataService.GetCarrinho(pedidoId.Value)
                     .ItensCarrinho;
-                return View(new CarrinhoViewModel(itensPedido));
+
+                if (itensPedido.Count == 0)
+                {
+                    return RedirectToAction("Carrossel");
+                }
+
+                Response.Cookies.Delete("pedidoId");
+
+                return View(new CarrinhoViewModel(pedidoId.Value, itensPedido));
             }
             else
             {
