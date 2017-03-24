@@ -8,9 +8,10 @@ using Aluno;
 namespace Aluno.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20170324210947_PedidoEProdutosObrigatorios")]
+    partial class PedidoEProdutosObrigatorios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -45,7 +46,7 @@ namespace Aluno.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pedidos");
+                    b.ToTable("Pedido");
                 });
 
             modelBuilder.Entity("Aluno.Models.Produto", b =>

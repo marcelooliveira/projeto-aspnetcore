@@ -9,9 +9,10 @@ namespace Aluno
         void InicializaDB();
         List<Produto> GetProdutos();
         void UpdateItemPedido(ItemPedido itemPedido);
-        void AddItemPedido(int produtoId);
+        void AddItemPedido(int pedidoId, int produtoId);
         ItemPedido GetItemPedido(int itemPedido);
         CarrinhoViewModel GetCarrinho();
         void DeleteItemPedido(int itemPedidoId);
+        Pedido AddPedido();
     }
 }
