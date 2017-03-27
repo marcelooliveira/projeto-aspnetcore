@@ -71,6 +71,16 @@ namespace Aluno
                 .Where(i => i.Id == itemPedidoId).SingleOrDefault();
         }
 
+        public Pedido GetPedido(int pedidoId)
+        {
+            return this._contexto
+                .Pedidos
+                .Include(p => p.Itens)
+                    .ThenInclude(item => item.Produto)
+                .Where(p => p.Id == pedidoId)
+                .SingleOrDefault();
+        }
+
         public List<Produto> GetProdutos()
         {
             return this._contexto.Produtos.ToList();
@@ -118,6 +128,23 @@ namespace Aluno
             }
 
             this._contexto.SaveChanges();
+        }
+
+        public Pedido UpdatePedido(Pedido cadastro)
+        {
+            Pedido pedidoParaAtualizar =
+                this._contexto
+                .Pedidos
+                .Where(p => p.Id == cadastro.Id)
+                .SingleOrDefault();
+
+            if (pedidoParaAtualizar != null)
+            {
+                pedidoParaAtualizar.AtualizarCadastro(cadastro);
+                this._contexto.SaveChanges();
+            }
+
+            return pedidoParaAtualizar;
         }
 
         CarrinhoViewModel IDataService.GetCarrinho(int pedidoId)

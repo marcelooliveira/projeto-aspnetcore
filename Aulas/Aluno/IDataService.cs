@@ -14,5 +14,7 @@ namespace Aluno
         CarrinhoViewModel GetCarrinho(int pedidoId);
         void DeleteItemPedido(int itemPedidoId);
         Pedido AddPedido();
+        Pedido GetPedido(int pedidoId);
+        Pedido UpdatePedido(Pedido cadastro);
     }
 }

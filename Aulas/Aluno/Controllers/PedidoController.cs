@@ -78,28 +78,58 @@ namespace Aluno.Controllers
             }
         }
 
-        public IActionResult Resumo()
+        public IActionResult Cadastro()
         {
             int? pedidoId = GetCookiePedidoId();
 
             if (pedidoId.HasValue)
             {
-                List<ItemPedido> itensPedido = 
-                    this._dataService.GetCarrinho(pedidoId.Value)
-                    .ItensCarrinho;
+                Pedido pedido =
+                    this._dataService
+                    .GetPedido(pedidoId.Value);
 
-                if (itensPedido.Count == 0)
-                {
-                    return RedirectToAction("Carrossel");
-                }
-
-                Response.Cookies.Delete("pedidoId");
-
-                return View(new CarrinhoViewModel(pedidoId.Value, itensPedido));
+                return View(pedido);
             }
             else
             {
                 return RedirectToAction("Carrossel");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Resumo(Pedido cadastro)
+        {
+            if (ModelState.IsValid)
+            {
+                int? pedidoId = GetCookiePedidoId();
+
+                if (pedidoId.HasValue)
+                {
+                    Pedido pedido =
+                        this._dataService
+                        .GetPedido(pedidoId.Value);
+
+                    if (pedido.Itens.Count == 0)
+                    {
+                        return RedirectToAction("Carrossel");
+                    }
+
+                    Response.Cookies.Delete("pedidoId");
+
+                    Pedido pedidoAlterado =
+                        this._dataService.UpdatePedido(cadastro);
+
+                    return View(pedidoAlterado);
+                }
+                else
+                {
+                    return RedirectToAction("Carrossel");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Cadastro");
             }
         }
 

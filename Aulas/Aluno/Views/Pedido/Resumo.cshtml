@@ -1,21 +1,21 @@
-﻿@model CarrinhoViewModel
+﻿@model Pedido
 <h3>Resumo do Pedido</h3>
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-6"><h4>Nº do Pedido: @Model.PedidoId</h4></div>
+            <div class="col-md-6"><h4>Nº do Pedido: @Model.Id</h4></div>
         </div>
         <hr />
         <div class="row">
             <div class="col-md-6"><h4>Seus Dados</h4>
             <div class="row">
-                <div class="col-md-6">João da Silva<br />(11)1234-5678</div>
-                <div class="col-md-6">joao@alura.com.br</div>
+                <div class="col-md-6">@Model.Nome<br />(11)1234-5678</div>
+                <div class="col-md-6">@Model.Email</div>
             </div>
             </div>
             <div class="col-md-6">
                 <h4>Endereço de Entrega</h4>
-                <div>Rua Vergueiro, 123, Vila Mariana - São Paulo - SP</div>
+                <div>@Model.Endereco @Model.Complemento, @Model.Bairro - @Model.Municipio - @Model.UF</div>
             </div>
         </div>
         <hr />
@@ -23,7 +23,7 @@
             <div class="col-md-6"><h4>Item</h4></div>
             <div class="col-md-6 text-right"><h4>Quantidade</h4></div>
         </div>
-        @foreach (var item in Model.ItensCarrinho)
+        @foreach (var item in Model.Itens)
         {
         <div class="row">
             <div class="col-md-6">@item.Produto.Descricao</div>

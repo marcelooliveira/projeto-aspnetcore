@@ -67,9 +67,10 @@
         @if (Model.ItensCarrinho.Count() > 0)
         {
             <a asp-controller="pedido"
-               asp-action="resumo" 
+               asp-action="cadastro" 
+               id="btnCadastro"
                class="btn btn-success">
-                Finalizar Pedido
+                Prencher Cadastro
             </a>
         }
     </span>
