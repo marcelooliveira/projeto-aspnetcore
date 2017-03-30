@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\images\logo.png" />
     <Content Include="wwwroot\images\produtos\large_1.jpg" />
     <Content Include="wwwroot\images\produtos\large_2.jpg" />
     <Content Include="wwwroot\images\produtos\large_3.jpg" />

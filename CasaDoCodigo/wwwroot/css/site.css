@@ -40,3 +40,14 @@ textarea {
 .right.carousel-control {
     background-image: none;
 }
+
+.navbar-brand {
+    background: url('../images/logo.png');
+    width: 215px;
+    height: 55px;
+}
+
+.navbar-inverse {
+    background-color: #f8965d;
+    border-color: white;
+}
