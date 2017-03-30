@@ -35,3 +35,8 @@ textarea {
         display: none;
     }
 }
+
+.left.carousel-control, 
+.right.carousel-control {
+    background-image: none;
+}
