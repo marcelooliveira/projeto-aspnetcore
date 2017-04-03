@@ -8,20 +8,6 @@
 <div id="my-carousel" class="carousel slide" data-ride="carousel">
    <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        @{
-            var produtos = new []
-            {
-                new { Id = 1, Nome = "Sleep not found", Preco = 59.90},
-                new { Id = 2, Nome = "May the code be with you", Preco = 59.90},
-                new { Id = 3, Nome = "Rollback", Preco = 59.90 },
-                new { Id = 4, Nome = "REST", Preco = 69.90 },
-                new { Id = 5, Nome = "Design Patterns com Java", Preco = 69.90},
-                new { Id = 6, Nome = "Vire o jogo com Spring Framework", Preco = 69.90},
-                new { Id = 7, Nome = "Test-Driven Development", Preco = 69.90},
-                new { Id = 8, Nome = "iOS: Programe para iPhone e iPad", Preco = 69.90},
-                new { Id = 9, Nome = "Desenvolvimento de Jogos para Android", Preco = 69.90 }
-            };
-        }
         <div class="item active">
             <div class="row">
                 @for (int i = 0; i < 4; i++)
@@ -29,11 +15,11 @@
                     <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <img src="~/images/produtos/large_@(produtos[i].Id).jpg" />
+                                <img src="~/images/produtos/large_@(Model[i].Id).jpg" />
                             </div>
                             <div class="panel-footer">
-                                <div>@(produtos[i].Nome)</div>
-                                <div>R$ @(produtos[i].Preco)</div>
+                                <div>@(Model[i].Nome)</div>
+                                <div>R$ @(Model[i].Preco)</div>
                                 <div class="text-center">
                                     <a asp-action="carrinho">Adicionar</a>
                                 </div>
@@ -52,11 +38,11 @@
                     <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <img src="~/images/produtos/large_@(produtos[i].Id).jpg" />
+                                <img src="~/images/produtos/large_@(Model[i].Id).jpg" />
                             </div>
                             <div class="panel-footer">
-                                <div>@(produtos[i].Nome)</div>
-                                <div>R$ @(produtos[i].Preco)</div>
+                                <div>@(Model[i].Nome)</div>
+                                <div>R$ @(Model[i].Preco)</div>
                                 <div class="text-center">
                                     <a asp-action="carrinho">Adicionar</a>
                                 </div>
@@ -73,11 +59,11 @@
                     <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <img src="~/images/produtos/large_@(produtos[i].Id).jpg" />
+                                <img src="~/images/produtos/large_@(Model[i].Id).jpg" />
                             </div>
                             <div class="panel-footer">
-                                <div>@(produtos[i].Nome)</div>
-                                <div>R$ @(produtos[i].Preco)</div>
+                                <div>@(Model[i].Nome)</div>
+                                <div>R$ @(Model[i].Preco)</div>
                                 <div class="text-center">
                                     <a asp-action="carrinho">Adicionar</a>
                                 </div>
