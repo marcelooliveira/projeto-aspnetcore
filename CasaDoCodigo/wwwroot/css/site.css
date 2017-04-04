@@ -54,3 +54,7 @@ textarea {
     border-color: white;
 }
 
+.row-center {
+    display: flex;
+    align-items: center;
+}

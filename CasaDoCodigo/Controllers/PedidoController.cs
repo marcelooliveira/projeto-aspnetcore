@@ -31,6 +31,13 @@ namespace CasaDoCodigo.Controllers
 
         public IActionResult Carrinho()
         {
+            CarrinhoViewModel viewModel = GetCarrinhoViewModel();
+
+            return View(viewModel);
+        }
+
+        private CarrinhoViewModel GetCarrinhoViewModel()
+        {
             var itensCarrinho = new List<ItemPedido>
             {
                 new ItemPedido(1, produtos[0], 1),
@@ -40,13 +47,14 @@ namespace CasaDoCodigo.Controllers
 
             CarrinhoViewModel viewModel =
                 new CarrinhoViewModel(itensCarrinho);
-
-            return View(viewModel);
+            return viewModel;
         }
 
         public IActionResult Resumo()
         {
-            return View();
+            CarrinhoViewModel viewModel = GetCarrinhoViewModel();
+
+            return View(viewModel);
         }
     }
 }
