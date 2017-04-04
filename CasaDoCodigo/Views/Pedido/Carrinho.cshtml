@@ -2,7 +2,7 @@
     ViewData["Title"] = "Carrinho";
 }
 
-@model List<ItemPedido>
+@model CasaDoCodigo.Models.ViewModels.CarrinhoViewModel
 <h3>Meu Carrinho</h3>
 
 <div class="panel panel-default">
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="panel-body">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Itens)
         {
             <div class="row">
                 <div class="col-md-3">
@@ -46,12 +46,12 @@
     <div class="panel-footer">
         <div class="row">
             <div class="col-md-10">
-                <span>Total: @Model.Count() 
-                    @(Model.Count() < 2 ? "item" : "itens")</span>
+                <span>Total: @Model.Itens.Count() 
+                    @(Model.Itens.Count() < 2 ? "item" : "itens")</span>
             </div>
             <div class="col-md-2">
                 <span class="pull-right">
-                    Total: R$ @Model.Sum(i => i.Subtotal)
+                    Total: R$ @Model.Total
                 </span>
             </div>
         </div>
@@ -64,13 +64,5 @@
            class="btn btn-success pull-right">
             Finalizar Pedido
         </a>
-
-
-        @*@Html.ActionLink("Finalizar Pedido",
-        "resumo",
-        "pedido",
-        null,
-        new { @class="btn btn-success pull-right" }
-        )*@
     </div>
 </div>
