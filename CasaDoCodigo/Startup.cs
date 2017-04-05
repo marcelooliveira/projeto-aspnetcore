@@ -30,7 +30,7 @@ namespace CasaDoCodigo
         {
             // Add framework services.
             services.AddMvc();
-            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CasaDoCodigo;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             services.AddDbContext<Contexto>(options => options.UseSqlServer(connectionString));
         }
 
