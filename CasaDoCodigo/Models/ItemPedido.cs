@@ -18,10 +18,20 @@ namespace CasaDoCodigo.Models
             }
         }
 
+        public ItemPedido()
+        {
+
+        }
+
         public ItemPedido(int id, Produto produto, 
-            int quantidade)
+            int quantidade) : this(produto, quantidade)
         {
             this.Id = id;
+        }
+
+        public ItemPedido(Produto produto, 
+            int quantidade)
+        {
             this.Produto = produto;
             this.Quantidade = quantidade;
             this.PrecoUnitario = produto.Preco;
