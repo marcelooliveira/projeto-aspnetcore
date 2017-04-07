@@ -34,12 +34,7 @@ namespace CasaDoCodigo.Controllers
             List<Produto> produtos =
                 this._dataService.GetProdutos();
 
-            var itensCarrinho = new List<ItemPedido>
-            {
-                new ItemPedido(1, produtos[0], 1),
-                new ItemPedido(2, produtos[1], 2),
-                new ItemPedido(3, produtos[2], 3)
-            };
+            var itensCarrinho = this._dataService.GetItensPedido();
 
             CarrinhoViewModel viewModel =
                 new CarrinhoViewModel(itensCarrinho);

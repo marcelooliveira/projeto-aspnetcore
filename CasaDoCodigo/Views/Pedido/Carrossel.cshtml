@@ -10,22 +10,28 @@
     <div class="carousel-inner" role="listbox">
         @{ 
             const int TAMANHO_PAGINA = 4;
-            int numPaginas = Model.Count() / TAMANHO_PAGINA;
+            int numPaginas = (int)Math.Ceiling((double)Model.Count() / TAMANHO_PAGINA);
         }
         @for (int pagina = 0; pagina < numPaginas; pagina++)
         {
         <div class="item @(pagina == 0 ? "active" : "")">
             <div class="row">
-                @for (int i = TAMANHO_PAGINA * pagina; i < TAMANHO_PAGINA * (pagina + 1); i++)
+                @{
+                    var produtosDaPagina =
+                        Model
+                        .Skip(TAMANHO_PAGINA * pagina)
+                        .Take(TAMANHO_PAGINA);
+                }
+                @foreach (var produto in produtosDaPagina)
                 {
                     <div class="col-md-3">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <img src="~/images/produtos/large_@(Model[i].Id).jpg" />
+                                <img src="~/images/produtos/large_@(produto.Id).jpg" />
                             </div>
                             <div class="panel-footer">
-                                <div>@(Model[i].Nome)</div>
-                                <div>R$ @(Model[i].Preco)</div>
+                                <div>@(produto.Nome)</div>
+                                <div>R$ @(produto.Preco)</div>
                                 <div class="text-center">
                                     <a asp-action="carrinho">Adicionar</a>
                                 </div>

@@ -14,6 +14,11 @@ namespace CasaDoCodigo
             this._contexto = contexto;
         }
 
+        public List<ItemPedido> GetItensPedido()
+        {
+            return this._contexto.ItensPedido.ToList();
+        }
+
         public List<Produto> GetProdutos()
         {
             return this._contexto.Produtos.ToList();
