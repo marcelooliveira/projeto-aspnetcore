@@ -33,15 +33,11 @@ namespace CasaDoCodigo
             string connectionString = 
                 Configuration.GetSection("ConnectionStrings")
                     .GetValue<string>("Default");
-
             services.AddDbContext<Contexto>(options => options.UseSqlServer(connectionString));
-
-            services.AddTransient<IDataService, DataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
-            IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -64,9 +60,6 @@ namespace CasaDoCodigo
                     name: "default",
                     template: "{controller=Pedido}/{action=Carrossel}/{id?}");
             });
-
-            IDataService dataService = serviceProvider.GetService<IDataService>();
-            dataService.InicializaDB();
         }
     }
 }
