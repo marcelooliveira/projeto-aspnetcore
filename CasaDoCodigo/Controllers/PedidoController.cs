@@ -47,5 +47,11 @@ namespace CasaDoCodigo.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        public void PostQuantidade(ItemPedido input)
+        {
+
+        }
     }
 }
