@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace CasaDoCodigo.Models
 {
-    public class ItemPedido
+    public class ItemPedido : BaseModel
     {
-        public int Id { get; private set; }
+        [DataMember]
         public Produto Produto { get; private set; }
+        [DataMember]
         public int Quantidade { get; private set; }
+        [DataMember]
         public decimal PrecoUnitario { get; private set; }
+        [DataMember]
         public decimal Subtotal {
             get
             {
