@@ -33,7 +33,14 @@
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data)
-        })
+        }).done(function (response) {
+            this.setQuantidade(response.itemPedido);
+        }.bind(this));
+    }
+
+    setQuantidade(itemPedido) {
+        $('[item-id=' + itemPedido.id + ']')
+            .find('input').val(itemPedido.quantidade);
     }
 }
 

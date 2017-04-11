@@ -8,6 +8,6 @@ namespace CasaDoCodigo
         void InicializaDB();
         List<Produto> GetProdutos();
         List<ItemPedido> GetItensPedido();
-        void UpdateItemPedido(ItemPedido itemPedido);
+        UpdateItemPedidoResponse UpdateItemPedido(ItemPedido itemPedido);
     }
 }

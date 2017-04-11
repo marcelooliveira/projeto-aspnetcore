@@ -1,4 +1,5 @@
 ﻿using CasaDoCodigo.Models;
+using CasaDoCodigo.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,7 @@ namespace CasaDoCodigo
             }
         }
 
-        public void UpdateItemPedido(ItemPedido itemPedido)
+        public UpdateItemPedidoResponse UpdateItemPedido(ItemPedido itemPedido)
         {
             var itemPedidoDB =
             _contexto.ItensPedido
@@ -68,6 +69,12 @@ namespace CasaDoCodigo
 
                 _contexto.SaveChanges();
             }
+
+            var itensPedido = _contexto.ItensPedido.ToList();
+
+            var carrinhoViewModel = new CarrinhoViewModel(itensPedido);
+
+            return new UpdateItemPedidoResponse(itemPedidoDB, carrinhoViewModel);
         }
     }
 }
