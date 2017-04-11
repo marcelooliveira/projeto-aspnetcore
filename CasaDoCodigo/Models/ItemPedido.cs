@@ -40,5 +40,10 @@ namespace CasaDoCodigo.Models
             this.Quantidade = quantidade;
             this.PrecoUnitario = produto.Preco;
         }
+
+        public void AtualizaQuantidade(int quantidade)
+        {
+            this.Quantidade = quantidade;
+        }
     }
 }

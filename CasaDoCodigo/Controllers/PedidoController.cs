@@ -51,7 +51,7 @@ namespace CasaDoCodigo.Controllers
         [HttpPost]
         public void PostQuantidade([FromBody]ItemPedido input)
         {
-
+            _dataService.UpdateItemPedido(input);
         }
     }
 }
