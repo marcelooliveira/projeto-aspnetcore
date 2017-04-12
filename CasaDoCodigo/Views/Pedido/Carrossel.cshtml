@@ -33,7 +33,8 @@
                                 <div>@(produto.Nome)</div>
                                 <div>R$ @(produto.Preco)</div>
                                 <div class="text-center">
-                                    <a asp-action="carrinho">Adicionar</a>
+                                    <a asp-action="carrinho"
+                                       asp-route-produtoId="@(produto.Id)">Adicionar</a>
                                 </div>
                             </div>
                         </div>

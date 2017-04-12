@@ -15,6 +15,27 @@ namespace CasaDoCodigo
             this._contexto = contexto;
         }
 
+        public void AddItemPedido(int produtoId)
+        {
+            var produto =
+                _contexto.Produtos
+                .Where(p => p.Id == produtoId)
+                .SingleOrDefault();
+
+            if (produto != null)
+            {
+                if (!_contexto.ItensPedido
+                    .Where(i => i.Produto.Id == produtoId)
+                    .Any())
+                {
+                    _contexto.ItensPedido.Add(
+                        new ItemPedido(produto, 1));
+
+                    _contexto.SaveChanges();
+                }
+            }
+        }
+
         public List<ItemPedido> GetItensPedido()
         {
             return this._contexto.ItensPedido.ToList();
