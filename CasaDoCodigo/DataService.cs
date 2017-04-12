@@ -67,6 +67,9 @@ namespace CasaDoCodigo
             {
                 itemPedidoDB.AtualizaQuantidade(itemPedido.Quantidade);
 
+                if (itemPedidoDB.Quantidade == 0)
+                    _contexto.ItensPedido.Remove(itemPedidoDB);
+
                 _contexto.SaveChanges();
             }
 
