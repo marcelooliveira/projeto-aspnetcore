@@ -30,6 +30,9 @@ namespace CasaDoCodigo
         {
             // Add framework services.
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
             string connectionString = 
                 Configuration.GetSection("ConnectionStrings")
                     .GetValue<string>("Default");
@@ -57,6 +60,7 @@ namespace CasaDoCodigo
 
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

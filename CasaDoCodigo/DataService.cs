@@ -1,5 +1,6 @@
 ﻿using CasaDoCodigo.Models;
 using CasaDoCodigo.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,13 @@ namespace CasaDoCodigo
     public class DataService : IDataService
     {
         private readonly Contexto _contexto;
-        public DataService(Contexto contexto)
+        private readonly IHttpContextAccessor _contextAccessor;
+
+        public DataService(Contexto contexto,
+            IHttpContextAccessor contextAccessor)
         {
             this._contexto = contexto;
+            this._contextAccessor = contextAccessor;
         }
 
         public void AddItemPedido(int produtoId)
@@ -24,13 +29,21 @@ namespace CasaDoCodigo
 
             if (produto != null)
             {
-                var pedido = _contexto.Pedidos.FirstOrDefault();
+                int? pedidoId = GetSessionPedidoId();
+
+                Pedido pedido = null;
+                if (pedidoId.HasValue)
+                {
+                    pedido = _contexto.Pedidos
+                        .Where(p => p.Id == pedidoId.Value)
+                        .SingleOrDefault();
+                }
 
                 if (pedido == null)
                     pedido = new Pedido();
 
                 if (!_contexto.ItensPedido
-                    .Where(i => 
+                    .Where(i =>
                         i.Pedido.Id == pedido.Id
                         && i.Produto.Id == produtoId)
                     .Any())
@@ -39,13 +52,31 @@ namespace CasaDoCodigo
                         new ItemPedido(pedido, produto, 1));
 
                     _contexto.SaveChanges();
+
+                    SetSessionPedidoId(pedido);
                 }
             }
         }
 
+        private void SetSessionPedidoId(Pedido pedido)
+        {
+            _contextAccessor.HttpContext
+                .Session.SetInt32("pedidoId", pedido.Id);
+        }
+
+        private int? GetSessionPedidoId()
+        {
+            return _contextAccessor.HttpContext
+                .Session.GetInt32("pedidoId");
+        }
+
         public List<ItemPedido> GetItensPedido()
         {
-            var pedido = _contexto.Pedidos.First();
+            var pedidoId = GetSessionPedidoId();
+            var pedido = _contexto.Pedidos
+                .Where(p => p.Id == pedidoId)
+                .Single();
+
             return this._contexto.ItensPedido
                 .Where(i => i.Pedido.Id == pedido.Id)
                 .ToList();
