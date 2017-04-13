@@ -24,12 +24,19 @@ namespace CasaDoCodigo
 
             if (produto != null)
             {
+                var pedido = _contexto.Pedidos.FirstOrDefault();
+
+                if (pedido == null)
+                    pedido = new Pedido();
+
                 if (!_contexto.ItensPedido
-                    .Where(i => i.Produto.Id == produtoId)
+                    .Where(i => 
+                        i.Pedido.Id == pedido.Id
+                        && i.Produto.Id == produtoId)
                     .Any())
                 {
                     _contexto.ItensPedido.Add(
-                        new ItemPedido(produto, 1));
+                        new ItemPedido(pedido, produto, 1));
 
                     _contexto.SaveChanges();
                 }
@@ -38,7 +45,10 @@ namespace CasaDoCodigo
 
         public List<ItemPedido> GetItensPedido()
         {
-            return this._contexto.ItensPedido.ToList();
+            var pedido = _contexto.Pedidos.First();
+            return this._contexto.ItensPedido
+                .Where(i => i.Pedido.Id == pedido.Id)
+                .ToList();
         }
 
         public List<Produto> GetProdutos()
@@ -69,8 +79,8 @@ namespace CasaDoCodigo
                     this._contexto.Produtos
                         .Add(produto);
 
-                    this._contexto.ItensPedido
-                        .Add(new ItemPedido(produto, 1));
+                    //this._contexto.ItensPedido
+                    //    .Add(new ItemPedido(produto, 1));
                 }
 
                 this._contexto.SaveChanges();

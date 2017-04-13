@@ -9,6 +9,8 @@ namespace CasaDoCodigo.Models
     public class ItemPedido : BaseModel
     {
         [DataMember]
+        public Pedido Pedido { get; private set; }
+        [DataMember]
         public Produto Produto { get; private set; }
         [DataMember]
         public int Quantidade { get; private set; }
@@ -27,15 +29,16 @@ namespace CasaDoCodigo.Models
 
         }
 
-        public ItemPedido(int id, Produto produto, 
-            int quantidade) : this(produto, quantidade)
+        public ItemPedido(int id, Pedido pedido, Produto produto, 
+            int quantidade) : this(pedido, produto, quantidade)
         {
             this.Id = id;
         }
 
-        public ItemPedido(Produto produto,
+        public ItemPedido(Pedido pedido, Produto produto,
             int quantidade)
         {
+            this.Pedido = pedido;
             this.Produto = produto;
             this.Quantidade = quantidade;
             this.PrecoUnitario = produto.Preco;
