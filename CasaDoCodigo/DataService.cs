@@ -141,5 +141,14 @@ namespace CasaDoCodigo
 
             return new UpdateItemPedidoResponse(itemPedidoDB, carrinhoViewModel);
         }
+
+        public Pedido GetPedido()
+        {
+            int? pedidoId = GetSessionPedidoId();
+
+            return _contexto.Pedidos
+                        .Where(p => p.Id == pedidoId)
+                        .SingleOrDefault();
+        }
     }
 }

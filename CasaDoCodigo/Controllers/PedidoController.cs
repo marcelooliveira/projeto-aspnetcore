@@ -48,11 +48,20 @@ namespace CasaDoCodigo.Controllers
 
         public IActionResult Cadastro()
         {
-            var pedido = new Pedido();
-            return View(pedido);
+            var pedido = _dataService.GetPedido();
+
+            if (pedido == null)
+            {
+                return RedirectToAction("Carrossel");
+            }
+            else
+            {
+                return View(pedido);
+            }
         }
 
-        public IActionResult Resumo()
+        [HttpPost]
+        public IActionResult Resumo(Pedido cadastro)
         {
             CarrinhoViewModel viewModel = GetCarrinhoViewModel();
 

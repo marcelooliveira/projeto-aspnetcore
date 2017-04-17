@@ -6,75 +6,73 @@
 
 <div class="panel panel-default">
     <div class="panel-body">
-        <form role="form">
+        <form role="form" method="post" asp-action="resumo">
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="nomeCliente">Nome do Cliente</label>
                     <input type="text" class="form-control" id="nomeCliente" placeholder="Nome do Cliente"
-                           value="@Model.Nome">
+                           asp-for="Nome">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="email">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Email"
-                           value="@Model.Email">
+                           asp-for="Email">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="telefone">Telefone</label>
                     <input type="text" class="form-control" id="telefone" placeholder="Telefone"
-                           value="@Model.Telefone">
+                           asp-for="Telefone">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="endereco">Endereço</label>
                     <input type="text" class="form-control" id="endereco" placeholder="Endereço"
-                           value="@Model.Endereco">
+                           asp-for="Endereco">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="complemento">Complemento</label>
                     <input type="text" class="form-control" id="complemento" placeholder="Complemento"
-                           value="@Model.Complemento">
+                           asp-for="Complemento">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="bairro">Bairro</label>
                     <input type="text" class="form-control" id="bairro" placeholder="Bairro"
-                           value="@Model.Bairro">
+                           asp-for="Bairro">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" for="municipio">Município</label>
                     <input type="text" class="form-control" id="municipio" placeholder="Município"
-                           value="@Model.Municipio">
+                           asp-for="Municipio">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="uf">UF</label>
                     <input type="text" class="form-control" id="uf" placeholder="UF"
-                           value="@Model.UF">
+                           asp-for="UF">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="cep">CEP</label>
                     <input type="text" class="form-control" id="cep" placeholder="CEP"
-                           value="@Model.CEP">
+                           asp-for="CEP">
+                </div>
+
+
+                <div class="form-group">
+                    <a asp-action="carrinho"
+                        class="btn btn-success">
+                        Continuar Comprando
+                    </a>
+                </div>
+                <div class="form-group">
+                    <button type="submit"
+                        class="btn btn-success">
+                        Finalizar Pedido
+                    </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="pull-right">
-            <a asp-action="carrinho"
-                class="btn btn-success">
-                Continuar Comprando
-            </a>
-            <a asp-action="resumo"
-               class="btn btn-success">
-                Finalizar Pedido
-            </a>
-        </div>
-
-
-    </div>
-</div>
