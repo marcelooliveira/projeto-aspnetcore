@@ -48,7 +48,8 @@ namespace CasaDoCodigo.Controllers
 
         public IActionResult Cadastro()
         {
-            return View();
+            var pedido = new Pedido();
+            return View(pedido);
         }
 
         public IActionResult Resumo()
