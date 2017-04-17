@@ -46,6 +46,11 @@ namespace CasaDoCodigo.Controllers
             return viewModel;
         }
 
+        public IActionResult Cadastro()
+        {
+            return View();
+        }
+
         public IActionResult Resumo()
         {
             CarrinhoViewModel viewModel = GetCarrinhoViewModel();

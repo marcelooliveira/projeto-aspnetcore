@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<h3>Cadastro</h3>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form role="form">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="nomeCliente">Nome do Cliente</label>
+                    <input type="text" class="form-control" id="nomeCliente" placeholder="Nome do Cliente">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="telefone">Telefone</label>
+                    <input type="text" class="form-control" id="telefone" placeholder="Telefone">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="endereco">Endereço</label>
+                    <input type="text" class="form-control" id="endereco" placeholder="Endereço">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="complemento">Complemento</label>
+                    <input type="text" class="form-control" id="complemento" placeholder="Complemento">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="bairro">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" placeholder="Bairro">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="municipio">Município</label>
+                    <input type="text" class="form-control" id="municipio" placeholder="Município">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="uf">UF</label>
+                    <input type="text" class="form-control" id="uf" placeholder="UF">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" placeholder="CEP">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <a asp-action="carrinho"
+                class="btn btn-success">
+                Continuar Comprando
+            </a>
+            <a asp-action="resumo"
+               class="btn btn-success">
+                Finalizar Pedido
+            </a>
+        </div>
+
+
+    </div>
+</div>
