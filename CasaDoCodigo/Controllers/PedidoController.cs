@@ -61,6 +61,7 @@ namespace CasaDoCodigo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Resumo(Pedido cadastro)
         {
             CarrinhoViewModel viewModel = GetCarrinhoViewModel();
@@ -69,6 +70,7 @@ namespace CasaDoCodigo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public UpdateItemPedidoResponse PostQuantidade([FromBody]ItemPedido input)
         {
             return _dataService.UpdateItemPedido(input);

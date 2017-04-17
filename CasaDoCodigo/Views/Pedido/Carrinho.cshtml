@@ -5,6 +5,10 @@
 @model CasaDoCodigo.Models.ViewModels.CarrinhoViewModel
 <h3>Meu Carrinho</h3>
 
+<form method="post">
+    @Html.AntiForgeryToken();
+</form>
+
 <div class="panel panel-default">
     <div class="panel-heading">
 
