@@ -28,7 +28,9 @@ namespace CasaDoCodigo.Models
             this.CEP = cadastro.CEP;
         }
 
-        [Required]
+        [Required(ErrorMessage = "Nome é obrigatório")]
+        [StringLength(50, MinimumLength = 5, 
+            ErrorMessage = "Nome deve ter entre 5 e 50 caracteres")]
         public string Nome { get; set; }
         [Required]
         public string Email { get; set; }
