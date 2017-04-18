@@ -64,9 +64,9 @@ namespace CasaDoCodigo.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Resumo(Pedido cadastro)
         {
-            CarrinhoViewModel viewModel = GetCarrinhoViewModel();
+            var pedido = _dataService.GetPedido();
 
-            return View(viewModel);
+            return View(pedido);
         }
 
         [HttpPost]

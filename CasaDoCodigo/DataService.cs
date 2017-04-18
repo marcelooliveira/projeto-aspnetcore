@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CasaDoCodigo
 {
@@ -147,6 +148,8 @@ namespace CasaDoCodigo
             int? pedidoId = GetSessionPedidoId();
 
             return _contexto.Pedidos
+                        .Include(p => p.Itens)
+                            .ThenInclude(p => p.Produto)
                         .Where(p => p.Id == pedidoId)
                         .SingleOrDefault();
         }
