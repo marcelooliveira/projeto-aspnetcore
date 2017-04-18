@@ -153,5 +153,13 @@ namespace CasaDoCodigo
                         .Where(p => p.Id == pedidoId)
                         .SingleOrDefault();
         }
+
+        public Pedido UpdateCastro(Pedido cadastro)
+        {
+            var pedido = GetPedido();
+            pedido.UpdateCadastro(cadastro);
+            _contexto.SaveChanges();
+            return pedido;
+        }
     }
 }

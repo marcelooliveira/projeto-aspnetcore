@@ -64,9 +64,16 @@ namespace CasaDoCodigo.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Resumo(Pedido cadastro)
         {
-            var pedido = _dataService.GetPedido();
+            if (ModelState.IsValid)
+            {
+                var pedido = _dataService.UpdateCastro(cadastro);
 
-            return View(pedido);
+                return View(pedido);
+            }
+            else
+            {
+                return RedirectToAction("Cadastro");
+            }
         }
 
         [HttpPost]
