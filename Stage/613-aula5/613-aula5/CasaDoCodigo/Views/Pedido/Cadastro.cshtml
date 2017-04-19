@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Cadastro";
+}
+@model Pedido
+<h3>Cadastro</h3>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form role="form" method="post" asp-action="resumo">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="nomeCliente">Nome do Cliente</label>
+                    <input type="text" class="form-control" id="nomeCliente" placeholder="Nome do Cliente"
+                           asp-for="Nome">
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email"
+                           asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="telefone">Telefone</label>
+                    <input type="text" class="form-control" id="telefone" placeholder="Telefone"
+                           asp-for="Telefone">
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="endereco">Endereço</label>
+                    <input type="text" class="form-control" id="endereco" placeholder="Endereço"
+                           asp-for="Endereco">
+                    <span asp-validation-for="Endereco" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="complemento">Complemento</label>
+                    <input type="text" class="form-control" id="complemento" placeholder="Complemento"
+                           asp-for="Complemento">
+                    <span asp-validation-for="Complemento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="bairro">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" placeholder="Bairro"
+                           asp-for="Bairro">
+                    <span asp-validation-for="Bairro" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="municipio">Município</label>
+                    <input type="text" class="form-control" id="municipio" placeholder="Município"
+                           asp-for="Municipio">
+                    <span asp-validation-for="Municipio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="uf">UF</label>
+                    <input type="text" class="form-control" id="uf" placeholder="UF"
+                           asp-for="UF">
+                    <span asp-validation-for="UF" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" placeholder="CEP"
+                           asp-for="CEP">
+                    <span asp-validation-for="CEP" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <a asp-action="carrinho"
+                        class="btn btn-success">
+                        Continuar Comprando
+                    </a>
+                </div>
+                <div class="form-group">
+                    <button type="submit"
+                        class="btn btn-success">
+                        Finalizar Pedido
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
